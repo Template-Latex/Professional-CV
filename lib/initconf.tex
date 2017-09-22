@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones iniciales del documento
-% Versión:      0.0.5 (22/09/2017)
+% Versión:      0.0.6 (22/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -38,9 +38,9 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Informe},
 		Template.Tipo={Normal},
-		Template.Version.Dev={0.0.5-N},
-		Template.Version.Hash={64EE9009F3AC7605CD056DA80FBE12C6},
-		Template.Version.Release={0.0.5},
+		Template.Version.Dev={0.0.6-N},
+		Template.Version.Hash={F40FD3113E062A3AD331A1B4B8F2AB8D},
+		Template.Version.Release={0.0.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Informe/},
 		Template.Web.Manual={http://latex.ppizarror.com/Template-Informe/}
 	},
@@ -49,7 +49,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v0.0.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v0.0.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -58,4 +58,32 @@
 	pdftoolbar={\cfgpdftoolbar},
 	pdftype={Text},
 	pdfview={\cfgpdfpageview}
+}
+
+% Establece la carpeta de imágenes por defecto
+\graphicspath{{./img}}
+
+% Configuración de los colores
+\color{\maintextcolor} % Color principal
+\arrayrulecolor{\tablelinecolor} % Color de las lineas de las tablas
+\sethlcolor{\highlightcolor} % Color del subrayado por defecto
+\ifthenelse{\equal{\showborderonlinks}{true}}{
+	\hypersetup{
+		% Color de links con borde
+		citebordercolor=\numcitecolor,
+		linkbordercolor=\linkcolor,
+		urlbordercolor=\urlcolor
+	}
+}{
+	\hypersetup{
+		% Color de links sin borde
+		hidelinks,
+		colorlinks=true,
+		citecolor=\numcitecolor,
+		linkcolor=\linkcolor,
+		urlcolor=\urlcolor
+	}
+}
+\ifthenelse{\equal{\colorpage}{white}}{}{
+	\pagecolor{\colorpage}
 }

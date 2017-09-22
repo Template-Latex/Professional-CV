@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Archivo principal
-% Versión:      0.0.0 (08/09/2017)
+% Versión:      0.0.5 (22/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -8,34 +8,36 @@
 %        Universidad de Chile
 %        pablo.pizarro@ing.uchile.cl, ppizarror.com
 %
-% Sitio web:    [http://latex.ppizarror.com/Professional-CV]
-% Licencia MIT: [https://opensource.org/licenses/MIT]
+% Sitio web:    [http://latex.ppizarror.com/Professional-CV/]
+% Licencia MIT: [https://opensource.org/licenses/MIT/]
 
 % CREACIÓN DEL DOCUMENTO
-\documentclass[11pt,letterpaper,spanish]{article} % Articulo tamaño carta, 11pt
+\documentclass[11pt,letterpaper]{article} % Articulo tamaño carta, 11pt
 \usepackage[utf8]{inputenc} % Codificación UTF-8
 
 % INFORMACIÓN DEL USUARIO
-\def\nombreAutor {John Doe}
-\def\correoAutor {user@email.com}
-\def\telefonoAutor {+1234567890}
-\def\linkRedSocial {linkedin.com/in/john.doe}
+\def\nombreautor {John Doe}
+\def\correoautor {user@email.com}
+\def\telefonoautor {+1234567890}
+\def\linkredsocial {linkedin.com/in/john.doe}
 
-\def\direccionAutor {Nombre Calle, Comuna}
-\def\regionAutor {Región}
-\def\paisAutor {País}
-\def\nacionalidadAutor {Nacional}
+\def\direccionautor {Nombre Calle, Comuna}
+\def\regionautor {Región}
+\def\paisautor {País}
+\def\nacionalidadautor {Nacional}
 
-\def\edadAutor {99}
-\def\diaNacimientoAutor {1}
-\def\mesNacimientoAutor {Enero}
-\def\anoNacimientoAutor {2000}
+\def\edadautor {99}
+\def\dianacimientoautor {1}
+\def\mesnacimientoautor {Enero}
+\def\anonacimientoautor {2000}
 
-\def\estadoCivil {Soltero}
-\def\cedulaIdentidad {12.345.678-9}
+\def\estadocivil {Soltero}
+\def\cedulaidentidad {12.345.678-9}
 
-% IMPORTACIÓN DE LIBRERÍAS
+% CONFIGURACIONES
 \input{lib/config}
+
+% IMPORTACIÓN DE FUNCIONES Y LIBRERÍAS
 \input{lib/imports}
 \input{lib/function}
 \input{lib/styles}
@@ -47,6 +49,7 @@
 	
 % CONFIGURACIONES DE PÁGINA
 \input{lib/pageconf}
+Professional-CV
 	
 % FIN DEL DOCUMENTO
 \end{document}

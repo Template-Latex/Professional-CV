@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones iniciales del documento
-% Versión:      0.0.0 (08/09/2017)
+% Versión:      0.0.5 (22/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -8,5 +8,54 @@
 %        Universidad de Chile
 %        pablo.pizarro@ing.uchile.cl, ppizarror.com
 %
-% Sitio web:    [http://latex.ppizarror.com/Professional-CV]
-% Licencia MIT: [https://opensource.org/licenses/MIT]
+% Sitio web:    [http://latex.ppizarror.com/Professional-CV/]
+% Licencia MIT: [https://opensource.org/licenses/MIT/]
+
+% Se define metadata del pdf
+\ifthenelse{\equal{\cfgshowbookmarkmenu}{true}}{
+	\def\cdfpagemodepdf {UseOutlines}
+}{
+	\def\cdfpagemodepdf {UseNone}
+}
+\hypersetup{
+	bookmarksopen={\cfgpdfbookmarkopen},
+	bookmarksopenlevel={\cfgbookmarksopenlevel},
+	bookmarkstype={toc},
+	pdfauthor={\nombreautor},
+	pdfcenterwindow={\cfgpdfcenterwindow},
+	pdfcopyright={\cfgpdfcopyright},
+	pdfcreator={LaTeX},
+	pdfdisplaydoctitle={\cfgpdfdisplaydoctitle},
+	pdffitwindow={\cfgpdffitwindow},
+	pdfinfo={
+		Template.Autor.Alias={ppizarror},
+		Template.Autor.Email={pablo.pizarro@ing.uchile.cl},
+		Template.Autor.Nombre={Pablo Pizarro R.},
+		Template.Autor.Web={http://ppizarror.com/},
+		Template.Codificacion={UTF-8},
+		Template.Fecha={22/09/2017},
+		Template.Licencia.Tipo={MIT},
+		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
+		Template.Nombre={Template-Informe},
+		Template.Tipo={Normal},
+		Template.Version.Dev={0.0.5-N},
+		Template.Version.Hash={64EE9009F3AC7605CD056DA80FBE12C6},
+		Template.Version.Release={0.0.5},
+		Template.Web.Dev={https://github.com/Template-Latex/Template-Informe/},
+		Template.Web.Manual={http://latex.ppizarror.com/Template-Informe/}
+	},
+	pdfkeywords={},
+	pdflang={\documentlang},
+	pdfmenubar={\cfgpdfmenubar},
+	pdfpagelayout={\cfgpdfpagemode},
+	pdfpagemode={\cdfpagemodepdf},
+	pdfproducer={Professional-CV v0.0.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfremotestartview={Fit},
+	pdfstartpage={1},
+	pdfstartview={\cfgpdfpageview},
+	pdfsubject={C.V. \nombreautor},
+	pdftitle={Currículum Vítae \nombreautor},
+	pdftoolbar={\cfgpdftoolbar},
+	pdftype={Text},
+	pdfview={\cfgpdfpageview}
+}

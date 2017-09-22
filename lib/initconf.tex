@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones iniciales del documento
-% Versión:      0.0.6 (22/09/2017)
+% Versión:      0.0.7 (22/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -10,6 +10,38 @@
 %
 % Sitio web:    [http://latex.ppizarror.com/Professional-CV/]
 % Licencia MIT: [https://opensource.org/licenses/MIT/]
+
+% Se revisa si las variables no han sido borradas
+\checkvardefined{\nombreautor}
+\checkvardefined{\correoautor}
+\checkvardefined{\telefonoautor}
+\checkvardefined{\linkredsocial}
+\checkvardefined{\direccionautor}
+\checkvardefined{\regionautor}
+\checkvardefined{\nacionalidadautor}
+\checkvardefined{\edadautor}
+\checkvardefined{\dianacimientoautor}
+\checkvardefined{\mesnacimientoautor}
+\checkvardefined{\anonacimientoautor}
+\checkvardefined{\estadocivil}
+\checkvardefined{\cedulaidentidad}
+
+% Se añade \xspace a las variables
+\makeatletter
+\g@addto@macro\nombreautor\xspace
+\g@addto@macro\correoautor\xspace
+\g@addto@macro\telefonoautor\xspace
+\g@addto@macro\linkredsocial\xspace
+\g@addto@macro\direccionautor\xspace
+\g@addto@macro\regionautor\xspace
+\g@addto@macro\nacionalidadautor\xspace
+\g@addto@macro\edadautor\xspace
+\g@addto@macro\dianacimientoautor\xspace
+\g@addto@macro\mesnacimientoautor\xspace
+\g@addto@macro\anonacimientoautor\xspace
+\g@addto@macro\estadocivil\xspace
+\g@addto@macro\cedulaidentidad\xspace
+\makeatother
 
 % Se define metadata del pdf
 \ifthenelse{\equal{\cfgshowbookmarkmenu}{true}}{
@@ -38,9 +70,9 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Informe},
 		Template.Tipo={Normal},
-		Template.Version.Dev={0.0.6-N},
-		Template.Version.Hash={F40FD3113E062A3AD331A1B4B8F2AB8D},
-		Template.Version.Release={0.0.6},
+		Template.Version.Dev={0.0.7-N},
+		Template.Version.Hash={753BFDA3EF1CF43D503712D40B0196DC},
+		Template.Version.Release={0.0.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Informe/},
 		Template.Web.Manual={http://latex.ppizarror.com/Template-Informe/}
 	},
@@ -49,7 +81,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v0.0.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v0.0.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

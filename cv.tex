@@ -24,15 +24,14 @@
 \def\direccionautor {Nombre Calle, \#123}
 \def\regionautor {Región}
 \def\paisautor {País}
-\def\nacionalidadautor {Nacional}
 
 \def\edadautor {99}
 \def\dianacimientoautor {1}
 \def\mesnacimientoautor {Enero}
 \def\anonacimientoautor {1980}
 
-\def\fotoautor {img/foto}
-\def\firmaautor {img/firma}
+\def\fotoautor {images/foto}
+\def\firmaautor {images/firma}
 
 % CONFIGURACIONES
 \input{lib/config}
@@ -48,7 +47,7 @@
 
 % INICIO DEL DOCUMENTO
 \begin{document}
-	
+
 % CONFIGURACIONES DE PÁGINA
 \input{lib/pageconf}
 
@@ -75,7 +74,7 @@
 		\institutionentry{Enseñanza básica}{1984}{1990}{}
 		\institutionentry{Enseñanza media}{1991}{1994}{\lipsum[75]}
 	\end{institution}
-
+	
 	\begin{institution}[]{Universidad}{Ciudad, Región, País}
 		\institutionentry{Ingeniería Civil}{1995}{2001}{\lipsum[66]}
 		\institutionentry{Magíster en Ciencias}{2002}{2003}{\lipsum[130]}
@@ -88,11 +87,11 @@
 		\institutionentry{Jefe de Obras}{Enero \apo 15}{\present}{\lipsum[66]}
 		\institutionentry{Ayudante de Oficina Técnica}{Junio \apo 14}{Diciembre \apo 14}{\lipsum[68]}
 	\end{institution}
-
+	
 	\begin{institution}{Empresa B}{Ciudad 2, Región 2, País 2}
 		\institutionentry{Ingeniero de Obras}{Marzo \apo 08}{Abril \apo 14}{\lipsum[75]}
 	\end{institution}
-
+	
 	\begin{institution}{Empresa C}{Ciudad 1, Región 1, País 1}
 		\institutionentry{Ayudante de Ingeniería}{Febrero \apo 04}{Diciembre \apo 07}{}
 	\end{institution}
@@ -110,6 +109,6 @@
 	\signatureentry{Ingeniero Civil}
 	\signatureentry{C.I. 12.345.678-9}
 \end{signature}
-	
+
 % FIN DEL DOCUMENTO
 \end{document}

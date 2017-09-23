@@ -18,7 +18,6 @@
 \checkvardefined{\linkredsocial}
 \checkvardefined{\direccionautor}
 \checkvardefined{\regionautor}
-\checkvardefined{\nacionalidadautor}
 \checkvardefined{\edadautor}
 \checkvardefined{\dianacimientoautor}
 \checkvardefined{\mesnacimientoautor}
@@ -30,7 +29,6 @@
 \g@addto@macro\telefonoautor\xspace
 \g@addto@macro\direccionautor\xspace
 \g@addto@macro\regionautor\xspace
-\g@addto@macro\nacionalidadautor\xspace
 \g@addto@macro\edadautor\xspace
 \g@addto@macro\dianacimientoautor\xspace
 \g@addto@macro\mesnacimientoautor\xspace
@@ -70,8 +68,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.0.0-1-N},
-		Template.Version.Hash={5C0F1371B9444D9E828FA91F7C64A624},
+		Template.Version.Dev={1.0.0-2-N},
+		Template.Version.Hash={17F1B9A2F9BABE46641D32D52F6933FF},
 		Template.Version.Release={1.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={http://latex.ppizarror.com/Professional-CV/}
@@ -93,7 +91,7 @@
 }
 
 % Establece la carpeta de imágenes por defecto
-\graphicspath{{./img}}
+\graphicspath{{./images}}
 
 % Configuración de los colores
 \color{\maintextcolor} % Color principal
@@ -128,14 +126,6 @@
 	[ExternalLocation ,
 	Mapping=tex-text,
 	Numbers=OldStyle,
-	Ligatures={Common,Contextual},
-	BoldFont=texgyrepagella-bold.otf,
-	ItalicFont=texgyrepagella-italic.otf,
-	BoldItalicFont=texgyrepagella-bolditalic.otf]
-	{texgyrepagella-regular.otf}
-	\newfontfamily\newnums
-	[ExternalLocation,
-	Mapping=tex-text,
 	Ligatures={Common,Contextual},
 	BoldFont=texgyrepagella-bold.otf,
 	ItalicFont=texgyrepagella-italic.otf,

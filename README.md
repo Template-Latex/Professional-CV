@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="http://latex.ppizarror.com/Professional-CV/" title="Professional-CV">
-    <img alt="Professional-CV" src="icon.png" width="200px" height="200px" />
+    <img alt="Professional-CV" src="https://raw.githubusercontent.com/Template-Latex/Professional-CV/054b629a4e24f880405963682f92a6121a7ebd2e/icon.png" width="200px" height="200px" />
   </a>
   <br /><br />
   Professional-CV</h1>

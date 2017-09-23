@@ -2,7 +2,7 @@
     "PROJECT": {
         "NAME": "Professional-CV",
         "ICON": {
-            "IMAGE": "icon.png",
+            "IMAGE": "https://raw.githubusercontent.com/Template-Latex/Professional-CV/054b629a4e24f880405963682f92a6121a7ebd2e/icon.png",
             "ALT": "Professional-CV",
             "WIDTH": 200,
             "HEIGHT": 200

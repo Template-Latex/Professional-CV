@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Archivo principal
-% Versión:      0.0.8 (22/09/2017)
+% Versión:      0.0.9 (22/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -19,7 +19,7 @@
 \def\nombreautor {John Doe}
 \def\correoautor {user@email.com}
 \def\telefonoautor {+1234567890}
-\def\linkredsocial {linkedin.com/in/john.doe}
+\def\linkredsocial {http://linkedin.com/in/john.doe}
 
 \def\direccionautor {Nombre Calle, Comuna}
 \def\regionautor {Región}
@@ -34,6 +34,9 @@
 \def\estadocivil {Soltero}
 \def\cedulaidentidad {12.345.678-9}
 
+\def\fotoautor {img/foto}
+\def\firmaautor {img/firma}
+
 % CONFIGURACIONES
 \input{lib/config}
 
@@ -42,6 +45,8 @@
 \input{lib/function}
 \input{lib/styles}
 \input{lib/env}
+
+% CONFIGURACIÓN INICIAL DEL DOCUMENTO
 \input{lib/initconf}
 
 % INICIO DEL DOCUMENTO
@@ -49,7 +54,6 @@
 	
 % CONFIGURACIONES DE PÁGINA
 \input{lib/pageconf}
-Professional-CV
 	
 % FIN DEL DOCUMENTO
 \end{document}

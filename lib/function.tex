@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      0.0.8 (22/09/2017)
+% Versión:      0.0.9 (22/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -87,10 +87,114 @@
 
 \newcommand{\changemargin}[2]{
 	% Cambia los márgenes del documento
-	%	#1 Margen izquierdo
-	%	#2 Margen derecho
+	%	#1	Margen izquierdo
+	%	#2	Margen derecho
 	\emptyvarerr{\changemargin}{#1}{Margen izquierdo no definido}
 	\emptyvarerr{\changemargin}{#2}{Margen derecho no definido}
 	\list{}{\rightmargin#2\leftmargin#1}\item[]
 }
 \let\endchangemargin=\endlist
+
+\newcommand{\maintitle}[3]{
+	% Título principal con subtítulo y último cambio
+	%	#1	Nombre autor
+	%	#2	Edad corta autor
+	%	#3	Último cambio
+	\emptyvarerr{\maintitle}{#1}{Nombre autor no definido}
+	\emptyvarerr{\maintitle}{#2}{Edad corta autor no definido}
+	\emptyvarerr{\maintitle}{#3}{Fecha de ultimo cambio no definido}
+	\vbox to 0pt{\hfill \scriptsize \color{gray} #3}
+	\vspace{-0.4em}
+	\noindent{\LARGE \textbf{#1}} \ \ \ \emph{#2}
+}
+
+\newcommand*{\roottitle}[1]{
+	% Título de las secciones principales
+	%	#1	Título
+	\emptyvarerr{\roottitle}{#1}{Titulo no definido}
+	\subsection*{#1}\vspace{-0.3em}\nopagebreak[4]
+}
+
+\newcommand*{\acr}[1]{
+	% Crea un acrónimo de forma fácil
+	%	#1	Acrónimo
+	\textscale{.85}{#1}
+}
+
+\newcommand{\headedsection}[3]{
+	% Crea una sección con encabezado, usada para un nuevo trabajo
+	% 	#1	Empresa
+	%	#2	Ubicación
+	%	#3	Contenido
+	\nopagebreak[4]
+	\begin{indentsection}
+		\item []
+		\textscale{1.1}{#1} \hfill #2#3
+	\end{indentsection}
+	\nopagebreak[4]
+}
+
+\newcommand{\headedsubsection}[3]{
+	% Crea una subsección con encabezado, usada para el contenido de los elementos
+	% 	#1	Cargo
+	%	#2	Fecha
+	%	#3	Contenido
+	\nopagebreak[4]
+	\begin{indentsection}
+		\item []
+		\textbf{#1} \hfill \emph{#2} #3
+	\end{indentsection}
+	\nopagebreak[4]
+}
+
+\newcommand{\bodytext}[1]{
+	% Crea un campo de texto
+	% 	#1	Texto
+	\nopagebreak[4]
+	\begin{indentsection}
+		\item[] #1
+	\end{indentsection}
+	\pagebreak[2]
+}
+
+\newcommand{\inlineheadsection}[2]{
+	% Sección con encabezado, usado por nuevo empleado
+	\begin{basedescript}
+	{\setlength{\leftmargin}{\doubleparindent}}
+	\item[\hspace{\newparindent}\textbf{#1}] #2
+	\end{basedescript}
+	\vspace{-1.7em}
+}
+
+\newcommand{\writeheader}{
+	% Escribe el encabezado del CV
+	
+	% Cambia estilo página y escribe título
+	\thispagestyle{firstpagetitle}
+	\maintitle{\nombreautor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}{\nomlastchange \today}
+	\nobreakvspace{0.3em}
+	
+	% Escribe datos autor
+	\noindent \href{mailto:\correoautor}{\correoautor} \sbull
+	\telefonoautor \sbull
+	\href{\linkredsocial}{\linkredsocial} \\
+	\direccionautor \sbull \regionautor \sbull \paisautor
+	\spacedhrule{0.9em}{-0.4em}
+}
+
+% Crea un bull
+\newcommand{\bull}{\raisebox{-0.365em}[-1em][-1em]{\textscale{4}{$\cdot$}}}
+\newcommand{\sbull}{\ \ \bull \ \ }
+
+% Variaciones de vspace
+\newcommand{\breakvspace}[1]{\pagebreak[2] \vspace{#1} \pagebreak[2]}
+\newcommand{\nobreakvspace}[1]{\nopagebreak[4] \vspace{#1} \nopagebreak[4]}
+
+% Línea espaciada
+\newcommand{\spacedhrule}[2]{\breakvspace{#1} \hrule \nobreakvspace{#2}}
+
+% Apóstrofe
+\newcommand{\apo}{\raisebox{-.18ex}{'}{\hspace{-.1em}}}
+
+% Evita salto de línea
+\newcommand*{\nsp}{\hskip 0pt}

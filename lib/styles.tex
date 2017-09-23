@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Definición de estilos
-% Versión:      0.0.8 (22/09/2017)
+% Versión:      0.0.9 (22/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -10,3 +10,14 @@
 %
 % Sitio web:    [http://latex.ppizarror.com/Professional-CV/]
 % Licencia MIT: [https://opensource.org/licenses/MIT/]
+
+% Estilo primera página con título
+\fancypagestyle{firstpagetitle}{
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+	\fancyhead[C]{\fontsize{16}{12} \selectfont \vspace{0.3cm} Currículum Vítae}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% Definición de colores
+\definecolor{dark-blue}{rgb}{0.15, 0.15, 0.40}

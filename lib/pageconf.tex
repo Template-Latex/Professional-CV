@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones de página y configuraciones finales
-% Versión:      1.0.1 (23/09/2017)
+% Versión:      1.0.2 (23/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -17,8 +17,32 @@
 }
 
 % Configuración de estilo de página
-\pagestyle{empty}
 \setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
+\ifthenelse{\equal{\hfstyle}{style1}}{
+	\pagestyle{fancy} \fancyhf{}
+	\fancyhead[L]{}
+	\fancyhead[C]{}
+	\fancyhead[R]{}
+	\fancyfoot[L]{}
+	\fancyfoot[C]{}
+	\fancyfoot[R]{}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}{
+\ifthenelse{\equal{\hfstyle}{style2}}{
+	\pagestyle{fancy} \fancyhf{}
+	\fancyhead[L]{}
+	\fancyhead[C]{}
+	\fancyhead[R]{}
+	\fancyfoot[L]{\textcolor{lgray}{\fontsize{10}{12} Currículum Vítae}}
+	\fancyfoot[C]{\textcolor{lgray}{\small \nombreautor}}
+	\fancyfoot[R]{\textcolor{lgray}{\small \thepage}}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}{
+	\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style2}}
+}
+
 
 % Escribe el encabezado
 \writeheader

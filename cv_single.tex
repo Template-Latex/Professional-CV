@@ -1,7 +1,7 @@
 % Template:     Professional-CV
 % Advertencia:  Documento generado automáticamente a partir de cv.tex y
 %               los archivos .tex de la carpeta lib/
-% Versión:      1.0.2 (23/09/2017)
+% Versión:      1.0.3 (23/09/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -44,10 +44,10 @@
 \def\writetitleheader {true}      % Escribe título en el encabezado
 
 % MÁRGENES DE PÁGINA
-\def\pagemarginbottom {2.0}       % Margen inferior página [cm]
+\def\pagemarginbottom {1.9}       % Margen inferior página [cm]
 \def\pagemarginleft {1.9}         % Margen izquierdo página [cm]
 \def\pagemarginright {1.9}        % Margen derecho página [cm]
-\def\pagemargintop {1.9}          % Margen superior página [cm]
+\def\pagemargintop {1.5}          % Margen superior página [cm]
 
 % CONFIGURACIÓN DE LOS COLORES DEL DOCUMENTO
 \def\colorpage {white}            % Color de la página
@@ -91,13 +91,13 @@
 \newenvironment{indentsection}{\begin{list}{}{\setlength{\leftmargin}{\newparindent}\setlength{\parsep}{0pt}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}\setlength{\topsep}{0pt}}}{\end{list}}\newenvironment{personaltabledata}{\spacedhrule{1.0em}{0em}\roottitle{\nompersonaldata}\begingroup\setlength{\tabcolsep}{0.7em}\setlength{\fboxsep}{0pt}\setlength{\columnsep}{-35pt}\def\arraystretch{1.339}\begin{wrapfigure}{l}{0.24\textwidth}\vspace{-0.33cm}\fbox{\centering\includegraphics[width=3.63cm]{\fotoautor}}\end{wrapfigure}\noindent\vspace{-0.79cm}\begin{table}[H]\centering\hspace*{-1.3cm}\begin{tabular}{ll}}{\end{tabular}\end{table}\vspace{-0.3cm}\endgroup}\newenvironment{summary}{\spacedhrule{1.0em}{0em}\roottitle{\nomsummary}\begingroup\vspace{-1.0em}\begin{multicols}{2}\noindent}{\end{multicols}\vspace{-0.1cm}\endgroup}\newenvironment{cvblock}[1]{\spacedhrule{1.0em}{0em}\ifx\hfuzz#1\hfuzz\throwwarning{Titulo del bloque no definido}\stop\else\roottitle{#1}\fi}{}\newenvironment{signature}{\vfill\begin{flushright}\begin{tabular}{c}\includegraphics[width=5cm]{\firmaautor} \\}{\end{tabular}\end{flushright}}\newenvironment{institution}[3][]{\nopagebreak[4]\begin{indentsection}\item []\ifx\hfuzz#1\hfuzz\textscale{1.1}{\textcolor{\linkcolor}{#2}}\else\textscale{1.1}{\href{#1}{#2}}\fi\hfill \textsc{#3} \break \vspace{-1em}}{\end{indentsection}\nopagebreak[4]}
 
 % CONFIGURACIÓN INICIAL DEL DOCUMENTO
-\checkvardefined{\nombreautor}\checkvardefined{\correoautor}\checkvardefined{\telefonoautor}\checkvardefined{\linkredsocial}\checkvardefined{\direccionautor}\checkvardefined{\regionautor}\checkvardefined{\edadautor}\checkvardefined{\dianacimientoautor}\checkvardefined{\mesnacimientoautor}\checkvardefined{\anonacimientoautor}\makeatletter\g@addto@macro\nombreautor\xspace\g@addto@macro\telefonoautor\xspace\g@addto@macro\direccionautor\xspace\g@addto@macro\regionautor\xspace\g@addto@macro\edadautor\xspace\g@addto@macro\dianacimientoautor\xspace\g@addto@macro\mesnacimientoautor\xspace\g@addto@macro\anonacimientoautor\xspace\makeatother\ifthenelse{\equal{\cfgshowbookmarkmenu}{true}}{\def\cdfpagemodepdf {UseOutlines}}{\def\cdfpagemodepdf {UseNone}}\hypersetup{bookmarksopen={\cfgpdfbookmarkopen},bookmarksopenlevel={\cfgbookmarksopenlevel},bookmarkstype={toc},pdfauthor={\nombreautor},pdfcenterwindow={\cfgpdfcenterwindow},pdfcopyright={Currículum Vítae, \nombreautor. Email: \correoautor},pdfcreator={LaTeX},pdfdisplaydoctitle={\cfgpdfdisplaydoctitle},pdffitwindow={\cfgpdffitwindow},pdfinfo={Autor.Email={\correoautor},Autor.Nombre={\nombreautor},Autor.Telefono={\telefonoautor},Autor.Ubicacion.Direccion={\direccionautor},Autor.Ubicacion.Pais={\paisautor},Autor.Ubicacion.Region={\regionautor},Template.Autor.Alias={ppizarror},Template.Autor.Email={pablo.pizarro@ing.uchile.cl},Template.Autor.Nombre={Pablo Pizarro R.},Template.Autor.Web={http://ppizarror.com/},Template.Codificacion={UTF-8},Template.Fecha={23/09/2017},Template.Licencia.Tipo={MIT},Template.Licencia.Web={https://opensource.org/licenses/MIT/},Template.Nombre={Professional-CV},Template.Tipo={Compacto},Template.Version.Dev={1.0.2-C},Template.Version.Hash={D3936E763D40026580CE4956AF9F2585},Template.Version.Release={1.0.2},Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},Template.Web.Manual={http://latex.ppizarror.com/Professional-CV/}},pdfkeywords={CV, \nombreautor, Currículum, Vítae},pdflang={\documentlang},pdfmenubar={\cfgpdfmenubar},pdfpagelayout={\cfgpdfpagemode},pdfpagemode={\cdfpagemodepdf},pdfproducer={Professional-CV v1.0.2 | (Pablo Pizarro R.) ppizarror.com},pdfremotestartview={Fit},pdfstartpage={1},pdfstartview={\cfgpdfpageview},pdfsubject={C.V. \nombreautor},pdftitle={Currículum Vítae \nombreautor},pdftoolbar={\cfgpdftoolbar},pdftype={Text},pdfview={\cfgpdfpageview}}\graphicspath{{./images}}\color{\maintextcolor}\arrayrulecolor{\tablelinecolor}\sethlcolor{\highlightcolor}\ifthenelse{\equal{\showborderonlinks}{true}}{\hypersetup{citebordercolor=\numcitecolor,linkbordercolor=\linkcolor,urlbordercolor=\urlcolor}}{\hypersetup{hidelinks,colorlinks=true,citecolor=\numcitecolor,linkcolor=\linkcolor,urlcolor=\urlcolor}}\ifthenelse{\equal{\colorpage}{white}}{}{\pagecolor{\colorpage}}\usepackage{ifxetex}\ifxetex\usepackage{fontspec}\setmainfont[ExternalLocation ,Mapping=tex-text,Numbers=OldStyle,Ligatures={Common,Contextual},BoldFont=texgyrepagella-bold.otf,ItalicFont=texgyrepagella-italic.otf,BoldItalicFont=texgyrepagella-bolditalic.otf]{texgyrepagella-regular.otf}\usepackage[protrusion]{microtype}\else\usepackage{tgpagella}\usepackage[expansion,protrusion]{microtype}\fi\newlength{\newparindent}\addtolength{\newparindent}{\parindent}\newlength{\doubleparindent}\addtolength{\doubleparindent}{\parindent}\addtolength{\doubleparindent}{\parindent}\hfuzz=200pt \vfuzz=200pt\hbadness=\maxdimen \vbadness=\maxdimen\ttfamily \hyphenchar\the\font=`\-\urlstyle{tt}\pdfminorversion=\pdfcompileversion
+\checkvardefined{\nombreautor}\checkvardefined{\correoautor}\checkvardefined{\telefonoautor}\checkvardefined{\linkredsocial}\checkvardefined{\direccionautor}\checkvardefined{\regionautor}\checkvardefined{\edadautor}\checkvardefined{\dianacimientoautor}\checkvardefined{\mesnacimientoautor}\checkvardefined{\anonacimientoautor}\makeatletter\g@addto@macro\nombreautor\xspace\g@addto@macro\telefonoautor\xspace\g@addto@macro\direccionautor\xspace\g@addto@macro\regionautor\xspace\g@addto@macro\edadautor\xspace\g@addto@macro\dianacimientoautor\xspace\g@addto@macro\mesnacimientoautor\xspace\g@addto@macro\anonacimientoautor\xspace\makeatother\ifthenelse{\equal{\cfgshowbookmarkmenu}{true}}{\def\cdfpagemodepdf {UseOutlines}}{\def\cdfpagemodepdf {UseNone}}\hypersetup{bookmarksopen={\cfgpdfbookmarkopen},bookmarksopenlevel={\cfgbookmarksopenlevel},bookmarkstype={toc},pdfauthor={\nombreautor},pdfcenterwindow={\cfgpdfcenterwindow},pdfcopyright={Currículum Vítae, \nombreautor. Email: \correoautor},pdfcreator={LaTeX},pdfdisplaydoctitle={\cfgpdfdisplaydoctitle},pdffitwindow={\cfgpdffitwindow},pdfinfo={Autor.Email={\correoautor},Autor.Nombre={\nombreautor},Autor.Telefono={\telefonoautor},Autor.Ubicacion.Direccion={\direccionautor},Autor.Ubicacion.Pais={\paisautor},Autor.Ubicacion.Region={\regionautor},Template.Autor.Alias={ppizarror},Template.Autor.Email={pablo.pizarro@ing.uchile.cl},Template.Autor.Nombre={Pablo Pizarro R.},Template.Autor.Web={http://ppizarror.com/},Template.Codificacion={UTF-8},Template.Fecha={23/09/2017},Template.Licencia.Tipo={MIT},Template.Licencia.Web={https://opensource.org/licenses/MIT/},Template.Nombre={Professional-CV},Template.Tipo={Compacto},Template.Version.Dev={1.0.3-1-C},Template.Version.Hash={D66F222B5CF8DF9BA49E51968413F68D},Template.Version.Release={1.0.3},Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},Template.Web.Manual={http://latex.ppizarror.com/Professional-CV/}},pdfkeywords={CV, \nombreautor, Currículum, Vítae},pdflang={\documentlang},pdfmenubar={\cfgpdfmenubar},pdfpagelayout={\cfgpdfpagemode},pdfpagemode={\cdfpagemodepdf},pdfproducer={Professional-CV v1.0.3 | (Pablo Pizarro R.) ppizarror.com},pdfremotestartview={Fit},pdfstartpage={1},pdfstartview={\cfgpdfpageview},pdfsubject={C.V. \nombreautor},pdftitle={Currículum Vítae \nombreautor},pdftoolbar={\cfgpdftoolbar},pdftype={Text},pdfview={\cfgpdfpageview}}\graphicspath{{./images}}\color{\maintextcolor}\arrayrulecolor{\tablelinecolor}\sethlcolor{\highlightcolor}\ifthenelse{\equal{\showborderonlinks}{true}}{\hypersetup{citebordercolor=\numcitecolor,linkbordercolor=\linkcolor,urlbordercolor=\urlcolor}}{\hypersetup{hidelinks,colorlinks=true,citecolor=\numcitecolor,linkcolor=\linkcolor,urlcolor=\urlcolor}}\ifthenelse{\equal{\colorpage}{white}}{}{\pagecolor{\colorpage}}\usepackage{ifxetex}\ifxetex\usepackage{fontspec}\setmainfont[ExternalLocation ,Mapping=tex-text,Numbers=OldStyle,Ligatures={Common,Contextual},BoldFont=texgyrepagella-bold.otf,ItalicFont=texgyrepagella-italic.otf,BoldItalicFont=texgyrepagella-bolditalic.otf]{texgyrepagella-regular.otf}\usepackage[protrusion]{microtype}\else\usepackage{tgpagella}\usepackage[expansion,protrusion]{microtype}\fi\newlength{\newparindent}\addtolength{\newparindent}{\parindent}\newlength{\doubleparindent}\addtolength{\doubleparindent}{\parindent}\addtolength{\doubleparindent}{\parindent}\hfuzz=200pt \vfuzz=200pt\hbadness=\maxdimen \vbadness=\maxdimen\ttfamily \hyphenchar\the\font=`\-\urlstyle{tt}\pdfminorversion=\pdfcompileversion
 
 % INICIO DEL DOCUMENTO
 \begin{document}
 
 % CONFIGURACIONES DE PÁGINA
-\ifthenelse{\equal{\pointdecimal}{true}}{\decimalpoint}{}\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}\ifthenelse{\equal{\hfstyle}{style1}}{\pagestyle{fancy} \fancyhf{}\fancyhead[L]{}\fancyhead[C]{}\fancyhead[R]{}\fancyfoot[L]{}\fancyfoot[C]{}\fancyfoot[R]{}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}}{\ifthenelse{\equal{\hfstyle}{style2}}{\pagestyle{fancy} \fancyhf{}\fancyhead[L]{}\fancyhead[C]{}\fancyhead[R]{}\fancyfoot[L]{\textcolor{lgray}{\fontsize{10}{12} Currículum Vítae}}\fancyfoot[C]{\textcolor{lgray}{\small \nombreautor}}\fancyfoot[R]{\textcolor{lgray}{\small \thepage}}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}}{\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style2}}}\writeheader
+\ifthenelse{\equal{\pointdecimal}{true}}{\decimalpoint}{}\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}\ifthenelse{\equal{\hfstyle}{style1}}{\pagestyle{empty}}{\ifthenelse{\equal{\hfstyle}{style2}}{\pagestyle{fancy} \fancyhf{}\fancyhead[L]{}\fancyhead[C]{}\fancyhead[R]{}\fancyfoot[L]{\textcolor{lgray}{\fontsize{10}{12} Currículum Vítae}}\fancyfoot[C]{\textcolor{lgray}{\small \nombreautor}}\fancyfoot[R]{\textcolor{lgray}{\small \thepage}}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}}{\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1, style2}}}\writeheader
 
 % PÁRRAFO DE RESUMEN
 \begin{summary}
@@ -116,19 +116,6 @@
 	\personaltableentry{Cédula de Identidad}{12.345.678-9}
 \end{personaltabledata}
 
-% EDUCACIÓN
-\begin{cvblock}{Educación}
-	\begin{institution}[http://colegio.com]{Colegio}{Ciudad, Región, País}
-		\institutionentry{Enseñanza básica}{1984}{1990}{}
-		\institutionentry{Enseñanza media}{1991}{1994}{\lipsum[75]}
-	\end{institution}
-	
-	\begin{institution}[]{Universidad}{Ciudad, Región, País}
-		\institutionentry{Ingeniería Civil}{1995}{2001}{\lipsum[66]}
-		\institutionentry{Magíster en Ciencias}{2002}{2003}{\lipsum[130]}
-	\end{institution}
-\end{cvblock}
-
 % EXPERIENCIA
 \begin{cvblock}{Experiencia}
 	\begin{institution}[http://empresa.com]{Empresa A}{Ciudad 3, Región, País}
@@ -142,6 +129,19 @@
 	
 	\begin{institution}{Empresa C}{Ciudad 1, Región 1, País 1}
 		\institutionentry{Ayudante de Ingeniería}{Febrero \apo 04}{Diciembre \apo 07}{}
+	\end{institution}
+\end{cvblock}
+
+% EDUCACIÓN
+\begin{cvblock}{Educación}
+	\begin{institution}[http://colegio.com]{Colegio}{Ciudad, Región, País}
+		\institutionentry{Enseñanza básica}{1984}{1990}{}
+		\institutionentry{Enseñanza media}{1991}{1994}{\lipsum[75]}
+	\end{institution}
+	
+	\begin{institution}[]{Universidad}{Ciudad, Región, País}
+		\institutionentry{Ingeniería Civil}{1995}{2001}{\lipsum[66]}
+		\institutionentry{Magíster en Ciencias}{2002}{2003}{\lipsum[130]}
 	\end{institution}
 \end{cvblock}
 

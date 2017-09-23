@@ -1,0 +1,37 @@
+{
+    "PROJECT": {
+        "NAME": "Professional-CV",
+        "ICON": {
+            "IMAGE": "icon.png",
+            "ALT": "Professional-CV",
+            "WIDTH": 200,
+            "HEIGHT": 200
+        },
+        "URL": "http://latex.ppizarror.com/Professional-CV/",
+        "URL_TITLE": "Professional-CV"
+    },
+    "AUTHOR": {
+        "NAME": "Pablo Pizarro R.",
+        "URL": "http://ppizarror.com",
+        "ALT": "ppizarror",
+        "DATE": "2017",
+        "SECTION": {
+            "TITLE": "Autor",
+            "SHOW": true
+        }
+    },
+    "DESCRIPTION": "Professional CV es un template LaTeX para crear un currículum vitae de forma rápida y sencilla",
+    "BADGES": {
+        "0": {
+            "IMAGE": "http://ppizarror.com/badges/autor.svg",
+            "HREF": "http://ppizarror.com",
+            "ALT": "@ppizarror"
+        },
+        "1": {
+            "IMAGE": "http://ppizarror.com/badges/licenciamit.svg",
+            "HREF": "https://opensource.org/licenses/MIT/",
+            "ALT": "Licencia MIT"
+        }
+    },
+    "CONTENT": "readme.content.md"
+}

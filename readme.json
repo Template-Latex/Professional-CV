@@ -1,0 +1,37 @@
+{
+    "PROJECT": {
+        "NAME": "Professional-CV",
+        "ICON": {
+            "IMAGE": "https://raw.githubusercontent.com/Template-Latex/Professional-CV/054b629a4e24f880405963682f92a6121a7ebd2e/icon.png",
+            "ALT": "Professional-CV",
+            "WIDTH": 200,
+            "HEIGHT": 200
+        },
+        "URL": "http://latex.ppizarror.com/Professional-CV/",
+        "URL_TITLE": "Professional-CV"
+    },
+    "AUTHOR": {
+        "NAME": "Pablo Pizarro R.",
+        "URL": "http://ppizarror.com",
+        "ALT": "ppizarror",
+        "DATE": "2017",
+        "SECTION": {
+            "TITLE": "Autor",
+            "SHOW": true
+        }
+    },
+    "DESCRIPTION": "Página web del proyecto",
+    "BADGES": {
+        "0": {
+            "IMAGE": "http://ppizarror.com/badges/autor.svg",
+            "HREF": "http://ppizarror.com",
+            "ALT": "@ppizarror"
+        },
+        "1": {
+            "IMAGE": "http://ppizarror.com/badges/licenciamit.svg",
+            "HREF": "https://opensource.org/licenses/MIT/",
+            "ALT": "Licencia MIT"
+        }
+    },
+    "CONTENT": "readme.content.md"
+}

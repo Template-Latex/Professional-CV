@@ -1,0 +1,6 @@
+# Archivos de LaTeX
+*.aux
+*.log
+*.out
+log.txt
+*.synctex.gz

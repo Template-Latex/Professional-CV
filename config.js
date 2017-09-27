@@ -25,3 +25,11 @@ var href_pdf_version = '../Professional-CV/Professional-CV v{0}.pdf';
 var href_resources_folder = 'http://latex.ppizarror.com/resources/';
 var stats_name = 'Professional-CV';
 var update_download_counter = 'Professional-CV';
+
+// Declaración de funciones propias de cada template
+function afterDocumentReady() {}
+
+function afterJSONLoad() {
+    $('#exampletablepdfview1').attr('href', pdf_href_lastv);
+    $('#exampletablepdfview2').attr('href', pdf_href_lastv);
+}

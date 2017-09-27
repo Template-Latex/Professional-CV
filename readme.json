@@ -31,6 +31,53 @@
             "IMAGE": "http://ppizarror.com/badges/licenciamit.svg",
             "HREF": "https://opensource.org/licenses/MIT/",
             "ALT": "Licencia MIT"
+        },
+        "2": {
+            "NEWLINE": true
+        },
+        "3": {
+            "IMAGE": "http://latex.ppizarror.com/badges/tesis.svg",
+            "HREF": "https://github.com/Template-Latex/Template-Tesis/",
+            "ALT": "Template-Tesis",
+            "SHOW": false
+        },
+        "4": {
+            "IMAGE": "http://latex.ppizarror.com/badges/apunte.svg",
+            "HREF": "https://github.com/Template-Latex/Template-Apunte/",
+            "ALT": "Template-Apunte",
+            "SHOW": false
+        },
+        "5": {
+            "IMAGE": "http://latex.ppizarror.com/badges/tareas.svg",
+            "HREF": "https://github.com/Template-Latex/Template-Tareas/",
+            "ALT": "Template-Tareas",
+            "SHOW": false
+        },
+        "6": {
+            "IMAGE": "http://latex.ppizarror.com/badges/auxiliares.svg",
+            "HREF": "http://latex.ppizarror.com/stats/?template=Auxiliares",
+            "ALT": "Template-Auxiliares"
+        },
+        "7": {
+            "IMAGE": "http://latex.ppizarror.com/badges/controles.svg",
+            "HREF": "http://latex.ppizarror.com/stats/?template=Controles",
+            "ALT": "Template-Controles"
+        },
+        "8": {
+            "IMAGE": "http://latex.ppizarror.com/badges/pauta.svg",
+            "HREF": "https://github.com/Template-Latex/Template-Pautas/",
+            "ALT": "Template-Pautas",
+            "SHOW": false
+        },
+        "9": {
+            "IMAGE": "http://latex.ppizarror.com/badges/informe.svg",
+            "HREF": "http://latex.ppizarror.com/stats/?template=Informe",
+            "ALT": "Template-Informe"
+        },
+        "10": {
+            "IMAGE": "http://latex.ppizarror.com/badges/professionalcv.svg",
+            "HREF": "http://latex.ppizarror.com/Professional-CV/",
+            "ALT": "Professional-CV"
         }
     },
     "CONTENT": "readme.content.md"

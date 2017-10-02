@@ -7,3 +7,7 @@ log.txt
 
 # Otros archivos
 other.tex
+
+# PDF compilados
+cv.pdf
+cv_single.pdf

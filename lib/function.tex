@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      1.0.7 (02/10/2017)
+% Versión:      1.1.0 (02/10/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -182,10 +182,25 @@
 	\nopagebreak[4]
 	\begin{indentsection}
 		\item []
-		\textbf{#1} \hfill \emph{#2 -- #3} \break \vspace{-1em}
+		\noindent
+		\begin{minipage}{.7\linewidth}
+			\textbf{#1}
+		\end{minipage}
+		\begin{minipage}{.29\linewidth}
+			\begin{flushright}
+				\noindent \emph{#2 -- #3}
+			\end{flushright}
+		\end{minipage}
 		\ifx\hfuzz#4\hfuzz
+			\begin{minipage}{1\linewidth}
+				\vspace{0.2cm}
+				~ \\
+			\end{minipage}
 		\else
-			\bodytext{#4}
+			\begin{minipage}{1\linewidth}
+				\vspace{0.2cm}
+				\bodytext{#4}
+			\end{minipage}
 		\fi
 	\end{indentsection}
 	\nopagebreak[4]

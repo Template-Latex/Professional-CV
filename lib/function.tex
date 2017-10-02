@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      1.0.6 (02/10/2017)
+% Versión:      1.0.7 (02/10/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -160,6 +160,15 @@
 	\emptyvarerr{\personaltableentry}{#1}{Nombre entrada no definido}
 	\emptyvarerr{\personaltableentry}{#2}{Datos entrada no definidos}
 	\textbf{#1:} & #2 \\
+}
+
+\newcommand{\personaltablelastentry}[2]{
+	% Crea una última entrada en la tabla de datos personales
+	%	#1	Nombre entrada
+	%	#2	Datos entrada
+	\emptyvarerr{\personaltablelastentry}{#1}{Nombre entrada no definido}
+	\emptyvarerr{\personaltablelastentry}{#2}{Datos entrada no definidos}
+	\textbf{#1:} & #2 \vspace{-0.3cm}
 }
 
 \newcommand{\institutionentry}[4]{

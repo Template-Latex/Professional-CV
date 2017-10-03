@@ -1,6 +1,7 @@
 % Template:     Professional-CV
-% Documento:    Archivo principal
-% Versión:      1.1.4 (02/10/2017)
+% Advertencia:  Documento generado automáticamente a partir de cv.tex y
+%               los archivos .tex de la carpeta lib/
+% Versión:      1.1.5 (02/10/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -27,7 +28,7 @@
 
 \def\edadautor {99}
 \def\dianacimientoautor {1}
-\def\mesnacimientoautor {Enero}
+\def\mesnacimientoautor {Septiembre}
 \def\anonacimientoautor {1980}
 
 \def\fotoautor {images/foto}
@@ -51,7 +52,7 @@
 % CONFIGURACIONES DE PÁGINA
 \input{lib/pageconf}
 
-% PÁRRAFO DE RESUMEN
+% PÁRRAFO DE RESUMEN (ALTERNATIVA: photosummary)
 \begin{summary}
 	\emph{\lipsum[75]}
 	~ \\
@@ -65,10 +66,10 @@
 	\personaltableentry{Edad}{99 años}
 	\personaltableentry{Nacionalidad}{Nación}
 	\personaltableentry{Estado Civil}{Soltero}
-	\personaltablelastentry{Cédula de Identidad}{12.345.678-9}
+	\personaltableentry{Cédula de Identidad}{12.345.678-9}
 \end{personaltabledata}
 
-% EXPERIENCIA
+% EXPERIENCIA (Alternativa: cvblocknoline)
 \begin{cvblock}{Experiencia}
 	\begin{institution}[http://empresa.com]{Empresa A}{Ciudad 3, Región, País}
 		\institutionentry{Jefe de Obras}{Enero \apo 15}{\present}{\lipsum[66]}
@@ -76,11 +77,11 @@
 	\end{institution}
 	
 	\begin{institution}{Empresa B}{Ciudad 2, Región 2, País 2}
-		\institutionentry{Ingeniero de Obras}{Marzo \apo 08}{Abril \apo 14}{\lipsum[75]}
-	\end{institution}
-	
-	\begin{institution}{Empresa C}{Ciudad 1, Región 1, País 1}
 		\institutionentry{Ayudante de Ingeniería}{Febrero \apo 04}{Diciembre \apo 07}{}
+	\end{institution}
+
+	\begin{institution}{Empresa C}{Ciudad 1, Región 1, País 1}
+		\institutionentry{Ingeniero de Obras}{Marzo \apo 08}{Abril \apo 14}{\lipsum[75]}
 	\end{institution}
 \end{cvblock}
 

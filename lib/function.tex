@@ -1,7 +1,7 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      1.1.4 (02/10/2017)
-% Codificación: UTF-8
+% Versión:      1.1.5 (02/10/2017)
+% Versión:      1.1.5 (02/10/2017)
 %
 % Autor: Pablo Pizarro R.
 %        Facultad de Ciencias Físicas y Matemáticas
@@ -95,6 +95,31 @@
 }
 \let\endchangemargin=\endlist
 
+\newcommand{\writeheader}{
+	% Escribe el encabezado del CV
+	
+	% Escribe título
+	\ifthenelse{\equal{\writetitleheader}{true}}{
+		\begin{center}
+			\fontsize{16}{12} \selectfont \vspace{0.3cm} \headertitle
+		\end{center}
+		\vspace{0.1cm}
+	}{}
+	\ifthenelse{\equal{\writelastchangeheader}{true}}{
+		\maintitle{\nombreautor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}{\nomlastchange\ \today}
+	}{
+		\maintitle{\nombreautor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}{}
+	}
+	
+	% Escribe datos autor
+	{
+		\noindent \href{mailto:\correoautor}{\correoautor} \sbullet
+		\telefonoautor \sbullet
+		\href{\linkredsocial}{\linkredsocial} \\
+		\direccionautor \sbullet \regionautor \sbullet \paisautor
+	}
+}
+
 \newcommand{\maintitle}[3]{
 	% Título principal con subtítulo y último cambio
 	%	#1	Nombre autor
@@ -103,14 +128,15 @@
 	\emptyvarerr{\maintitle}{#1}{Nombre autor no definido}
 	\emptyvarerr{\maintitle}{#2}{Edad corta autor no definido}
 	\emptyvarerr{\maintitle}{#3}{Fecha de ultimo cambio no definido}
-	\noindent{\LARGE \textbf{#1}} \quad \emph{#2} \hfill \quad {\scriptsize \color{gray} #3} \\ \vspace{-1em}
+	\noindent {\fontsizemaintitle \stylemaintitle #1} \quad \emph{#2} \hfill \quad {\scriptsize \color{gray} #3} \\ \vspace{-1em}
 }
 
 \newcommand*{\roottitle}[1]{
 	% Título de las secciones principales
 	%	#1	Título
 	\emptyvarerr{\roottitle}{#1}{Titulo no definido}
-	\subsection*{#1}\vspace{-0.3em}\nopagebreak[4]
+	\section*{#1}\vspace{-0.3em}\nopagebreak[4]
+	\addcontentsline{toc}{section}{#1}
 }
 
 \newcommand*{\acr}[1]{
@@ -127,30 +153,6 @@
 		\item[] #1
 	\end{indentsection}
 	\pagebreak[2]
-}
-
-\newcommand{\writeheader}{
-	% Escribe el encabezado del CV
-	
-	% Escribe título
-	\ifthenelse{\equal{\writetitleheader}{true}}{
-		\begin{center}
-			\fontsize{16}{12} \selectfont \vspace{0.3cm} \headertitle
-		\end{center}
-	}{}
-	\ifthenelse{\equal{\writelastchangeheader}{true}}{
-		\maintitle{\nombreautor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}{\nomlastchange\ \today}
-	}{
-		\maintitle{\nombreautor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}{}
-	}
-	
-	% Escribe datos autor
-	{
-		\noindent \href{mailto:\correoautor}{\correoautor} \sbullet
-		\telefonoautor \sbullet
-		\href{\linkredsocial}{\linkredsocial} \\
-		\direccionautor \sbullet \regionautor \sbullet \paisautor
-	}
 }
 
 \newcommand{\personaltableentry}[2]{

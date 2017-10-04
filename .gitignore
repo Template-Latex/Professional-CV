@@ -4,3 +4,7 @@
 *.out
 log.txt
 *.synctex.gz
+
+# PDF compilados
+cv.pdf
+cv_single.pdf

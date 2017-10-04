@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Advertencia:  Archivo principal
-% Versión:      1.1.8 (03/10/2017)
+% Versión:      1.1.9 (03/10/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -68,7 +68,7 @@
 	\personaltableentry{Cédula de Identidad}{12.345.678-9}
 \end{personaltabledata}
 
-% EXPERIENCIA (Alternativa: cvblocknoline)
+% EXPERIENCIA
 \begin{cvblock}{Experiencia}
 	\begin{institution}[http://empresa.com]{Empresa A}{Ciudad 3, Región, País}
 		\institutionentry{Jefe de Obras}{Enero \apo 15}{\present}{\lipsum[66]}
@@ -80,25 +80,25 @@
 	\end{institution}
 
 	\begin{institution}{Empresa C}{Ciudad 1, Región 1, País 1}
-		\institutionentry{Ingeniero de Obras}{Marzo \apo 08}{Abril \apo 14}{\lipsum[75]}
+		\institutionentry{Ayudante de Oficina Técnica}{Marzo \apo 08}{Abril \apo 14}{\lipsum[75]}
 	\end{institution}
 \end{cvblock}
 
 % EDUCACIÓN
 \begin{cvblock}{Educación}
 	\begin{institution}[http://colegio.com]{Colegio}{Ciudad, Región, País}
-		\institutionentry{Enseñanza básica}{1984}{1990}{}
-		\institutionentry{Enseñanza media}{1991}{1994}{\lipsum[75]}
+		\institutionentryshort{Enseñanza básica}{1984}{1990}{}
+		\institutionentryshort{Enseñanza media}{1991}{1994}{\lipsum[75]}
 	\end{institution}
 
 	\begin{institution}[]{Universidad}{Ciudad, Región, País}
-		\institutionentry{Ingeniería Civil}{1995}{2001}{\lipsum[66]}
-		\institutionentry{Magíster en Ciencias}{2002}{2003}{\lipsum[130]}
+		\institutionentryshort{Ingeniería Civil}{1995}{2001}{\lipsum[66]}
+		\institutionentryshort{Magíster en Ciencias}{2002}{2003}{\lipsum[130]}
 	\end{institution}
 \end{cvblock}
 
 % HABILIDADES
-\begin{cvblock}{Conocimientos \& Habilidades}
+\begin{cvblock}[]{Conocimientos \& Habilidades}
 	\otherentry{Uso de software:}{Excel, Word, \LaTeX}
 	\otherentry{Idiomas:}{Español, Inglés}
 \end{cvblock}

@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      1.1.8 (03/10/2017)
+% Versión:      1.1.9 (03/10/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -164,38 +164,61 @@
 	\textbf{#1:} & #2 \\
 }
 
+\newcommand{\newinstitutionentry}[6]{
+	% Inserta un objeto en un elemento institución
+	%	#1	Cargo
+	%	#2	Fecha inicial
+	%	#3	Fecha final
+	%	#4	Ancho título
+	%	#5	Ancho fecha
+	%	#6	Descripción
+	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}
+	\emptyvarerr{\newinstitutionentry}{#2}{Fecha inicial no definida}
+	\emptyvarerr{\newinstitutionentry}{#3}{Fecha final no definida}
+	\emptyvarerr{\newinstitutionentry}{#4}{Dimensiones de titulo no definido}
+	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de fecha no definido}
+	\nopagebreak[4]
+	\begin{indentsection}
+		\item []
+		\noindent
+		\begin{minipage}{#4}
+			{\textbf{#1} ~ \\ \vspace{-1em}}
+		\end{minipage}
+		\begin{minipage}{#5}
+			\begin{flushright}
+				\noindent \emph{#2 -- #3}
+			\end{flushright}
+		\end{minipage}
+		\break
+		\ifx\hfuzz#6\hfuzz
+			\vspace*{-0.6em}
+		\else
+			\begin{minipage}{1.0\linewidth}
+				\vspace{0.2cm}
+				\bodytext{#6}
+				\par
+			\end{minipage}
+		\fi
+	\end{indentsection}
+	\nopagebreak[4]
+}
+
 \newcommand{\institutionentry}[4]{
 	% Entrada en institución
 	%	#1	Cargo
 	%	#2	Fecha inicial
 	%	#3	Fecha final
 	%	#4	Descripción
-	\emptyvarerr{\institutionentry}{#1}{Cargo o posición no definido}
-	\emptyvarerr{\institutionentry}{#2}{Período no definido}
-	\nopagebreak[4]
-	\begin{indentsection}
-		\item []
-		\noindent
-		\begin{minipage}{.7\linewidth}
-			\textbf{#1} ~ \\ \vspace{-1em}
-		\end{minipage}
-		\begin{minipage}{.29\linewidth}
-			\begin{flushright}
-				\noindent \emph{#2 -- #3}
-			\end{flushright}
-		\end{minipage}
-		\break
-		\ifx\hfuzz#4\hfuzz
-			\vspace*{-0.6em}
-		\else
-			\begin{minipage}{1.0\linewidth}
-				\vspace{0.2cm}
-				\bodytext{#4 ~ \\ \vspace{-1em}}
-				\par
-			\end{minipage}
-		\fi
-	\end{indentsection}
-	\nopagebreak[4]
+	\newinstitutionentry{#1}{#2}{#3}{.68\linewidth}{.31\linewidth}{#4}
+}
+
+\newcommand{\institutionentryshort}[4]{
+	% Entrada en institución con fecha corta
+	%	#1	Cargo
+	%	#2	Fecha inicial
+	%	#3	Fecha final
+	%	#4	Descripción
+	\newinstitutionentry{#1}{#2}{#3}{.85\linewidth}{.14\linewidth}{#4}
 }
 
 \newcommand{\otherentry}[2]{
@@ -221,9 +244,6 @@
 % Variaciones de vspace
 \newcommand{\breakvspace}[1]{\pagebreak[2] \vspace{#1} \pagebreak[2]}
 \newcommand{\nobreakvspace}[1]{\nopagebreak[4] \vspace{#1} \nopagebreak[4]}
-
-% Línea espaciada
-\newcommand{\spacedhrule}[2]{\breakvspace{#1} \hrule \nobreakvspace{#2}}
 
 % Apóstrofe
 \newcommand{\apo}{\raisebox{-.18ex}{'}{\hspace{-.1em}}}

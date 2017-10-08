@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones del template
-% Versión:      1.2.0 (03/10/2017)
+% Versión:      1.2.1 (08/10/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -18,25 +18,32 @@
 \def\usersignaturesize {5.0}      % Ancho de la foto de la firma [cm]
 
 % CONFIGURACIÓN DEL ESTILO DEL TEMPLATE
-\def\hfstyle {style1}             % Estilos de encabezado y pie de página
+\def\dateseparator {--}           % Carácter que separa las fechas
+\def\hfstyle {style1}             % Estilos de encabezado y pie de página (2 estilos)
 \def\showuserphotoborder {true}   % Muestra un recuadro en la foto de perfil
 \def\writelastchangeheader {true} % Escribe fecha último cambio en el encabezado
 \def\writetitleheader {true}      % Escribe título en el encabezado
 
 % CONFIGURACIÓN DE LOS COLORES DEL DOCUMENTO
 \def\colorpage {white}            % Color de la página
+\def\cvblocklinecolor {black}     % Color de las líneas divisorias de los bloques
+\def\datecolor {black}            % Color de las fechas en entradas de instituciones
+\def\headertextcolor {black}      % Color del texto en el header
 \def\highlightcolor {yellow}      % Color del subrayado con \hl
-\def\linkcolor {dark-blue}        % Color de los links del documento
+\def\instentrytitlecolor {black}  % Color del título en entrada de instituciones
+\def\instregioncolor {black}      % Color de la región en las instituciones
+\def\lastchangeheadercolor {gray} % Color de fecha último cambio en el encabezado
 \def\maintextcolor {black}        % Color principal del texto
 \def\numcitecolor {black}         % Color del número de las referencias o citas
+\def\otherentrytitlecolor {black} % Color título en entradas <otherentry>
+\def\personaltblentcolor {black}  % Color de los títulos en la tabla de antecedentes
 \def\showborderonlinks {false}    % Encierra los links por un recuadro de color
-\def\subsubtitlecolor {black}     % Color de los sub-subtítulos
-\def\subtitlecolor {black}        % Color de los subtítulos
 \def\tablelinecolor {black}       % Color de las líneas de las tablas
 \def\titlecolor {black}           % Color de los títulos
-\def\urlcolor {dark-blue}         % Color de los enlaces web (\url,\href)
+\def\urlcolor {dark-blue}         % Color de los enlaces web y títulos de instituciones
+\def\userphotobordercolor {black} % Color del borde de la foto del usuario
 
-% CONFIGURACIÓN DE LOS TÍTULOS
+% ESTILO DE LOS TÍTULOS
 \def\fontsizemaintitle {\huge}    % Tamaño título principal
 \def\fontsizetitle {\Large}       % Tamaño título secciones
 \def\stylemaintitle {\bfseries}   % Estilo título principal

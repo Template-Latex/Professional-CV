@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      1.2.0 (03/10/2017)
+% Versión:      1.2.1 (08/10/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -95,31 +95,6 @@
 }
 \let\endchangemargin=\endlist
 
-\newcommand{\writeheader}{
-	% Escribe el encabezado del CV
-	
-	% Escribe título
-	\ifthenelse{\equal{\writetitleheader}{true}}{
-		\begin{center}
-			\fontsize{16}{12} \selectfont \vspace{0.3cm} \headertitle
-		\end{center}
-		\vspace{0.1cm}
-	}{}
-	\ifthenelse{\equal{\writelastchangeheader}{true}}{
-		\maintitle{\nombreautor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}{\nomlastchange\ \today}
-	}{
-		\maintitle{\nombreautor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}{}
-	}
-	
-	% Escribe datos autor
-	{
-		\noindent \href{mailto:\correoautor}{\correoautor} \sbullet
-		\telefonoautor \sbullet
-		\href{\linkredsocial}{\linkredsocial} \\
-		\direccionautor \sbullet \regionautor \sbullet \paisautor
-	}
-}
-
 \newcommand{\maintitle}[3]{
 	% Título principal con subtítulo y último cambio
 	%	#1	Nombre autor
@@ -128,7 +103,32 @@
 	\emptyvarerr{\maintitle}{#1}{Nombre autor no definido}
 	\emptyvarerr{\maintitle}{#2}{Edad corta autor no definido}
 	\emptyvarerr{\maintitle}{#3}{Fecha de ultimo cambio no definido}
-	\noindent {\fontsizemaintitle \stylemaintitle #1} \quad \emph{#2} \hfill \quad {\scriptsize \color{gray} #3} \\ \vspace{-1em}
+	\noindent {\fontsizemaintitle \stylemaintitle #1} \quad \emph{#2} \hfill \quad {\scriptsize #3} \\ \vspace{-1em}
+}
+
+\newcommand{\writeheader}{
+	% Escribe el encabezado del CV
+	
+	% Escribe título
+	\ifthenelse{\equal{\writetitleheader}{true}}{
+		\begin{center}
+			\fontsize{16}{12} \selectfont \vspace{0.3cm} \textcolor{\titlecolor}{\headertitle}
+		\end{center}
+		\vspace{0.1cm}
+	}{}
+	\ifthenelse{\equal{\writelastchangeheader}{true}}{
+		\maintitle{\textcolor{\titlecolor}{\nombreautor}}{\textcolor{\headertextcolor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}}{\textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}
+	}{
+		\maintitle{\textcolor{\titlecolor}{\nombreautor}}{\textcolor{\headertextcolor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}}{}
+	}
+	
+	% Escribe datos autor
+	{
+		\noindent \href{mailto:\correoautor}{\correoautor} \textcolor{\headertextcolor}{\sbullet
+		\telefonoautor \sbullet
+		\href{\linkredsocial}{\linkredsocial} \\
+		\direccionautor \sbullet \regionautor \sbullet \paisautor}
+	}
 }
 
 \newcommand*{\roottitle}[1]{
@@ -161,41 +161,40 @@
 	%	#2	Datos entrada
 	\emptyvarerr{\personaltableentry}{#1}{Nombre entrada no definido}
 	\emptyvarerr{\personaltableentry}{#2}{Datos entrada no definidos}
-	\textbf{#1:} & #2 \\
+	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\
 }
 
-\newcommand{\newinstitutionentry}[6]{
+\newcommand{\newinstitutionentry}[7]{
 	% Inserta un objeto en un elemento institución
 	%	#1	Cargo
-	%	#2	Fecha inicial
-	%	#3	Fecha final
-	%	#4	Ancho título
-	%	#5	Ancho fecha
-	%	#6	Descripción
+	%	#2	Indica si escribe fechas o no
+	%	#3	Fecha inicial
+	%	#4	Fecha final
+	%	#5	Ancho título
+	%	#6	Ancho fecha
+	%	#7	Descripción
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}
-	\emptyvarerr{\newinstitutionentry}{#2}{Fecha inicial no definida}
-	\emptyvarerr{\newinstitutionentry}{#3}{Fecha final no definida}
-	\emptyvarerr{\newinstitutionentry}{#4}{Dimensiones de titulo no definido}
-	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de fecha no definido}
+	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}
+	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}
 	\nopagebreak[4]
 	\begin{indentsection}
 		\item []
 		\noindent
-		\begin{minipage}{#4}
-			{\textbf{#1} ~ \\ \vspace{-1em}}
-		\end{minipage}
 		\begin{minipage}{#5}
+			{\textcolor{\instentrytitlecolor}{\textbf{#1}} ~ \\ \vspace{-1em}}
+		\end{minipage}
+		\begin{minipage}{#6}
 			\begin{flushright}
-				\noindent \emph{#2 -- #3}
+				\noindent \textcolor{\datecolor}{\emph{#2#4#3}}
 			\end{flushright}
 		\end{minipage}
 		\break
-		\ifx\hfuzz#6\hfuzz
+		\ifx\hfuzz#7\hfuzz
 			\vspace*{-0.6em}
 		\else
 			\begin{minipage}{1.0\linewidth}
 				\vspace{0.2cm}
-				\bodytext{#6}
+				\bodytext{#7}
 				\par
 			\end{minipage}
 		\fi
@@ -209,7 +208,7 @@
 	%	#2	Fecha inicial
 	%	#3	Fecha final
 	%	#4	Descripción
-	\newinstitutionentry{#1}{#2}{#3}{.68\linewidth}{.31\linewidth}{#4}
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.68\linewidth}{.31\linewidth}{#4}
 }
 
 \newcommand{\institutionentryshort}[4]{
@@ -218,7 +217,14 @@
 	%	#2	Fecha inicial
 	%	#3	Fecha final
 	%	#4	Descripción
-	\newinstitutionentry{#1}{#2}{#3}{.85\linewidth}{.14\linewidth}{#4}
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.85\linewidth}{.14\linewidth}{#4}
+}
+
+\newcommand{\institutionentrynodate}[2]{
+	% Entrada en institución sin fecha
+	%	#1	Cargo
+	%	#2	Descripción
+	\newinstitutionentry{#1}{}{}{}{.99\linewidth}{.0\linewidth}{#2}
 }
 
 \newcommand{\otherentry}[2]{
@@ -227,7 +233,7 @@
 	%	#2	Contenido
 	\begin{basedescript}
 		{\setlength{\leftmargin}{\doubleparindent}}
-		\item[\hspace{\newparindent}\textbf{#1}] #2
+		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2
 	\end{basedescript}
 	\vspace{-0.6cm}
 }

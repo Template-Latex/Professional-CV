@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Advertencia:  Archivo principal
-% Versión:      1.2.0 (03/10/2017)
+% Versión:      1.2.1 (08/10/2017)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -69,6 +69,10 @@
 \end{personaltabledata}
 
 % EXPERIENCIA
+% cvblock toma un parámetro opcional para definir el estilo de línea divisoria:
+%	\begin{cvblock}[]{Experiencia}		Línea negra por defecto
+%	\begin{cvblock}[..]{Experiencia}	Línea punteada
+%	\begin{cvblock}[none]{Experiencia}	Sin línea
 \begin{cvblock}{Experiencia}
 	\begin{institution}[http://empresa.com]{Empresa A}{Ciudad 3, Región, País}
 		\institutionentry{Jefe de Obras}{Enero \apo 15}{\present}{\lipsum[66]}
@@ -93,7 +97,7 @@
 
 	\begin{institution}[]{Universidad}{Ciudad, Región, País}
 		\institutionentryshort{Ingeniería Civil}{1995}{2001}{\lipsum[66]}
-		\institutionentryshort{Magíster en Ciencias}{2002}{2003}{\lipsum[130]}
+		\institutionentrynodate{Magíster en Ciencias}{\lipsum[130]}
 	\end{institution}
 \end{cvblock}
 

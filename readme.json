@@ -2,7 +2,7 @@
     "PROJECT": {
         "NAME": "Professional-CV",
         "ICON": {
-            "IMAGE": "https://raw.githubusercontent.com/Template-Latex/Professional-CV/054b629a4e24f880405963682f92a6121a7ebd2e/icon.png",
+            "IMAGE": "http://latex.ppizarror.com/res/favicon-cv/icon.png",
             "ALT": "Professional-CV",
             "WIDTH": 200,
             "HEIGHT": 200
@@ -23,17 +23,17 @@
     "DESCRIPTION": "Professional CV es un template LaTeX para crear un currículum vitae de forma rápida y sencilla",
     "BADGES": {
         "0": {
-            "IMAGE": "http://ppizarror.com/badges/autor.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/autor.svg",
             "HREF": "http://ppizarror.com",
             "ALT": "@ppizarror"
         },
         "1": {
-            "IMAGE": "http://ppizarror.com/badges/licenciamit.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/licenciamit.svg",
             "HREF": "https://opensource.org/licenses/MIT/",
             "ALT": "Licencia MIT"
         },
 		"2": {
-            "IMAGE": "http://ppizarror.com/badges/chat.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/chat.svg",
             "HREF": "https://gitter.im/Template-Latex/Professional-CV",
             "ALT": "Chat"
         },
@@ -41,46 +41,46 @@
             "NEWLINE": true
         },
         "4": {
-            "IMAGE": "http://latex.ppizarror.com/badges/tesis.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/tesis.svg",
             "HREF": "https://github.com/Template-Latex/Template-Tesis/",
             "ALT": "Template-Tesis",
             "SHOW": false
         },
         "5": {
-            "IMAGE": "http://latex.ppizarror.com/badges/apunte.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/apunte.svg",
             "HREF": "https://github.com/Template-Latex/Template-Apunte/",
             "ALT": "Template-Apunte",
             "SHOW": false
         },
         "6": {
-            "IMAGE": "http://latex.ppizarror.com/badges/tareas.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/tareas.svg",
             "HREF": "https://github.com/Template-Latex/Template-Tareas/",
             "ALT": "Template-Tareas",
             "SHOW": false
         },
         "7": {
-            "IMAGE": "http://latex.ppizarror.com/badges/auxiliares.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/auxiliares.svg",
             "HREF": "https://github.com/Template-Latex/Template-Auxiliares/",
             "ALT": "Template-Auxiliares"
         },
         "8": {
-            "IMAGE": "http://latex.ppizarror.com/badges/controles.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/controles.svg",
             "HREF": "https://github.com/Template-Latex/Template-Controles/",
             "ALT": "Template-Controles"
         },
         "9": {
-            "IMAGE": "http://latex.ppizarror.com/badges/pauta.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/pauta.svg",
             "HREF": "https://github.com/Template-Latex/Template-Pautas/",
             "ALT": "Template-Pautas",
             "SHOW": false
         },
         "10": {
-            "IMAGE": "http://latex.ppizarror.com/badges/informe.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/informe.svg",
             "HREF": "https://github.com/Template-Latex/Template-Informe/",
             "ALT": "Template-Informe"
         },
         "11": {
-            "IMAGE": "http://latex.ppizarror.com/badges/professionalcv.svg",
+            "IMAGE": "http://latex.ppizarror.com/res/badges/professionalcv.svg",
             "HREF": "https://github.com/Template-Latex/Professional-CV/",
             "ALT": "Professional-CV"
         }

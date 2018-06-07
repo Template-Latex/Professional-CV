@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      1.2.3 (25/04/2018)
+% Versión:      1.2.4 (07/06/2018)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,51 +11,51 @@
 % Sitio web:    [http://latex.ppizarror.com/Professional-CV/]
 % Licencia MIT: [https://opensource.org/licenses/MIT/]
 
+% Lanza un mensaje de error
+% 	#1	Función del error
+%	#2	Mensaje
 \newcommand{\throwerror}[2]{
-	% Lanza un mensaje de error
-	% 	#1	Función del error
-	%	#2	Mensaje
 	\errmessage{LaTeX Error: \noexpand#1 #2 (linea \the\inputlineno)}
 	\stop
 }
 
+% Lanza un mensaje de advertencia
+%	#1	Mensaje
 \newcommand{\throwwarning}[1]{
-	% Lanza un mensaje de advertencia
-	%	#1	Mensaje
 	\errmessage{LaTeX Warning: #1 (linea \the\inputlineno)}
 }
 
+% Lanza un mensaje de error indicando mala configuración
+%	#1	Mensaje de error
+% 	#2	Configuración usada
+%	#3	Valores esperados
 \newcommand{\throwbadconfig}[3]{
-	% Lanza un mensaje de error indicando mala configuración
-	%	#1	Mensaje de error
-	% 	#2	Configuración usada
-	%	#3	Valores esperados
 	\errmessage{LaTeX Warning: #1 \noexpand #2=#2. Valores esperados: #3}
 	\stop
 }
 
+% Lanza un mensaje de error indicando mala configuración dentro de begin{document}
+%	#1	Mensaje de error
+% 	#2	Configuración usada
+%	#3	Valores esperados
 \newcommand{\throwbadconfigondoc}[3]{
-	% Lanza un mensaje de error indicando mala configuración dentro de begin{document}
-	%	#1	Mensaje de error
-	% 	#2	Configuración usada
-	%	#3	Valores esperados
 	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}
 	\stop
 }
 
+% Comprueba si una variable está definida
+%	#1	Variable
 \newcommand{\checkvardefined}[1]{
-	% Comprueba si una variable está definida
-	%	#1	Variable
 	\ifthenelse{\isundefined{#1}}{
 		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
 		\stop
 	}{}
 }
 
+% Comprueba si una variable está definida
+%	#1	Variable
+%	#2	Mensaje
 \newcommand{\checkextravarexist}[2]{
-	% Comprueba si una variable está definida
-	%	#1	Variable
-	%	#2	Mensaje
 	\ifthenelse{\isundefined{#1}}{
 		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
 		\ifx\hfuzz#2\hfuzz
@@ -66,49 +66,48 @@
 	}{}
 }
 
+% Lanza un mensaje de error si una variable no ha sido definida
+% 	#1	Función del error
+%	#2	Variable
+%	#3	Mensaje
 \newcommand{\emptyvarerr}[3]{
-	% Lanza un mensaje de error si una variable no ha sido definida
-	% 	#1	Función del error
-	%	#2	Variable
-	%	#3	Mensaje
 	\ifx\hfuzz#2\hfuzz
 		\errmessage{LaTeX Warning: \noexpand#1 #3 (linea \the\inputlineno)}
 	\fi
 }
 
+% Cambia márgenes de las páginas [cm]
+% 	#1	Margen izquierdo
+%	#2	Margen superior
+%	#3	Margen derecho
+%	#4	Margen inferior
 \newcommand{\setpagemargincm}[4]{
-	% Cambia márgenes de las páginas [cm]
-	% 	#1	Margen izquierdo
-	%	#2	Margen superior
-	%	#3	Margen derecho
-	%	#4	Margen inferior
 	\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
 }
 
+% Cambia los márgenes del documento
+%	#1	Margen izquierdo
+%	#2	Margen derecho
 \newcommand{\changemargin}[2]{
-	% Cambia los márgenes del documento
-	%	#1	Margen izquierdo
-	%	#2	Margen derecho
 	\emptyvarerr{\changemargin}{#1}{Margen izquierdo no definido}
 	\emptyvarerr{\changemargin}{#2}{Margen derecho no definido}
 	\list{}{\rightmargin#2\leftmargin#1}\item[]
 }
 \let\endchangemargin=\endlist
 
+% Título principal con subtítulo y último cambio
+%	#1	Nombre autor
+%	#2	Edad corta autor
+%	#3	Último cambio
 \newcommand{\maintitle}[3]{
-	% Título principal con subtítulo y último cambio
-	%	#1	Nombre autor
-	%	#2	Edad corta autor
-	%	#3	Último cambio
 	\emptyvarerr{\maintitle}{#1}{Nombre autor no definido}
 	\emptyvarerr{\maintitle}{#2}{Edad corta autor no definido}
 	\emptyvarerr{\maintitle}{#3}{Fecha de ultimo cambio no definido}
 	\noindent {\fontsizemaintitle \stylemaintitle #1} \quad \emph{#2} \hfill \quad {\scriptsize #3} \\ \vspace{-1em}
 }
 
+% Escribe el encabezado del CV
 \newcommand{\writeheader}{
-	% Escribe el encabezado del CV
-	
 	% Escribe título
 	\ifthenelse{\equal{\writetitleheader}{true}}{
 		\begin{center}
@@ -131,23 +130,23 @@
 	}
 }
 
+% Título de las secciones principales
+%	#1	Título
 \newcommand*{\roottitle}[1]{
-	% Título de las secciones principales
-	%	#1	Título
 	\emptyvarerr{\roottitle}{#1}{Titulo no definido}
 	\section*{#1}\vspace{-0.3em}\nopagebreak[4]
 	\addcontentsline{toc}{section}{#1}
 }
 
+% Crea un acrónimo de forma fácil
+%	#1	Acrónimo
 \newcommand*{\acr}[1]{
-	% Crea un acrónimo de forma fácil
-	%	#1	Acrónimo
 	\textscale{.85}{#1}
 }
 
+% Crea un campo de texto
+% 	#1	Texto
 \newcommand{\bodytext}[1]{
-	% Crea un campo de texto
-	% 	#1	Texto
 	\nopagebreak[4]
 	\begin{indentsection}
 		\item[] #1
@@ -155,24 +154,24 @@
 	\pagebreak[2]
 }
 
+% Crea una entrada en la tabla de datos personales
+%	#1	Nombre entrada
+%	#2	Datos entrada
 \newcommand{\personaltableentry}[2]{
-	% Crea una entrada en la tabla de datos personales
-	%	#1	Nombre entrada
-	%	#2	Datos entrada
 	\emptyvarerr{\personaltableentry}{#1}{Nombre entrada no definido}
 	\emptyvarerr{\personaltableentry}{#2}{Datos entrada no definidos}
 	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\
 }
 
+% Inserta un objeto en un elemento institución
+%	#1	Cargo
+%	#2	Indica si escribe fechas o no
+%	#3	Fecha inicial
+%	#4	Fecha final
+%	#5	Ancho título
+%	#6	Ancho fecha
+%	#7	Descripción
 \newcommand{\newinstitutionentry}[7]{
-	% Inserta un objeto en un elemento institución
-	%	#1	Cargo
-	%	#2	Indica si escribe fechas o no
-	%	#3	Fecha inicial
-	%	#4	Fecha final
-	%	#5	Ancho título
-	%	#6	Ancho fecha
-	%	#7	Descripción
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}
 	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}
 	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}
@@ -202,35 +201,35 @@
 	\nopagebreak[4]
 }
 
+% Entrada en institución
+%	#1	Cargo
+%	#2	Fecha inicial
+%	#3	Fecha final
+%	#4	Descripción
 \newcommand{\institutionentry}[4]{
-	% Entrada en institución
-	%	#1	Cargo
-	%	#2	Fecha inicial
-	%	#3	Fecha final
-	%	#4	Descripción
 	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.68\linewidth}{.31\linewidth}{#4}
 }
 
+% Entrada en institución con fecha corta
+%	#1	Cargo
+%	#2	Fecha inicial
+%	#3	Fecha final
+%	#4	Descripción
 \newcommand{\institutionentryshort}[4]{
-	% Entrada en institución con fecha corta
-	%	#1	Cargo
-	%	#2	Fecha inicial
-	%	#3	Fecha final
-	%	#4	Descripción
 	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.85\linewidth}{.14\linewidth}{#4}
 }
 
+% Entrada en institución sin fecha
+%	#1	Cargo
+%	#2	Descripción
 \newcommand{\institutionentrynodate}[2]{
-	% Entrada en institución sin fecha
-	%	#1	Cargo
-	%	#2	Descripción
 	\newinstitutionentry{#1}{}{}{}{.99\linewidth}{.0\linewidth}{#2}
 }
 
+% Otro tipo de entrada en cvblock
+%	#1	Título
+%	#2	Contenido
 \newcommand{\otherentry}[2]{
-	% Otro tipo de entrada en cvblock
-	%	#1	Título
-	%	#2	Contenido
 	\begin{basedescript}
 		{\setlength{\leftmargin}{\doubleparindent}}
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2
@@ -238,9 +237,9 @@
 	\vspace{-0.6cm}
 }
 
+% Inserta un elemento en el bloque de firma
+%	#1	Elemento en la firma
 \newcommand{\signatureentry}[1]{
-	% Inserta un elemento en el bloque de firma
-	%	#1	Elemento en la firma
 	\texttt{\MakeUppercase{#1}} \\
 }
 

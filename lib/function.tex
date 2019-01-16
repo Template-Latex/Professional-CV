@@ -123,10 +123,16 @@
 	
 	% Escribe datos autor
 	{
-		\noindent \href{mailto:\correoautor}{\correoautor} \textcolor{\headertextcolor}{\sbullet
-		\telefonoautor \sbullet
-		\href{\linkredsocial}{\linkredsocial} \\
-		\direccionautor \sbullet \regionautor \sbullet \paisautor}
+		\noindent
+		\ifthenelse{\equal{\correoautor}{}}{}{\href{mailto:\correoautor}{\correoautor}\textcolor{\headertextcolor}{\headerseparator}}
+		\textcolor{\headertextcolor}{
+			\ifthenelse{\equal{\telefonoautor}{}}{}{\telefonoautor \headerseparator}
+			\ifthenelse{\equal{\ciautor}{}}{}{RUT: \ciautor \headerseparator}
+			\ifthenelse{\equal{\linkredsocial}{}}{}{\href{\linkredsocial}{\linkredsocial}} \\
+			\ifthenelse{\equal{\direccionautor}{}}{}{\direccionautor \headerseparator}
+			\ifthenelse{\equal{\regionautor}{}}{}{\regionautor \headerseparator}
+			\ifthenelse{\equal{\paisautor}{}}{}{\paisautor}
+		}
 	}
 }
 

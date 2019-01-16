@@ -12,27 +12,29 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT/]
 
 % Se revisa si las variables no han sido borradas
-\checkvardefined{\nombreautor}
-\checkvardefined{\correoautor}
-\checkvardefined{\telefonoautor}
-\checkvardefined{\linkredsocial}
-\checkvardefined{\direccionautor}
-\checkvardefined{\regionautor}
-\checkvardefined{\edadautor}
-\checkvardefined{\dianacimientoautor}
-\checkvardefined{\mesnacimientoautor}
 \checkvardefined{\anonacimientoautor}
+\checkvardefined{\ciautor}
+\checkvardefined{\correoautor}
+\checkvardefined{\dianacimientoautor}
+\checkvardefined{\direccionautor}
+\checkvardefined{\edadautor}
+\checkvardefined{\linkredsocial}
+\checkvardefined{\mesnacimientoautor}
+\checkvardefined{\nombreautor}
+\checkvardefined{\regionautor}
+\checkvardefined{\telefonoautor}
 
 % Se añade \xspace a las variables
 \makeatletter
-\g@addto@macro\nombreautor\xspace
-\g@addto@macro\telefonoautor\xspace
-\g@addto@macro\direccionautor\xspace
-\g@addto@macro\regionautor\xspace
-\g@addto@macro\edadautor\xspace
-\g@addto@macro\dianacimientoautor\xspace
-\g@addto@macro\mesnacimientoautor\xspace
 \g@addto@macro\anonacimientoautor\xspace
+\g@addto@macro\ciautor\xspace
+\g@addto@macro\dianacimientoautor\xspace
+\g@addto@macro\direccionautor\xspace
+\g@addto@macro\edadautor\xspace
+\g@addto@macro\mesnacimientoautor\xspace
+\g@addto@macro\nombreautor\xspace
+\g@addto@macro\regionautor\xspace
+\g@addto@macro\telefonoautor\xspace
 \makeatother
 
 % Se define metadata del pdf
@@ -86,8 +88,7 @@
 	pdfsubject={C.V. \nombreautor},
 	pdftitle={Currículum Vítae \nombreautor},
 	pdftoolbar={\cfgpdftoolbar},
-	pdftype={Text},
-	pdfview={\cfgpdfpageview}
+	pdftype={Text}
 }
 
 % Establece la carpeta de imágenes por defecto
@@ -124,7 +125,7 @@
 \ifxetex
 	\usepackage{fontspec}
 	\setmainfont
-	[ExternalLocation ,
+	[ExternalLocation,
 	Mapping=tex-text,
 	Numbers=OldStyle,
 	Ligatures={Common,Contextual},

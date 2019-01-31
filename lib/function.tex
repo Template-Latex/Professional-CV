@@ -125,13 +125,7 @@
 	{
 		\noindent
 		\ifthenelse{\equal{\correoautor}{}}{}{\href{mailto:\correoautor}{\correoautor}\textcolor{\headertextcolor}{\headerseparator}}
-		\textcolor{\headertextcolor}{
-			\ifthenelse{\equal{\telefonoautor}{}}{}{\telefonoautor \headerseparator}
-			\ifthenelse{\equal{\ciautor}{}}{}{RUT: \ciautor \headerseparator}
-			\ifthenelse{\equal{\linkredsocial}{}}{}{\href{\linkredsocial}{\linkredsocial}} \\
-			\ifthenelse{\equal{\direccionautor}{}}{}{\direccionautor \headerseparator}
-			\ifthenelse{\equal{\regionautor}{}}{}{\regionautor \headerseparator}
-			\ifthenelse{\equal{\paisautor}{}}{}{\paisautor}
+		\textcolor{\headertextcolor}{\ifthenelse{\equal{\telefonoautor}{}}{}{\telefonoautor \headerseparator}\ifthenelse{\equal{\ciautor}{}}{}{\nomciheader: \ciautor \headerseparator}\ifthenelse{\equal{\linkredsocial}{}}{}{\href{\linkredsocial}{\linkredsocial}} \\ \ifthenelse{\equal{\direccionautor}{}}{}{\direccionautor \headerseparator}\ifthenelse{\equal{\regionautor}{}}{}{\regionautor \headerseparator}\ifthenelse{\equal{\paisautor}{}}{}{\paisautor}
 		}
 	}
 }

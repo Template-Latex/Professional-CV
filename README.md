@@ -28,4 +28,4 @@ Este proyecto está licenciado bajo la licencia MIT [https://opensource.org/lice
 
 
 ## Autor
-<a href="http://ppizarror.com" title="ppizarror">Pablo Pizarro R.</a> | 2017 - 2019
+<a href="http://ppizarror.com" title="ppizarror">Pablo Pizarro R.</a> | 2017 - 2020

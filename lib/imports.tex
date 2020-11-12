@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Importación de librerías
-% Versión:      2.0.0 (01/07/2020)
+% Versión:      2.0.1 (12/11/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -27,6 +27,11 @@
 \def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
 \makeatother
 
+% Tamaño de la fuente del documento
+\usepackage{scrextend}
+\usepackage{anyfontsize}
+\changefontsizes{\documentfontsize pt}
+
 % LIBRERÍAS IMPORTANTES
 \usepackage[spanish,es-nosectiondot,es-lcroman]{babel} % Idioma
 \usepackage[T1]{fontenc}	% Caracteres acentuados
@@ -38,6 +43,7 @@
 \usepackage{color}         % Colores
 \usepackage{colortbl}      % Administración de color en tablas
 \usepackage{csquotes}      % Citas y comillas
+\usepackage{enumitem}      % Permite enumerar ítems
 \usepackage{geometry}      % Dimensiones y geometría del documento
 \usepackage{graphicx}      % Propiedades extra para los gráficos
 \usepackage{lipsum}        % Permite crear textos dummy

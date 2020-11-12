@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones iniciales del documento
-% Versión:      2.0.0 (01/07/2020)
+% Versión:      2.0.1 (12/11/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -65,14 +65,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={01/07/2020},
+		Template.Fecha={12/11/2020},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0},
-		Template.Version.Hash={AC06635F4E1DF8C1CFA5D76C4167FDCA},
-		Template.Version.Release={2.0.0},
+		Template.Version.Dev={2.0.1-3},
+		Template.Version.Hash={1005345ECEBEE52963D1E9D2DABCDD65},
+		Template.Version.Release={2.0.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -81,7 +81,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v2.0.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v2.0.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -92,7 +92,10 @@
 }
 
 % Establece la carpeta de imágenes por defecto
-\graphicspath{{./images}}
+\graphicspath{{./img}}
+
+% Ajuste del entrelineado
+\renewcommand{\baselinestretch}{\documentinterline}
 
 % Configuración de los colores
 \def\linkcolor{\urlcolor}

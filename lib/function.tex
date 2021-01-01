@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      2.1.1 (01/01/2021)
+% Versión:      2.1.2 (01/01/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -124,8 +124,24 @@
 	% Escribe datos autor
 	{
 		\noindent
-		\ifthenelse{\equal{\correoautor}{}}{}{\href{mailto:\correoautor}{\correoautor}\textcolor{\headertextcolor}{\headerseparator}}
-		\textcolor{\headertextcolor}{\ifthenelse{\equal{\telefonoautor}{}}{}{\telefonoautor \headerseparator}\ifthenelse{\equal{\ciautor}{}}{}{\nomciheader: \ciautor \headerseparator}\ifthenelse{\equal{\linkredsocial}{}}{}{\href{\linkredsocial}{\linkredsocial}} \\ \ifthenelse{\equal{\direccionautor}{}}{}{\direccionautor \headerseparator}\ifthenelse{\equal{\regionautor}{}}{}{\regionautor \headerseparator}\ifthenelse{\equal{\paisautor}{}}{}{\paisautor}
+		\ifthenelse{\equal{\correoautor}{}}{}{%
+			\href{mailto:\correoautor}{\correoautor}%
+		}
+		\textcolor{\headertextcolor}{%
+		\ifthenelse{\equal{\telefonoautor}{}}{}{%
+			\headerseparator\telefonoautor}%
+		\ifthenelse{\equal{\ciautor}{\xspace}}{}{%
+			\headerseparator\nomciheader: \ciautor }%
+		\ifthenelse{\equal{\linkredsocial}{}}{}{%
+			\href{\linkredsocial}{\headerseparator\linkredsocial}} \\
+		\ifthenelse{\equal{\direccionautor}{\xspace}}{%
+			\ifthenelse{\equal{\regionautor}{\xspace}}{}{\regionautor\headerseparator}
+			\ifthenelse{\equal{\paisautor}{\xspace}}{}{\paisautor}
+		}{%
+			\direccionautor%
+			\ifthenelse{\equal{\regionautor}{\xspace}}{}{\headerseparator\regionautor}
+			\ifthenelse{\equal{\paisautor}{\xspace}}{}{\headerseparator\paisautor}
+		}%
 		}
 	}
 }

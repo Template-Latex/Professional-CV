@@ -1,6 +1,6 @@
 % Template:     Informe LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.1.1 (01/01/2021)
+% Versión:      2.1.2 (01/01/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -37,9 +37,13 @@
 \changefontsizes{\documentfontsize pt}
 
 % LIBRERÍAS IMPORTANTES
-\usepackage[spanish,es-nosectiondot,es-lcroman]{babel} % Idioma
-\usepackage[T1]{fontenc}	% Caracteres acentuados
 \usepackage{ifthen} 		% Manejo de condicionales
+
+% Idioma español, borrar esta línea si se desea usar otro idioma
+\ifthenelse{\equal{\usespanishbabel}{true}}{
+	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
+}
+\usepackage[T1]{fontenc}	% Caracteres acentuados
 
 % LIBRERÍAS INDEPENDIENTES
 \usepackage{array}         % Nuevas características a las tablas
@@ -188,8 +192,24 @@
 	% Escribe datos autor
 	{
 		\noindent
-		\ifthenelse{\equal{\correoautor}{}}{}{\href{mailto:\correoautor}{\correoautor}\textcolor{\headertextcolor}{\headerseparator}}
-		\textcolor{\headertextcolor}{\ifthenelse{\equal{\telefonoautor}{}}{}{\telefonoautor \headerseparator}\ifthenelse{\equal{\ciautor}{}}{}{\nomciheader: \ciautor \headerseparator}\ifthenelse{\equal{\linkredsocial}{}}{}{\href{\linkredsocial}{\linkredsocial}} \\ \ifthenelse{\equal{\direccionautor}{}}{}{\direccionautor \headerseparator}\ifthenelse{\equal{\regionautor}{}}{}{\regionautor \headerseparator}\ifthenelse{\equal{\paisautor}{}}{}{\paisautor}
+		\ifthenelse{\equal{\correoautor}{}}{}{%
+			\href{mailto:\correoautor}{\correoautor}%
+		}
+		\textcolor{\headertextcolor}{%
+		\ifthenelse{\equal{\telefonoautor}{}}{}{%
+			\headerseparator\telefonoautor}%
+		\ifthenelse{\equal{\ciautor}{\xspace}}{}{%
+			\headerseparator\nomciheader: \ciautor }%
+		\ifthenelse{\equal{\linkredsocial}{}}{}{%
+			\href{\linkredsocial}{\headerseparator\linkredsocial}} \\
+		\ifthenelse{\equal{\direccionautor}{\xspace}}{%
+			\ifthenelse{\equal{\regionautor}{\xspace}}{}{\regionautor\headerseparator}
+			\ifthenelse{\equal{\paisautor}{\xspace}}{}{\paisautor}
+		}{%
+			\direccionautor%
+			\ifthenelse{\equal{\regionautor}{\xspace}}{}{\headerseparator\regionautor}
+			\ifthenelse{\equal{\paisautor}{\xspace}}{}{\headerseparator\paisautor}
+		}%
 		}
 	}
 }
@@ -560,6 +580,7 @@
 \g@addto@macro\edadautor\xspace
 \g@addto@macro\mesnacimientoautor\xspace
 \g@addto@macro\nombreautor\xspace
+\g@addto@macro\paisautor\xspace
 \g@addto@macro\regionautor\xspace
 \g@addto@macro\telefonoautor\xspace
 \makeatother
@@ -597,9 +618,9 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.1},
-		Template.Version.Hash={87D84ED6242A2B645DC310DFDCCCDA63},
-		Template.Version.Release={2.1.1},
+		Template.Version.Dev={2.1.2},
+		Template.Version.Hash={5C4216A515560668F1067BE0A098580F},
+		Template.Version.Release={2.1.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -608,7 +629,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v2.1.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v2.1.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

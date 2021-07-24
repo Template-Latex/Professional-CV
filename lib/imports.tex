@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Importación de librerías
-% Versión:      2.1.5 (20/06/2021)
+% Versión:      2.1.6 (24/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,20 +11,21 @@
 % Sitio web:    [https://latex.ppizarror.com/professional-cv]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
-% PARCHES DE LIBRERÍAS
+% Parches de librerías
 \let\counterwithout\relax
 \let\counterwithin\relax
 \let\underbar\relax
 \let\underline\relax
 
 % Si se desactiva el idioma
-\def\unaccentedoperators{}
-\def\decimalpoint{}
-\def\bibname{}
+\def\unaccentedoperators {}
+\def\decimalpoint {}
+\def\bibname {}
 
 % Parche de sectsty.sty
 \makeatletter
-\def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
+\def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}
+\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
 \makeatother
 
 % Tamaño de la fuente del documento
@@ -54,6 +55,7 @@
 \usepackage{lipsum}        % Permite crear textos dummy
 \usepackage{mdwlist}       % Listas con encabezado
 \usepackage{multicol}      % Múltiples columnas
+\usepackage{ragged2e}      % Mejora posicionado
 \usepackage{relsize}       % Escalado avanzado
 \usepackage{sectsty}       % Cambia el estilo de los títulos
 \usepackage{selinput}      % Compatibilidad con acentos
@@ -64,7 +66,7 @@
 \usepackage{wasysym}       % Contiene caracteres misceláneos
 \usepackage{wrapfig}       % Permite comprimir imágenes
 \usepackage{xcolor}        % Administración de color avanzado
-\usepackage{xspace}        % Adminsitra espacios en párrafos y líneas
+\usepackage{xspace}        % Administra espacios en párrafos y líneas
 
 % LIBRERÍAS CON PARÁMETROS
 \usepackage[pdfencoding=auto,psdextra]{hyperref} % Enlaces, referencias

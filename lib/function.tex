@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      2.1.5 (20/06/2021)
+% Versión:      2.1.6 (24/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -192,7 +192,7 @@
 	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}
 	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}
 	\nopagebreak[4]
-	\begin{indentsection}
+	\begin{indentsectiondouble}
 		\item []
 		\noindent
 		\begin{minipage}{#5}
@@ -213,7 +213,7 @@
 				\par
 			\end{minipage}
 		\fi
-	\end{indentsection}
+	\end{indentsectiondouble}
 	\nopagebreak[4]
 }
 
@@ -277,3 +277,13 @@
 
 % Inserta un teléfono celular
 \newcommand{\insertphone}[1]{\href{tel:#1}{\texttt{#1}}}
+
+% Actualiza el padding de las celdas de las tablas
+%	#1	Padding horizontal (em)
+%	#2	Padding vertical (em)
+\newcommand{\settablecellpadding}[2]{
+	\emptyvarerr{\settablecellpadding}{#1}{Padding horizontal no definido}
+	\emptyvarerr{\settablecellpadding}{#2}{Padding vertical no definido}
+	\setlength{\tabcolsep}{#1 em} % Horizontal
+	\def\arraystretch {#2} % Vertical
+}

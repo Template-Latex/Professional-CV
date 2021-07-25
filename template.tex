@@ -197,6 +197,7 @@
 	}
 	
 	% Escribe datos autor
+	\vspace{0.2cm}
 	{%
 		\noindent
 		\ifthenelse{\equal{\correoautor}{}}{}{%
@@ -269,21 +270,23 @@
 	\begin{indentsectiondouble}
 		\item []
 		\noindent
-		\begin{minipage}[t][][t]{#5}%
-			{\textcolor{\instentrytitlecolor}{\textbf{#1}}}
+		\begin{minipage}{1\linewidth}
+			\begin{minipage}[t][][t]{#5}%
+				{\textcolor{\instentrytitlecolor}{\textbf{#1}} ~ \\ \vspace{0.7em}}
+			\end{minipage}
+			\hfill
+			\begin{minipage}[t][][t]{#6}%
+				\begin{flushright}
+					\noindent \textcolor{\datecolor}{\emph{#2#4#3}}
+				\end{flushright}
+			\end{minipage}
 		\end{minipage}
-		\begin{minipage}[t][][t]{#6}%
-			\begin{flushright}
-				\noindent \textcolor{\datecolor}{\emph{#2#4#3}}
-			\end{flushright}
-		\end{minipage}
-		\vspace*{-0.8\baselineskip}
+		\vspace{-1.1\baselineskip}
 		\break
 		\ifx\hfuzz#7\hfuzz
-			\vspace*{-0.4em}
+			\vspace*{-0.75\baselineskip}
 		\else
 			\begin{minipage}{1.0\linewidth}%
-				\vspace{0.2cm}
 				\bodytext{#7}
 				\par
 			\end{minipage}
@@ -297,7 +300,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentry}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.68999\linewidth}{.31\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.687\linewidth}{.31\linewidth}{#4}%
 }
 
 % Entrada en institución con fecha corta
@@ -306,7 +309,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.85999\linewidth}{.14\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.853\linewidth}{.143\linewidth}{#4}%
 }
 
 % Entrada en institución sin fecha
@@ -473,7 +476,7 @@
 		\hspace*{0.37cm}
 		\begingroup
 		\def\arraystretch{1.3}
-		\begin{minipage}[t]{0.79\linewidth}
+		\begin{minipage}[t]{\dimexpr\linewidth-\userphotosize cm-0.57cm}
 		}{
 		\end{minipage}
 		\endgroup
@@ -536,14 +539,14 @@
 				\fi
 			\end{minipage}
 		\else
-			\begin{minipage}{.55999\linewidth}
+			\begin{minipage}[t][][t]{.558\linewidth}
 				\ifx\hfuzz#1\hfuzz
 				\textscale{1.1}{\textcolor{\linkcolor}{#2}}
 				\else
 				\textscale{1.1}{\href{#1}{#2}}
 				\fi
 			\end{minipage}
-			\begin{minipage}{.44\linewidth}
+			\begin{minipage}[t][][t]{.44\linewidth}
 				\begin{flushright}
 					\noindent \textcolor{\instregioncolor}{\textsc{#3}}
 				\end{flushright}
@@ -556,6 +559,7 @@
 	\noindent
 	}{
 	\par
+	\vspace{0.2\baselineskip}
 	\nopagebreak[4]
 }
 
@@ -650,8 +654,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.0-4},
-		Template.Version.Hash={129976D2E138F02809C7745B93007811},
+		Template.Version.Dev={2.2.0-5},
+		Template.Version.Hash={1FCEF9F5741FB2307F147364A68E39E4},
 		Template.Version.Release={2.2.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}

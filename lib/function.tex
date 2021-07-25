@@ -122,6 +122,7 @@
 	}
 	
 	% Escribe datos autor
+	\vspace{0.2cm}
 	{%
 		\noindent
 		\ifthenelse{\equal{\correoautor}{}}{}{%
@@ -194,21 +195,23 @@
 	\begin{indentsectiondouble}
 		\item []
 		\noindent
-		\begin{minipage}[t][][t]{#5}%
-			{\textcolor{\instentrytitlecolor}{\textbf{#1}}}
+		\begin{minipage}{1\linewidth}
+			\begin{minipage}[t][][t]{#5}%
+				{\textcolor{\instentrytitlecolor}{\textbf{#1}} ~ \\ \vspace{0.7em}}
+			\end{minipage}
+			\hfill
+			\begin{minipage}[t][][t]{#6}%
+				\begin{flushright}
+					\noindent \textcolor{\datecolor}{\emph{#2#4#3}}
+				\end{flushright}
+			\end{minipage}
 		\end{minipage}
-		\begin{minipage}[t][][t]{#6}%
-			\begin{flushright}
-				\noindent \textcolor{\datecolor}{\emph{#2#4#3}}
-			\end{flushright}
-		\end{minipage}
-		\vspace*{-0.8\baselineskip}
+		\vspace{-1.1\baselineskip}
 		\break
 		\ifx\hfuzz#7\hfuzz
-			\vspace*{-0.4em}
+			\vspace*{-0.75\baselineskip}
 		\else
 			\begin{minipage}{1.0\linewidth}%
-				\vspace{0.2cm}
 				\bodytext{#7}
 				\par
 			\end{minipage}
@@ -222,7 +225,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentry}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.68999\linewidth}{.31\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.687\linewidth}{.31\linewidth}{#4}%
 }
 
 % Entrada en institución con fecha corta
@@ -231,7 +234,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.85999\linewidth}{.14\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.853\linewidth}{.143\linewidth}{#4}%
 }
 
 % Entrada en institución sin fecha

@@ -277,9 +277,10 @@
 				\noindent \textcolor{\datecolor}{\emph{#2#4#3}}
 			\end{flushright}
 		\end{minipage}
+		\vspace*{-0.8\baselineskip}
 		\break
 		\ifx\hfuzz#7\hfuzz
-			\vspace*{-0.25em}
+			\vspace*{-0.4em}
 		\else
 			\begin{minipage}{1.0\linewidth}%
 				\vspace{0.2cm}
@@ -296,7 +297,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentry}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.68\linewidth}{.31\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.68999\linewidth}{.31\linewidth}{#4}%
 }
 
 % Entrada en institución con fecha corta
@@ -305,14 +306,14 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.85\linewidth}{.14\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.85999\linewidth}{.14\linewidth}{#4}%
 }
 
 % Entrada en institución sin fecha
 %	#1	Cargo
 %	#2	Descripción
 \newcommand{\institutionentrynodate}[2]{%
-	\newinstitutionentry{#1}{}{}{}{.99\linewidth}{.0\linewidth}{#2}%
+	\newinstitutionentry{#1}{}{}{}{\linewidth}{0\linewidth}{#2}%
 }
 
 % Otro tipo de entrada en cvblock
@@ -527,7 +528,7 @@
 		\item []%
 		\noindent%
 		\ifx\hfuzz#3\hfuzz
-			\begin{minipage}{0.995\linewidth}
+			\begin{minipage}{\linewidth}
 				\ifx\hfuzz#1\hfuzz
 				\textscale{1.1}{\textcolor{\linkcolor}{#2}}
 				\else
@@ -535,7 +536,7 @@
 				\fi
 			\end{minipage}
 		\else
-			\begin{minipage}{.55\linewidth}
+			\begin{minipage}{.55999\linewidth}
 				\ifx\hfuzz#1\hfuzz
 				\textscale{1.1}{\textcolor{\linkcolor}{#2}}
 				\else
@@ -548,6 +549,7 @@
 				\end{flushright}
 			\end{minipage}
 		\fi
+		\vspace*{-\baselineskip}
 		\break
 	\end{indentsection}
 	\vspace{-1.75\baselineskip}
@@ -627,7 +629,7 @@
 	bookmarkstype={toc},
 	pdfauthor={\nombreautor},
 	pdfcenterwindow={\cfgpdfcenterwindow},
-	pdfcopyright={Currículum Vítae, \nombreautor. Email: \correoautor. Teléfono: \telefonoautor},
+	pdfcopyright={\headertitle, \nombreautor. Email: \correoautor. Tel: \telefonoautor},
 	pdfcreator={LaTeX},
 	pdfdisplaydoctitle={\cfgpdfdisplaydoctitle},
 	pdffitwindow={\cfgpdffitwindow},
@@ -648,13 +650,13 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.0},
-		Template.Version.Hash={5BD905835B991D90C9D574C556EF8A44},
+		Template.Version.Dev={2.2.0-4},
+		Template.Version.Hash={129976D2E138F02809C7745B93007811},
 		Template.Version.Release={2.2.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
-	pdfkeywords={CV, \nombreautor, Currículum, Vítae},
+	pdfkeywords={CV, \nombreautor, \headertitle, \correoautor},
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
@@ -662,8 +664,8 @@
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
-	pdfsubject={C.V. \nombreautor},
-	pdftitle={Currículum Vítae \nombreautor},
+	pdfsubject={CV \nombreautor},
+	pdftitle={\headertitle~ \nombreautor},
 	pdftoolbar={\cfgpdftoolbar},
 	pdftype={Text}
 }

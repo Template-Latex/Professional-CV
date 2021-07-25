@@ -202,9 +202,10 @@
 				\noindent \textcolor{\datecolor}{\emph{#2#4#3}}
 			\end{flushright}
 		\end{minipage}
+		\vspace*{-0.8\baselineskip}
 		\break
 		\ifx\hfuzz#7\hfuzz
-			\vspace*{-0.25em}
+			\vspace*{-0.4em}
 		\else
 			\begin{minipage}{1.0\linewidth}%
 				\vspace{0.2cm}
@@ -221,7 +222,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentry}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.68\linewidth}{.31\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.68999\linewidth}{.31\linewidth}{#4}%
 }
 
 % Entrada en institución con fecha corta
@@ -230,14 +231,14 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.85\linewidth}{.14\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.85999\linewidth}{.14\linewidth}{#4}%
 }
 
 % Entrada en institución sin fecha
 %	#1	Cargo
 %	#2	Descripción
 \newcommand{\institutionentrynodate}[2]{%
-	\newinstitutionentry{#1}{}{}{}{.99\linewidth}{.0\linewidth}{#2}%
+	\newinstitutionentry{#1}{}{}{}{\linewidth}{0\linewidth}{#2}%
 }
 
 % Otro tipo de entrada en cvblock

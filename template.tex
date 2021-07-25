@@ -86,6 +86,11 @@
 \usepackage{float}         % Administrador de posiciones de objetos
 \usepackage{hyperxmp}      % Etiquetas opcionales para el pdf compilado
 \usepackage{multirow}      % Agrega nuevas opciones a las tablas
+
+% Definición de variables globales
+\global\def\GLOBALinstitutionenabled {false}
+\global\def\GLOBALinstitutionshortend {false}
+
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
@@ -263,6 +268,9 @@
 %	#6	Ancho fecha
 %	#7	Descripción
 \newcommand{\newinstitutionentry}[7]{%
+	\ifthenelse{\equal{\GLOBALinstitutionenabled}{true}}{}{%
+		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentryshort no pueden usarse fuera del entorno \noexpand\institution}\stop%
+	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}
 	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}
 	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}
@@ -285,11 +293,13 @@
 		\break
 		\ifx\hfuzz#7\hfuzz
 			\vspace*{-0.75\baselineskip}
+			\global\def\GLOBALinstitutionshortend {true}%
 		\else
 			\begin{minipage}{1.0\linewidth}%
 				\bodytext{#7}
 				\par
 			\end{minipage}
+			\global\def\GLOBALinstitutionshortend {false}%
 		\fi
 	\end{indentsectiondouble}
 }
@@ -434,6 +444,10 @@
 	\fi
 	\vspace{0.15em}
 	}{
+	\ifthenelse{\equal{\GLOBALinstitutionshortend}{false}}{}{%
+		\vspace{-\baselineskip}
+	}%
+	\global\def\GLOBALinstitutionshortend {false}
 	\par
 }
 
@@ -555,9 +569,11 @@
 		\vspace*{-\baselineskip}
 		\break
 	\end{indentsection}
-	\vspace{-1.75\baselineskip}
+	\vspace{-1.5\baselineskip}
 	\noindent
+	\global\def\GLOBALinstitutionenabled {true}
 	}{
+	\global\def\GLOBALinstitutionenabled {false}
 	\par
 	\vspace{0.2\baselineskip}
 	\nopagebreak[4]
@@ -654,8 +670,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.0-5},
-		Template.Version.Hash={1FCEF9F5741FB2307F147364A68E39E4},
+		Template.Version.Dev={2.2.0-7},
+		Template.Version.Hash={1A8D2CCED41487D6082FCDDA907C6574},
 		Template.Version.Release={2.2.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}

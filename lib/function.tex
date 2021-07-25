@@ -11,6 +11,10 @@
 % Sitio web:    [https://latex.ppizarror.com/professional-cv]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+% Definición de variables globales
+\global\def\GLOBALinstitutionenabled {false}
+\global\def\GLOBALinstitutionshortend {false}
+
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
@@ -188,6 +192,9 @@
 %	#6	Ancho fecha
 %	#7	Descripción
 \newcommand{\newinstitutionentry}[7]{%
+	\ifthenelse{\equal{\GLOBALinstitutionenabled}{true}}{}{%
+		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentryshort no pueden usarse fuera del entorno \noexpand\institution}\stop%
+	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}
 	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}
 	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}
@@ -210,11 +217,13 @@
 		\break
 		\ifx\hfuzz#7\hfuzz
 			\vspace*{-0.75\baselineskip}
+			\global\def\GLOBALinstitutionshortend {true}%
 		\else
 			\begin{minipage}{1.0\linewidth}%
 				\bodytext{#7}
 				\par
 			\end{minipage}
+			\global\def\GLOBALinstitutionshortend {false}%
 		\fi
 	\end{indentsectiondouble}
 }

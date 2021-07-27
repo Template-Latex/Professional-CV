@@ -4,7 +4,7 @@
   </a>
   <br /><br />
   Professional-CV</h1>
-<p align="center">Professional CV es un template LaTeX para crear un currículum vitae de forma rápida y sencilla</p>
+<p align="center">Professional CV es un template LaTeX para crear un curriculum vitae de forma rápida y sencilla</p>
 <div align="center"><a href="https://ppizarror.com"><img alt="@ppizarror" src="https://latex.ppizarror.com/res/badges/autor.svg" /></a>
 <a href="https://opensource.org/licenses/MIT/"><img alt="Licencia MIT" src="https://latex.ppizarror.com/res/badges/licenciamit.svg" /></a>
 <br>

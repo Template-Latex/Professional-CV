@@ -18,14 +18,14 @@
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
-\newcommand{\throwerror}[2]{
+\newcommand{\throwerror}[2]{%
 	\errmessage{LaTeX Error: \noexpand#1 #2 (linea \the\inputlineno)}
 	\stop
 }
 
 % Lanza un mensaje de advertencia
 %	#1	Mensaje
-\newcommand{\throwwarning}[1]{
+\newcommand{\throwwarning}[1]{%
 	\errmessage{LaTeX Warning: #1 (linea \the\inputlineno)}
 }
 
@@ -33,7 +33,7 @@
 %	#1	Mensaje de error
 % 	#2	Configuración usada
 %	#3	Valores esperados
-\newcommand{\throwbadconfig}[3]{
+\newcommand{\throwbadconfig}[3]{%
 	\errmessage{LaTeX Warning: #1 \noexpand #2=#2. Valores esperados: #3}
 	\stop
 }
@@ -42,7 +42,7 @@
 %	#1	Mensaje de error
 % 	#2	Configuración usada
 %	#3	Valores esperados
-\newcommand{\throwbadconfigondoc}[3]{
+\newcommand{\throwbadconfigondoc}[3]{%
 	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}
 	\stop
 }
@@ -266,33 +266,47 @@
 
 % Inserta un elemento en el bloque de firma
 %	#1	Elemento en la firma
-\newcommand{\signatureentry}[1]{
+\newcommand{\signatureentry}[1]{%
 	\texttt{\MakeUppercase{#1}} \\
 }
 
 % Crea un bull
-\newcommand{\sbullet}{\ \ \raisebox{0.11em}[-1em][-1em]{\tiny $\bullet$} \ \ }
+\newcommand{\sbullet}{%
+	\ \ \raisebox{0.11em}[-1em][-1em]{\tiny $\bullet$} \ \ %
+}
 
 % Variaciones de vspace
-\newcommand{\breakvspace}[1]{\pagebreak[2] \vspace{#1} \pagebreak[2]}
-\newcommand{\nobreakvspace}[1]{\nopagebreak[4] \vspace{#1} \nopagebreak[4]}
+\newcommand{\breakvspace}[1]{%
+	\pagebreak[2] \vspace{#1} \pagebreak[2]%
+}
+\newcommand{\nobreakvspace}[1]{%
+	\nopagebreak[4] \vspace{#1} \nopagebreak[4]%
+}
 
 % Apóstrofe
-\newcommand{\apo}{\raisebox{-.18ex}{'}{\hspace{-.1em}}}
+\newcommand{\apo}{%
+	\raisebox{-.18ex}{'}{\hspace{-.1em}}%
+}
 
 % Inserta un texto entre comillas
-\newcommand{\quotes}[1]{\enquote*{#1}}
+\newcommand{\quotes}[1]{%
+	\enquote*{#1}%
+}
 
 % Inserta un email con un link cliqueable
-\newcommand{\insertemail}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\insertemail}[1]{%
+	\href{mailto:#1}{\texttt{#1}}%
+}
 
 % Inserta un teléfono celular
-\newcommand{\insertphone}[1]{\href{tel:#1}{\texttt{#1}}}
+\newcommand{\insertphone}[1]{%
+	\href{tel:#1}{\texttt{#1}}%
+}
 
 % Actualiza el padding de las celdas de las tablas
 %	#1	Padding horizontal (em)
 %	#2	Padding vertical (em)
-\newcommand{\settablecellpadding}[2]{
+\newcommand{\settablecellpadding}[2]{%
 	\emptyvarerr{\settablecellpadding}{#1}{Padding horizontal no definido}
 	\emptyvarerr{\settablecellpadding}{#2}{Padding vertical no definido}
 	\setlength{\tabcolsep}{#1 em} % Horizontal

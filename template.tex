@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      2.2.0 (27/07/2021)
+% Versión:      2.2.1 (08/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -41,23 +41,33 @@
 \usepackage{anyfontsize}
 \changefontsizes{\documentfontsize pt}
 
-% LIBRERÍAS IMPORTANTES
-\usepackage{ifthen} 		% Manejo de condicionales
+% -----------------------------------------------------------------------------
+% Librerías del núcleo
+% -----------------------------------------------------------------------------
+% Manejo de condicionales
+\usepackage{ifthen}
 
 % Idioma español, borrar esta línea si se desea usar otro idioma
 \ifthenelse{\equal{\usespanishbabel}{true}}{
 	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
 }
-\usepackage[T1]{fontenc}	% Caracteres acentuados
 \usepackage[utf8]{inputenc} % Codificación UTF-8
 
-% LIBRERÍAS INDEPENDIENTES
+% Evita error "Too many alphabets used in version normal"
+\newcommand\hmmax {0}
+\newcommand\bmmax {0}
+
+% -----------------------------------------------------------------------------
+% Librerías independientes
+% -----------------------------------------------------------------------------
+\usepackage{amssymb}       % Librerías matemáticas
 \usepackage{array}         % Nuevas características a las tablas
 \usepackage{booktabs}      % Permite manejar elementos visuales en tablas
 \usepackage{color}         % Colores
 \usepackage{colortbl}      % Administración de color en tablas
 \usepackage{csquotes}      % Citas y comillas
 \usepackage{enumitem}      % Permite enumerar ítems
+\usepackage{ifxetex}       % Detecta compilador
 \usepackage{geometry}      % Dimensiones y geometría del documento
 \usepackage{graphicx}      % Propiedades extra para los gráficos
 \usepackage{lipsum}        % Permite crear textos dummy
@@ -76,16 +86,582 @@
 \usepackage{xcolor}        % Administración de color avanzado
 \usepackage{xspace}        % Administra espacios en párrafos y líneas
 
-% LIBRERÍAS CON PARÁMETROS
+% -----------------------------------------------------------------------------
+% Librerías con parámetros
+% -----------------------------------------------------------------------------
 \usepackage[pdfencoding=auto,psdextra]{hyperref} % Enlaces, referencias
 \usepackage[final]{pdfpages} % Permite administrar páginas en pdf
 
-% LIBRERÍAS DEPENDIENTES
+% -----------------------------------------------------------------------------
+% Librerías dependientes
+% -----------------------------------------------------------------------------
 \usepackage{bookmark}      % Administración de marcadores en pdf
 \usepackage{fancyhdr}      % Encabezados y pie de páginas
 \usepackage{float}         % Administrador de posiciones de objetos
 \usepackage{hyperxmp}      % Etiquetas opcionales para el pdf compilado
 \usepackage{multirow}      % Agrega nuevas opciones a las tablas
+
+% -----------------------------------------------------------------------------
+% Tipografía del documento
+% -----------------------------------------------------------------------------
+% Tipografías clásicas
+\ifthenelse{\equal{\fontdocument}{default}}{
+	\ifxetex
+		\usepackage{fontspec}
+		\setmainfont
+		[ExternalLocation,
+		Mapping=tex-text,
+		Numbers=OldStyle,
+		Ligatures={Common,Contextual},
+		BoldFont=texgyrepagella-bold.otf,
+		ItalicFont=texgyrepagella-italic.otf,
+		BoldItalicFont=texgyrepagella-bolditalic.otf]
+		{texgyrepagella-regular.otf}
+		\usepackage[protrusion]{microtype}
+	\else
+		\usepackage{tgpagella}
+		\usepackage[expansion,protrusion]{microtype}
+	\fi
+}{
+\ifthenelse{\equal{\fontdocument}{lmodern}}{
+	\usepackage{lmodern}
+}{
+\ifthenelse{\equal{\fontdocument}{arial}}{
+	\usepackage{helvet}
+	\renewcommand{\familydefault}{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{arial2}}{
+	\usepackage{arial}
+}{
+\ifthenelse{\equal{\fontdocument}{times}}{
+	\usepackage{mathptmx}
+}{
+\ifthenelse{\equal{\fontdocument}{mathptmx}}{
+	\usepackage{mathptmx}
+}{
+\ifthenelse{\equal{\fontdocument}{helvet}}{
+	\renewcommand{\familydefault}{\sfdefault}
+	\usepackage[scaled=0.95]{helvet}
+	\usepackage[helvet]{sfmath}
+}{
+\ifthenelse{\equal{\fontdocument}{opensans}}{
+	\usepackage[default,scale=0.95]{opensans}
+}{
+\ifthenelse{\equal{\fontdocument}{mathpazo}}{
+	\usepackage{mathpazo}
+}{
+\ifthenelse{\equal{\fontdocument}{cambria}}{
+	\usepackage{caladea}
+}{
+\ifthenelse{\equal{\fontdocument}{libertine}}{
+	\usepackage[libertine]{newtxmath}
+	\usepackage[tt=false]{libertine}
+}{
+\ifthenelse{\equal{\fontdocument}{custom}}{
+}{
+
+% Otros (último: fbb el 08/08/2021 - https://tug.org/FontCatalogue/seriffonts.html)
+\ifthenelse{\equal{\fontdocument}{accanthis}}{
+	\usepackage{accanthis}
+}{
+\ifthenelse{\equal{\fontdocument}{alegreya}}{
+	\usepackage{Alegreya}
+	\renewcommand*\oldstylenums[1]{{\AlegreyaOsF #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{alegreyasans}}{
+	\usepackage[sfdefault]{AlegreyaSans}
+	\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{algolrevived}}{
+	\usepackage{algolrevived}
+}{
+\ifthenelse{\equal{\fontdocument}{almendra}}{
+	\usepackage{almendra}
+}{
+\ifthenelse{\equal{\fontdocument}{antpolt}}{
+	\usepackage{antpolt}
+}{
+\ifthenelse{\equal{\fontdocument}{antpoltlight}}{
+	\usepackage[light]{antpolt}
+}{
+\ifthenelse{\equal{\fontdocument}{anttor}}{
+	\usepackage[math]{anttor}
+}{
+\ifthenelse{\equal{\fontdocument}{anttorcondensed}}{
+	\usepackage[condensed,math]{anttor}
+}{
+\ifthenelse{\equal{\fontdocument}{anttorlight}}{
+	\usepackage[light,math]{anttor}
+}{
+\ifthenelse{\equal{\fontdocument}{anttorlightcondensed}}{
+	\usepackage[light,condensed,math]{anttor}
+}{
+\ifthenelse{\equal{\fontdocument}{arev}}{
+	\let\quarternote\relax
+	\let\eighthnote\relax
+	\usepackage{arev}
+}{
+\ifthenelse{\equal{\fontdocument}{arimo}}{
+	\usepackage[sfdefault]{arimo}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{arvo}}{
+	\usepackage{Arvo}
+}{
+\ifthenelse{\equal{\fontdocument}{baskervald}}{
+	\usepackage{baskervald}
+}{
+\ifthenelse{\equal{\fontdocument}{baskervaldx}}{
+	\usepackage[lf]{Baskervaldx}
+	\usepackage[bigdelims,vvarbb]{newtxmath}
+	\usepackage[cal=boondoxo]{mathalfa}
+	\renewcommand*\oldstylenums[1]{\textosf{#1}}
+}{
+\ifthenelse{\equal{\fontdocument}{berasans}}{
+	\usepackage[scaled]{berasans}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{beraserif}}{
+	\usepackage{bera}
+}{
+\ifthenelse{\equal{\fontdocument}{biolinum}}{
+	\usepackage{libertine}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{bitter}}{
+	\usepackage{bitter}
+}{
+\ifthenelse{\equal{\fontdocument}{boisik}}{
+	\let\div\relax
+	\usepackage{boisik}
+}{
+\ifthenelse{\equal{\fontdocument}{bookman}}{
+	\usepackage{bookman}
+}{
+\ifthenelse{\equal{\fontdocument}{cabin}}{
+	\usepackage[sfdefault]{cabin}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{cabincondensed}}{
+	\usepackage[sfdefault,condensed]{cabin}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{caladea}}{
+	\usepackage{caladea}
+}{
+\ifthenelse{\equal{\fontdocument}{cantarell}}{
+	\usepackage[default]{cantarell}
+}{
+\ifthenelse{\equal{\fontdocument}{carlito}}{
+	\usepackage[sfdefault]{carlito}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{charterbt}}{
+	\usepackage[bitstream-charter]{mathdesign}
+}{
+\ifthenelse{\equal{\fontdocument}{chivolight}}{
+	\usepackage[familydefault,light]{Chivo}
+}{
+\ifthenelse{\equal{\fontdocument}{chivoregular}}{
+	\usepackage[familydefault,regular]{Chivo}
+}{
+\ifthenelse{\equal{\fontdocument}{clara}}{
+	\usepackage{clara}
+}{
+\ifthenelse{\equal{\fontdocument}{clearsans}}{
+	\usepackage[sfdefault]{ClearSans}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{cochineal}}{
+	\usepackage{cochineal}
+}{
+\ifthenelse{\equal{\fontdocument}{coelacanth}}{
+	\usepackage[nf]{coelacanth}
+	\let\oldnormalfont\normalfont
+	\def\normalfont{\oldnormalfont\mdseries}
+}{
+\ifthenelse{\equal{\fontdocument}{coelacanthextralight}}{
+	\usepackage[el,nf]{coelacanth}
+	\let\oldnormalfont\normalfont
+	\def\normalfont{\oldnormalfont\mdseries}
+}{
+\ifthenelse{\equal{\fontdocument}{coelacanthlight}}{
+	\usepackage[l,nf]{coelacanth}
+	\let\oldnormalfont\normalfont
+	\def\normalfont{\oldnormalfont\mdseries}
+}{
+\ifthenelse{\equal{\fontdocument}{comfortaa}}{
+	\usepackage[default]{comfortaa}
+}{
+\ifthenelse{\equal{\fontdocument}{comicneue}}{
+	\usepackage[default]{comicneue}
+}{
+\ifthenelse{\equal{\fontdocument}{comicneueangular}}{
+	\usepackage[default,angular]{comicneue}
+}{
+\ifthenelse{\equal{\fontdocument}{computerconcrete}}{
+	\usepackage{concmath}
+}{
+\ifthenelse{\equal{\fontdocument}{computerconcreteeuler}}{
+	\let\Re\relax
+	\let\Im\relax
+	\usepackage{beton}
+	\usepackage{euler}
+}{
+\ifthenelse{\equal{\fontdocument}{computermodern}}{
+}{
+\ifthenelse{\equal{\fontdocument}{computermodernbright}}{
+	\usepackage{cmbright}
+}{
+\ifthenelse{\equal{\fontdocument}{crimson}}{
+	\usepackage{crimson}
+}{
+\ifthenelse{\equal{\fontdocument}{crimsonpro}}{
+	\usepackage{CrimsonPro}
+	\let\oldnormalfont\normalfont
+	\def\normalfont{\oldnormalfont\mdseries}
+}{
+\ifthenelse{\equal{\fontdocument}{crimsonproextralight}}{
+	\usepackage[extralight]{CrimsonPro}
+	\let\oldnormalfont\normalfont
+	\def\normalfont{\oldnormalfont\mdseries}
+}{
+\ifthenelse{\equal{\fontdocument}{crimsonprolight}}{
+	\usepackage[light]{CrimsonPro}
+	\let\oldnormalfont\normalfont
+	\def\normalfont{\oldnormalfont\mdseries}
+}{
+\ifthenelse{\equal{\fontdocument}{crimsonpromedium}}{
+	\usepackage[medium]{CrimsonPro}
+	\let\oldnormalfont\normalfont
+	\def\normalfont{\oldnormalfont\mdseries}
+}{
+\ifthenelse{\equal{\fontdocument}{cyklop}}{
+	\usepackage{cyklop}
+}{
+\ifthenelse{\equal{\fontdocument}{dejavusans}}{
+	\usepackage{DejaVuSans}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{dejavusanscondensed}}{
+	\usepackage{DejaVuSansCondensed}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{domitian}}{
+	\usepackage{mathpazo}
+	\usepackage{domitian}
+	\let\oldstylenums\oldstyle
+}{
+\ifthenelse{\equal{\fontdocument}{droidsans}}{
+	\usepackage[defaultsans]{droidsans}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{electrum}}{
+	\usepackage[lf]{electrum}
+}{	
+\ifthenelse{\equal{\fontdocument}{erewhon}}{
+	\usepackage[proportional,scaled=1.064]{erewhon}
+	\usepackage[erewhon,vvarbb,bigdelims]{newtxmath}
+	\renewcommand*\oldstylenums[1]{\textosf{#1}}
+}{
+\ifthenelse{\equal{\fontdocument}{fbb}}{
+	\usepackage{fbb}
+}{
+\ifthenelse{\equal{\fontdocument}{fetamont}}{
+	\usepackage{fetamont}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{firasans}}{
+	\usepackage[sfdefault]{FiraSans}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{firasansnewtxsf}}{
+	\usepackage[sfdefault]{FiraSans}
+	\usepackage{newtxsf}
+}{
+\ifthenelse{\equal{\fontdocument}{fourier}}{
+	\usepackage{fourier}
+}{
+\ifthenelse{\equal{\fontdocument}{fouriernc}}{
+	\usepackage{fouriernc}
+}{
+\ifthenelse{\equal{\fontdocument}{gfsartemisia}}{
+	\let\textlozenge\relax
+	\usepackage{gfsartemisia}
+}{
+\ifthenelse{\equal{\fontdocument}{gfsartemisiaeuler}}{
+	\let\textlozenge\relax
+	\let\Re\relax
+	\let\Im\relax
+	\usepackage{gfsartemisia-euler}
+}{
+\ifthenelse{\equal{\fontdocument}{heuristica}}{
+	\usepackage{heuristica}
+	\usepackage[heuristica,vvarbb,bigdelims]{newtxmath}
+	\renewcommand*\oldstylenums[1]{\textosf{#1}}
+}{
+\ifthenelse{\equal{\fontdocument}{iwona}}{
+	\usepackage[math]{iwona}
+}{
+\ifthenelse{\equal{\fontdocument}{iwonacondensed}}{
+	\usepackage[condensed,math]{iwona}
+}{
+\ifthenelse{\equal{\fontdocument}{iwonalight}}{
+	\usepackage[light,math]{iwona}
+}{
+\ifthenelse{\equal{\fontdocument}{iwonalightcondensed}}{
+	\usepackage[light,condensed,math]{iwona}
+}{
+\ifthenelse{\equal{\fontdocument}{kerkis}}{
+	\usepackage{kmath,kerkis}
+}{
+\ifthenelse{\equal{\fontdocument}{kurier}}{
+	\usepackage[math]{kurier}
+}{
+\ifthenelse{\equal{\fontdocument}{kuriercondensed}}{
+	\usepackage[condensed,math]{kurier}
+}{
+\ifthenelse{\equal{\fontdocument}{kurierlight}}{
+	\usepackage[light,math]{kurier}
+}{
+\ifthenelse{\equal{\fontdocument}{kurierlightcondensed}}{
+	\usepackage[light,condensed,math]{kurier}
+}{
+\ifthenelse{\equal{\fontdocument}{lato}}{
+	\usepackage[default]{lato}
+}{
+\ifthenelse{\equal{\fontdocument}{libertinus}}{
+	\usepackage{libertinus}
+}{
+\ifthenelse{\equal{\fontdocument}{librebaskerville}}{
+	\usepackage{librebaskerville}
+}{
+\ifthenelse{\equal{\fontdocument}{librebodoni}}{
+	\usepackage{LibreBodoni}
+}{
+\ifthenelse{\equal{\fontdocument}{librecaslon}}{
+	\usepackage{librecaslon}
+}{
+\ifthenelse{\equal{\fontdocument}{libris}}{
+	\usepackage{libris}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{lxfonts}}{
+	\usepackage{lxfonts}
+}{
+\ifthenelse{\equal{\fontdocument}{merriweather}}{
+	\usepackage[sfdefault]{merriweather}
+}{
+\ifthenelse{\equal{\fontdocument}{merriweatherlight}}{
+	\usepackage[sfdefault,light]{merriweather}
+}{
+\ifthenelse{\equal{\fontdocument}{mintspirit}}{
+	\usepackage[default]{mintspirit}
+}{
+\ifthenelse{\equal{\fontdocument}{mlmodern}}{
+	\usepackage{mlmodern}
+}{
+\ifthenelse{\equal{\fontdocument}{montserratalternatesextralight}}{
+	\usepackage[defaultfam,extralight,tabular,lining,alternates]{montserrat}
+	\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{montserratalternatesregular}}{
+	\usepackage[defaultfam,tabular,lining,alternates]{montserrat}
+	\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{montserratalternatesthin}}{
+	\usepackage[defaultfam,thin,tabular,lining,alternates]{montserrat}
+	\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{montserratextralight}}{
+	\usepackage[defaultfam,extralight,tabular,lining]{montserrat}
+	\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{montserratlight}}{
+	\usepackage[defaultfam,light,tabular,lining]{montserrat}
+	\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{montserratregular}}{
+	\usepackage[defaultfam,tabular,lining]{montserrat}
+	\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{montserratthin}}{
+	\usepackage[defaultfam,thin,tabular,lining]{montserrat}
+	\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+}{
+\ifthenelse{\equal{\fontdocument}{newpx}}{
+	\usepackage{newpxtext,newpxmath}
+}{
+\ifthenelse{\equal{\fontdocument}{nimbussans}}{
+	\usepackage{nimbussans}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{noto}}{
+	\usepackage[sfdefault]{noto}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{notoserif}}{
+	\usepackage{notomath}
+}{
+\ifthenelse{\equal{\fontdocument}{opensansserif}}{
+	\usepackage[default,oldstyle,scale=0.95]{opensans}
+}{
+\ifthenelse{\equal{\fontdocument}{overlock}}{
+	\usepackage[sfdefault]{overlock}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{paratype}}{
+	\usepackage{paratype}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{paratypesanscaption}}{
+	\usepackage{PTSansCaption}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{paratypesansnarrow}}{
+	\usepackage{PTSansNarrow}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{pxfonts}}{
+	\usepackage{pxfonts}
+}{
+\ifthenelse{\equal{\fontdocument}{quattrocento}}{
+	\usepackage[sfdefault]{quattrocento}
+}{
+\ifthenelse{\equal{\fontdocument}{raleway}}{
+	\usepackage[default]{raleway}
+}{
+\ifthenelse{\equal{\fontdocument}{roboto}}{
+	\usepackage[sfdefault]{roboto}
+}{
+\ifthenelse{\equal{\fontdocument}{robotocondensed}}{
+	\usepackage[sfdefault,condensed]{roboto}
+}{
+\ifthenelse{\equal{\fontdocument}{robotolight}}{
+	\usepackage[sfdefault,light]{roboto}
+}{
+\ifthenelse{\equal{\fontdocument}{robotolightcondensed}}{
+	\usepackage[sfdefault,light,condensed]{roboto}
+}{
+\ifthenelse{\equal{\fontdocument}{robotothin}}{
+	\usepackage[sfdefault,thin]{roboto}
+}{
+\ifthenelse{\equal{\fontdocument}{rosario}}{
+	\usepackage[familydefault]{Rosario}
+}{
+\ifthenelse{\equal{\fontdocument}{sourcesanspro}}{
+	\usepackage[default]{sourcesanspro}
+}{
+\ifthenelse{\equal{\fontdocument}{step}}{
+	\usepackage[notext]{stix}
+	\usepackage{step}
+}{
+\ifthenelse{\equal{\fontdocument}{stickstoo}}{
+	\usepackage{stickstootext}
+	\usepackage[stickstoo,vvarbb]{newtxmath}
+}{
+\ifthenelse{\equal{\fontdocument}{texgyrebonum}}{
+	\usepackage{tgbonum}
+}{
+\ifthenelse{\equal{\fontdocument}{txfonts}}{
+	\usepackage{txfonts}
+}{
+\ifthenelse{\equal{\fontdocument}{uarial}}{
+	\usepackage{uarial}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{ugq}}{
+	\renewcommand*\sfdefault{ugq}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+\ifthenelse{\equal{\fontdocument}{universalis}}{
+	\usepackage[sfdefault]{universalis}
+}{
+\ifthenelse{\equal{\fontdocument}{universaliscondensed}}{
+	\usepackage[condensed,sfdefault]{universalis}
+}{
+\ifthenelse{\equal{\fontdocument}{venturis}}{
+	\usepackage[lf]{venturis}
+	\renewcommand*\familydefault{\sfdefault}
+}{
+	\throwbadconfig[nostop]{Fuente desconocida}{\fontdocument}{(Fuentes recomendadas) default,lmodern,carial,arial2,times,mathptmx,helvet,opensans,mathpazo,cambria,libertine,custom}
+	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{(Fuentes adicionales) accanthis,alegreya,alegreyasans,algolrevived,almendra,antpolt,antpoltlight,anttor,anttorcondensed,anttorlight,anttorlightcondensed,arev,arimo,arvo,baskervald,baskervaldx,berasans,beraserif,biolinum,bitter,boisik,bookman,cabin,cabincondensed,cantarell,caladea,carlito,charterbt,chivolight,chivoregular,clara,clearsans,cochineal,coelacanth,coelacanthextralight,coelacanthlight,comfortaa,comicneue,comicneueangular,computerconcrete,computerconcreteeuler,computermodern,computermodernbright,crimson,crimsonpro,crimsonproextralight,crimsonprolight,crimsonpromedium,cyklop}
+	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{dejavusans,dejavusanscondensed,domitian,droidsans,electrum,erewhon,fbb,fetamont,firasans,firasansnewtxsf,fourier,fouriernc,gfsartemisia,gfsartemisiaeuler,heuristica,iwona,iwonacondensed,iwonalight,iwonalightcondensed,kerkis,kurier,kuriercondensed,kurierlight,kurierlightcondensed,lato,libertinus,librebaskerville,librebodoni,librecaslon,libris,lxfonts}
+	\throwbadconfig[noheader]{Fuente desconocida}{\fontdocument}{merriweather,merriweatherlight,mintspirit,mlmodern,montserratalternatesextralight,montserratalternatesregular,montserratalternatesthin,montserratextralight,montserratlight,montserratregular,montserratthin,newpx,nimbussans,noto,notoserif,opensansserif,overlock,paratype,paratypesanscaption,paratypesansnarrow,pxfonts,quattrocento,raleway,roboto,robotolight,robotolightcondensed,robotothin,rosario,sourcesanspro,step,stickstoo,uarial,texgyrebonum,txfonts,ugq,universalis,universaliscondensed,venturis}
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}
+
+% -----------------------------------------------------------------------------
+% Tipografía typewriter
+% -----------------------------------------------------------------------------
+\ifthenelse{\equal{\fonttypewriter}{default}}{
+}{
+\ifthenelse{\equal{\fonttypewriter}{tmodern}}{
+	\renewcommand*\ttdefault{lmvtt}
+}{
+\ifthenelse{\equal{\fonttypewriter}{anonymouspro}}{
+	\usepackage[ttdefault=true]{AnonymousPro}
+}{
+\ifthenelse{\equal{\fonttypewriter}{ascii}}{
+	\usepackage{ascii}
+	\let\SI\relax
+}{
+\ifthenelse{\equal{\fonttypewriter}{beramono}}{
+	\usepackage[scaled]{beramono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{cmpica}}{
+	\usepackage{addfont}
+	\addfont{OT1}{cmpica}{\pica}
+	\addfont{OT1}{cmpicab}{\picab}
+	\addfont{OT1}{cmpicati}{\picati}
+	\renewcommand*\ttdefault{pica}
+}{
+\ifthenelse{\equal{\fonttypewriter}{courier}}{
+	\usepackage{courier}
+}{
+\ifthenelse{\equal{\fonttypewriter}{dejavusansmono}}{
+	\usepackage[scaled]{DejaVuSansMono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{firamono}}{
+	\usepackage[scale=0.85]{FiraMono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{gomono}}{
+	\usepackage[scale=0.85]{GoMono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{inconsolata}}{
+	\usepackage{inconsolata}
+}{
+\ifthenelse{\equal{\fonttypewriter}{nimbusmono}}{
+	\usepackage{nimbusmono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{newtxtt}}{
+	\usepackage[zerostyle=d]{newtxtt}
+}{
+\ifthenelse{\equal{\fonttypewriter}{nimbusmono}}{
+	\usepackage{nimbusmono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{nimbusmononarrow}}{
+	\usepackage{nimbusmononarrow}
+}{
+\ifthenelse{\equal{\fonttypewriter}{lcmtt}}{
+	\renewcommand*\ttdefault{lcmtt}
+}{
+\ifthenelse{\equal{\fonttypewriter}{sourcecodepro}}{
+	\usepackage[ttdefault=true,scale=0.85]{sourcecodepro}
+}{
+\ifthenelse{\equal{\fonttypewriter}{texgyrecursor}}{
+	\usepackage{tgcursor}
+}{
+	\throwbadconfig{Fuente desconocida}{\fonttypewriter}{default,anonymouspro,ascii,beramono,
+		cmpica,courier,dejavusansmono,firamono,gomono,inconsolata,kpmonospaced,lcmtt,
+		newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern}
+	}}}}}}}}}}}}}}}}}
+}
+
+% -----------------------------------------------------------------------------
+% Finales
+% -----------------------------------------------------------------------------
+\usepackage[T1]{fontenc} % Caracteres acentuados
 
 % Definición de variables globales
 \global\def\GLOBALinstitutionenabled {false}
@@ -94,14 +670,14 @@
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
-\newcommand{\throwerror}[2]{
+\newcommand{\throwerror}[2]{%
 	\errmessage{LaTeX Error: \noexpand#1 #2 (linea \the\inputlineno)}
 	\stop
 }
 
 % Lanza un mensaje de advertencia
 %	#1	Mensaje
-\newcommand{\throwwarning}[1]{
+\newcommand{\throwwarning}[1]{%
 	\errmessage{LaTeX Warning: #1 (linea \the\inputlineno)}
 }
 
@@ -109,7 +685,7 @@
 %	#1	Mensaje de error
 % 	#2	Configuración usada
 %	#3	Valores esperados
-\newcommand{\throwbadconfig}[3]{
+\newcommand{\throwbadconfig}[3]{%
 	\errmessage{LaTeX Warning: #1 \noexpand #2=#2. Valores esperados: #3}
 	\stop
 }
@@ -118,7 +694,7 @@
 %	#1	Mensaje de error
 % 	#2	Configuración usada
 %	#3	Valores esperados
-\newcommand{\throwbadconfigondoc}[3]{
+\newcommand{\throwbadconfigondoc}[3]{%
 	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}
 	\stop
 }
@@ -342,33 +918,47 @@
 
 % Inserta un elemento en el bloque de firma
 %	#1	Elemento en la firma
-\newcommand{\signatureentry}[1]{
+\newcommand{\signatureentry}[1]{%
 	\texttt{\MakeUppercase{#1}} \\
 }
 
 % Crea un bull
-\newcommand{\sbullet}{\ \ \raisebox{0.11em}[-1em][-1em]{\tiny $\bullet$} \ \ }
+\newcommand{\sbullet}{%
+	\ \ \raisebox{0.11em}[-1em][-1em]{\tiny $\bullet$} \ \ %
+}
 
 % Variaciones de vspace
-\newcommand{\breakvspace}[1]{\pagebreak[2] \vspace{#1} \pagebreak[2]}
-\newcommand{\nobreakvspace}[1]{\nopagebreak[4] \vspace{#1} \nopagebreak[4]}
+\newcommand{\breakvspace}[1]{%
+	\pagebreak[2] \vspace{#1} \pagebreak[2]%
+}
+\newcommand{\nobreakvspace}[1]{%
+	\nopagebreak[4] \vspace{#1} \nopagebreak[4]%
+}
 
 % Apóstrofe
-\newcommand{\apo}{\raisebox{-.18ex}{'}{\hspace{-.1em}}}
+\newcommand{\apo}{%
+	\raisebox{-.18ex}{'}{\hspace{-.1em}}%
+}
 
 % Inserta un texto entre comillas
-\newcommand{\quotes}[1]{\enquote*{#1}}
+\newcommand{\quotes}[1]{%
+	\enquote*{#1}%
+}
 
 % Inserta un email con un link cliqueable
-\newcommand{\insertemail}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\insertemail}[1]{%
+	\href{mailto:#1}{\texttt{#1}}%
+}
 
 % Inserta un teléfono celular
-\newcommand{\insertphone}[1]{\href{tel:#1}{\texttt{#1}}}
+\newcommand{\insertphone}[1]{%
+	\href{tel:#1}{\texttt{#1}}%
+}
 
 % Actualiza el padding de las celdas de las tablas
 %	#1	Padding horizontal (em)
 %	#2	Padding vertical (em)
-\newcommand{\settablecellpadding}[2]{
+\newcommand{\settablecellpadding}[2]{%
 	\emptyvarerr{\settablecellpadding}{#1}{Padding horizontal no definido}
 	\emptyvarerr{\settablecellpadding}{#2}{Padding vertical no definido}
 	\setlength{\tabcolsep}{#1 em} % Horizontal
@@ -580,10 +1170,10 @@
 }
 
 % Crea la firma del usuario
-\newenvironment{signature}{
-	\vfill
-	\begin{flushright}
-		\begin{tabular}{c}
+\newenvironment{signature}{%
+	\vfill%
+	\begin{flushright}%
+		\begin{tabular}{c}%
 			\includegraphics[width=\usersignaturesize cm]{\firmaautor} \\
 		}{
 		\end{tabular}
@@ -592,16 +1182,16 @@
 
 % Itemize en negrita
 %	#1	Parámetros opcionales
-\newenvironment{itemizebf}[1][]{
-	\begin{itemize}[font=\bfseries,#1]
+\newenvironment{itemizebf}[1][]{%
+	\begin{itemize}[font=\bfseries,#1]%
 	}{
 	\end{itemize}
 }
 
 % Enumerate en negrita
 %	#1	Parámetros opcionales
-\newenvironment{enumeratebf}[1][]{
-	\begin{enumerate}[font=\bfseries,#1]
+\newenvironment{enumeratebf}[1][]{%
+	\begin{enumerate}[font=\bfseries,#1]%
 	}{
 	\end{enumerate}
 }
@@ -665,14 +1255,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={27/07/2021},
+		Template.Fecha={08/08/2021},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.0-8},
-		Template.Version.Hash={71220B68D1C4F5DECA900776D8EBF453},
-		Template.Version.Release={2.2.0},
+		Template.Version.Dev={2.2.1},
+		Template.Version.Hash={1290A5DFE13E24CD6182A787FC779045},
+		Template.Version.Release={2.2.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -680,7 +1270,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v2.2.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v2.2.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -725,25 +1315,6 @@
 	\pagecolor{\colorpage}
 }
 
-% Definición de la fuente
-\usepackage{ifxetex}
-\ifxetex
-	\usepackage{fontspec}
-	\setmainfont
-	[ExternalLocation,
-	Mapping=tex-text,
-	Numbers=OldStyle,
-	Ligatures={Common,Contextual},
-	BoldFont=texgyrepagella-bold.otf,
-	ItalicFont=texgyrepagella-italic.otf,
-	BoldItalicFont=texgyrepagella-bolditalic.otf]
-	{texgyrepagella-regular.otf}
-	\usepackage[protrusion]{microtype}
-\else
-	\usepackage{tgpagella}
-	\usepackage[expansion,protrusion]{microtype}
-\fi
-
 % Configuración de la identación
 \newlength{\newparindent}
 \addtolength{\newparindent}{\parindent}
@@ -759,7 +1330,7 @@
 \ttfamily \hyphenchar\the\font=`\-
 
 % Se define el tipo de texto de los url
-\urlstyle{tt}
+\urlstyle{\fonturl}
 
 % Se define la versión menor a compilar
 \pdfminorversion=\pdfcompileversion

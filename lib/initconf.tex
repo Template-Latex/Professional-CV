@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones iniciales del documento
-% Versión:      2.2.0 (27/07/2021)
+% Versión:      2.2.1 (08/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -67,14 +67,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={27/07/2021},
+		Template.Fecha={08/08/2021},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.0-8},
-		Template.Version.Hash={71220B68D1C4F5DECA900776D8EBF453},
-		Template.Version.Release={2.2.0},
+		Template.Version.Dev={2.2.1},
+		Template.Version.Hash={1290A5DFE13E24CD6182A787FC779045},
+		Template.Version.Release={2.2.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -82,7 +82,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v2.2.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v2.2.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -127,25 +127,6 @@
 	\pagecolor{\colorpage}
 }
 
-% Definición de la fuente
-\usepackage{ifxetex}
-\ifxetex
-	\usepackage{fontspec}
-	\setmainfont
-	[ExternalLocation,
-	Mapping=tex-text,
-	Numbers=OldStyle,
-	Ligatures={Common,Contextual},
-	BoldFont=texgyrepagella-bold.otf,
-	ItalicFont=texgyrepagella-italic.otf,
-	BoldItalicFont=texgyrepagella-bolditalic.otf]
-	{texgyrepagella-regular.otf}
-	\usepackage[protrusion]{microtype}
-\else
-	\usepackage{tgpagella}
-	\usepackage[expansion,protrusion]{microtype}
-\fi
-
 % Configuración de la identación
 \newlength{\newparindent}
 \addtolength{\newparindent}{\parindent}
@@ -161,7 +142,7 @@
 \ttfamily \hyphenchar\the\font=`\-
 
 % Se define el tipo de texto de los url
-\urlstyle{tt}
+\urlstyle{\fonturl}
 
 % Se define la versión menor a compilar
 \pdfminorversion=\pdfcompileversion

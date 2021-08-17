@@ -12,6 +12,7 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 % Definición de variables globales
+\global\def\GLOBALhasinstitution {false}
 \global\def\GLOBALinstitutionenabled {false}
 \global\def\GLOBALinstitutionshortend {false}
 
@@ -222,7 +223,7 @@
 			\begin{minipage}{1.0\linewidth}%
 				\bodytext{#7}
 				\par
-			\end{minipage}
+			\end{minipage}\vspace{0.1\baselineskip}%
 			\global\def\GLOBALinstitutionshortend {false}%
 		\fi
 	\end{indentsectiondouble}
@@ -243,7 +244,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.853\linewidth}{.143\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.833\linewidth}{.163\linewidth}{#4}%
 }
 
 % Entrada en institución sin fecha

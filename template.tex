@@ -595,7 +595,8 @@
 % -----------------------------------------------------------------------------
 % Tipografía typewriter
 % -----------------------------------------------------------------------------
-\ifthenelse{\equal{\fonttypewriter}{default}}{
+% https://tug.org/FontCatalogue/typewriterfonts.html
+\ifthenelse{\equal{\fonttypewriter}{custom}}{
 }{
 \ifthenelse{\equal{\fonttypewriter}{tmodern}}{
 	\renewcommand*\ttdefault{lmvtt}
@@ -610,6 +611,9 @@
 \ifthenelse{\equal{\fonttypewriter}{beramono}}{
 	\usepackage[scaled]{beramono}
 }{
+\ifthenelse{\equal{\fonttypewriter}{cascadiacode}}{
+	\usepackage{cascadia-code}
+}{
 \ifthenelse{\equal{\fonttypewriter}{cmpica}}{
 	\usepackage{addfont}
 	\addfont{OT1}{cmpica}{\pica}
@@ -617,11 +621,22 @@
 	\addfont{OT1}{cmpicati}{\picati}
 	\renewcommand*\ttdefault{pica}
 }{
+\ifthenelse{\equal{\fonttypewriter}{cmodern}}{
+}{
 \ifthenelse{\equal{\fonttypewriter}{courier}}{
 	\usepackage{courier}
 }{
+\ifthenelse{\equal{\fonttypewriter}{courier10}}{
+	\usepackage{courierten}
+}{
+\ifthenelse{\equal{\fonttypewriter}{cmvtt}}{
+	\renewcommand*\ttdefault{cmvtt}
+}{
 \ifthenelse{\equal{\fonttypewriter}{dejavusansmono}}{
 	\usepackage[scaled]{DejaVuSansMono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{droidsansmono}}{
+	\usepackage[defaultmono]{droidsansmono}
 }{
 \ifthenelse{\equal{\fonttypewriter}{firamono}}{
 	\usepackage[scale=0.85]{FiraMono}
@@ -653,10 +668,11 @@
 \ifthenelse{\equal{\fonttypewriter}{texgyrecursor}}{
 	\usepackage{tgcursor}
 }{
-	\throwbadconfig{Fuente desconocida}{\fonttypewriter}{default,anonymouspro,ascii,beramono,
-		cmpica,courier,dejavusansmono,firamono,gomono,inconsolata,kpmonospaced,lcmtt,
-		newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern}
-	}}}}}}}}}}}}}}}}}
+\ifthenelse{\equal{\fonttypewriter}{txtt}}{
+	\renewcommand*\ttdefault{txtt}
+}{
+	\throwbadconfig{Fuente desconocida}{\fonttypewriter}{custom,anonymouspro,ascii,beramono,cascadiacode,cmpica,cmodern,courier,courier10,cvmtt,dejavusansmono,droidsansmono,firamono,gomono,inconsolata,kpmonospaced,lcmtt,newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern,txtt}
+	}}}}}}}}}}}}}}}}}}}}}}}
 }
 
 % -----------------------------------------------------------------------------
@@ -1274,8 +1290,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.2},
-		Template.Version.Hash={AD1C8AEC937C36C7805D03C3807DF66A},
+		Template.Version.Dev={2.2.2-1},
+		Template.Version.Hash={7B3D54831014B367A226C5CC537EF252},
 		Template.Version.Release={2.2.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}

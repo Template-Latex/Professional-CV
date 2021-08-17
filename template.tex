@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      2.2.1 (08/08/2021)
+% Versión:      2.2.2 (17/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -73,6 +73,7 @@
 \usepackage{lipsum}        % Permite crear textos dummy
 \usepackage{mdwlist}       % Listas con encabezado
 \usepackage{multicol}      % Múltiples columnas
+\usepackage{needspace}     % Maneja los espacios en página
 \usepackage{ragged2e}      % Mejora posicionado
 \usepackage{relsize}       % Escalado avanzado
 \usepackage{sectsty}       % Cambia el estilo de los títulos
@@ -664,6 +665,7 @@
 \usepackage[T1]{fontenc} % Caracteres acentuados
 
 % Definición de variables globales
+\global\def\GLOBALhasinstitution {false}
 \global\def\GLOBALinstitutionenabled {false}
 \global\def\GLOBALinstitutionshortend {false}
 
@@ -874,7 +876,7 @@
 			\begin{minipage}{1.0\linewidth}%
 				\bodytext{#7}
 				\par
-			\end{minipage}
+			\end{minipage}\vspace{0.1\baselineskip}%
 			\global\def\GLOBALinstitutionshortend {false}%
 		\fi
 	\end{indentsectiondouble}
@@ -895,7 +897,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.853\linewidth}{.143\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.833\linewidth}{.163\linewidth}{#4}%
 }
 
 % Entrada en institución sin fecha
@@ -1034,10 +1036,15 @@
 	\fi
 	\vspace{0.15em}
 	}{
-	\ifthenelse{\equal{\GLOBALinstitutionshortend}{false}}{}{%
-		\vspace{-\baselineskip}
-	}%
+	\ifthenelse{\equal{\GLOBALhasinstitution}{false}}{}{%
+		\ifthenelse{\equal{\GLOBALinstitutionshortend}{false}}{
+			\vspace{-0.1\baselineskip}%
+		}{%
+			\vspace{-\baselineskip}%
+		}%
+	}
 	\global\def\GLOBALinstitutionshortend {false}
+	\global\def\GLOBALhasinstitution {false}
 	\par
 }
 
@@ -1130,6 +1137,12 @@
 %	#2	Nombre institución
 %	#3	Ubicación institución
 \newenvironment{institution}[3][]{%
+	\needspace{2\baselineskip}%
+	\ifthenelse{\equal{\institutiontitlebold}{true}}{%
+		\def\LOCALinstitutiontitle {\textbf{#2}}%
+	}{%
+		\def\LOCALinstitutiontitle {#2}%
+	}
 	\nopagebreak[4]%
 	\begin{indentsection}%
 		\item []%
@@ -1137,17 +1150,17 @@
 		\ifx\hfuzz#3\hfuzz
 			\begin{minipage}{\linewidth}
 				\ifx\hfuzz#1\hfuzz
-				\textscale{1.1}{\textcolor{\linkcolor}{#2}}
+					\textscale{1.1}{\textcolor{\linkcolor}{\LOCALinstitutiontitle}}
 				\else
-				\textscale{1.1}{\href{#1}{#2}}
+					\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}
 				\fi
 			\end{minipage}
 		\else
 			\begin{minipage}[t][][t]{.558\linewidth}
 				\ifx\hfuzz#1\hfuzz
-				\textscale{1.1}{\textcolor{\linkcolor}{#2}}
+					\textscale{1.1}{\textcolor{\linkcolor}{\LOCALinstitutiontitle}}
 				\else
-				\textscale{1.1}{\href{#1}{#2}}
+					\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}
 				\fi
 			\end{minipage}
 			\begin{minipage}[t][][t]{.44\linewidth}
@@ -1164,6 +1177,7 @@
 	\global\def\GLOBALinstitutionenabled {true}
 	}{
 	\global\def\GLOBALinstitutionenabled {false}
+	\global\def\GLOBALhasinstitution {true}
 	\par
 	\vspace{0.2\baselineskip}
 	\nopagebreak[4]
@@ -1255,14 +1269,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={08/08/2021},
+		Template.Fecha={17/08/2021},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.1},
-		Template.Version.Hash={1290A5DFE13E24CD6182A787FC779045},
-		Template.Version.Release={2.2.1},
+		Template.Version.Dev={2.2.2},
+		Template.Version.Hash={AD1C8AEC937C36C7805D03C3807DF66A},
+		Template.Version.Release={2.2.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1270,7 +1284,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v2.2.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v2.2.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -1355,62 +1369,62 @@
 		\fancyhead[L]{}
 		\fancyhead[C]{}
 		\fancyhead[R]{}
-		\fancyfoot[L]{\textcolor{lgray}{\fontsize{10}{12} \headertitle}}
-		\fancyfoot[C]{\textcolor{lgray}{\small \nombreautor}}
-		\fancyfoot[R]{\textcolor{lgray}{\small \thepage}}
+		\fancyfoot[L]{\textcolor{\hftextcolor}{\fontsize{10}{12} \headertitle}}
+		\fancyfoot[C]{\textcolor{\hftextcolor}{\small \nombreautor}}
+		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style3}}{
 		\pagestyle{fancy} \fancyhf{}
-		\fancyfoot[L]{\small \thepage}
+		\fancyfoot[L]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style4}}{
 		\pagestyle{fancy} \fancyhf{}
-		\fancyfoot[C]{\small \thepage}
+		\fancyfoot[C]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style5}}{
 		\pagestyle{fancy} \fancyhf{}
-		\fancyfoot[R]{\small \thepage}
+		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style6}}{
 		\pagestyle{fancy} \fancyhf{}
-		\fancyfoot[L]{\small \thepage}
+		\fancyfoot[L]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0.5pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style7}}{
 		\pagestyle{fancy} \fancyhf{}
-		\fancyfoot[C]{\small \thepage}
+		\fancyfoot[C]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0.5pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style8}}{
 		\pagestyle{fancy} \fancyhf{}
-		\fancyfoot[R]{\small \thepage}
+		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0.5pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style9}}{
 		\pagestyle{fancy} \fancyhf{}
-		\fancyfoot[L]{\small \nombreautor}
-		\fancyfoot[R]{\small \thepage}
+		\fancyfoot[L]{\textcolor{\hftextcolor}{\small \nombreautor}}
+		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0.5pt}
 	}{
 		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1..style9}}}}}}}}}
 	}
-
+	
 	% Escribe el encabezado
 	\writeheader
 	
 	% Estilo de título de secciones
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
-
+	
 }

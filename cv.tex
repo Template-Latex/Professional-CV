@@ -17,15 +17,9 @@
 % INFORMACIÓN DEL USUARIO
 \def\nombreautor {John Doe}
 \def\correoautor {user@email.com}
-\def\telefonoautor {+1234567890}
+\def\telefonoautor {+12 3456 7890}
 \def\ciautor {12.345.678-9}
-\def\linkredsocial {https://ppizarror.com}
 
-\def\direccionautor {Nombre Calle, \#123}
-\def\regionautor {Región}
-\def\paisautor {País}
-
-\def\edadautor {99}
 \def\dianacimientoautor {1}
 \def\mesnacimientoautor {Enero}
 \def\anonacimientoautor {1980}
@@ -34,7 +28,19 @@
 \def\firmaautor {img/firma}
 
 % IMPORTACIÓN DEL TEMPLATE
-\input{template}
+\input{source_template}
+
+% CONFIGURA EL HEADER
+\addheadermail{\correoautor}
+\addheadertext{\telefonoautor}
+\addheadertext{C.I. \ciautor}
+\addheaderlink{https://ppizarror.com}
+\addheaderlink[linkedin]{https://linkedin.com/john.doe} % latex.ppizarror.com/icons
+\addheaderlink[twitter-square]{https://twitter.com/john.doe}
+\addheadernewline
+\addheadertext{Nombre Calle, \#123}
+\addheadertext{Región}
+\addheadertext{País}
 
 % INICIO DEL DOCUMENTO
 \begin{document}

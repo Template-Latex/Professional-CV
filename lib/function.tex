@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      2.2.2 (17/08/2021)
+% Versión:      3.0.0 (22/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -121,7 +121,7 @@
 	\global\def\GLOBALheaderlineitem {true}
 }
 
-% Agrega un item al header
+% Agrega un item de texto al header
 %	#1	Texto
 \newcommand{\addheadertext}[1]{%
 	\global\def\GLOBALheaderseparatorsticky {false}
@@ -139,6 +139,7 @@
 
 % Agrega un enlace al header
 %	#1	Ícono de fontawesome, si está vacío se usa url normal
+%	#2	Enlace
 \newcommand{\addheaderlink}[2][]{%
 	\ifthenelse{\equal{#1}{}}{ % Sin ícono
 		\global\def\GLOBALheaderseparatorsticky {false}

@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      2.2.2 (17/08/2021)
+% Versión:      3.0.0 (22/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -50,6 +50,8 @@
 % Idioma español, borrar esta línea si se desea usar otro idioma
 \ifthenelse{\equal{\usespanishbabel}{true}}{
 	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
+\ifthenelse{\equal{\useenglishbabel}{true}}{
+	\usepackage[english]{babel}}{}
 }
 \usepackage[utf8]{inputenc} % Codificación UTF-8
 
@@ -682,8 +684,19 @@
 
 % Definición de variables globales
 \global\def\GLOBALhasinstitution {false}
+\global\def\GLOBALheaderfaimport {false}
+\global\def\GLOBALheaderlineitem {false}
+\global\def\GLOBALheaderseparatorsticky {false}
 \global\def\GLOBALinstitutionenabled {false}
 \global\def\GLOBALinstitutionshortend {false}
+
+\def\LOCALpercentchar#1{}
+\edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
+
+% Archivo que guarda el código del header
+\newwrite\fileheaderitems
+\immediate\openout\fileheaderitems=\jobname.hitems
+\AtBeginDocument{\immediate\closeout\fileheaderitems}                               
 
 % Lanza un mensaje de error
 % 	#1	Función del error
@@ -769,15 +782,59 @@
 }
 \let\endchangemargin=\endlist
 
-% Título principal con subtítulo y último cambio
-%	#1	Nombre autor
-%	#2	Edad corta autor
-%	#3	Último cambio
-\newcommand{\maintitle}[3]{%
-	\emptyvarerr{\maintitle}{#1}{Nombre autor no definido}%
-	\emptyvarerr{\maintitle}{#2}{Edad corta autor no definido}%
-	%\emptyvarerr{\maintitle}{#3}{Fecha de ultimo cambio no definido}
-	\noindent {\fontsizemaintitle \stylemaintitle #1} \quad \emph{#2} \hfill \quad {\scriptsize #3} \\ \vspace{-1em}%
+% Agrega el separador entre items del header
+\newcommand{\insertheaderseparator}{%
+	\ifthenelse{\equal{\GLOBALheaderlineitem}{true}}{%
+		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{false}}{%
+			\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headerseparatorcolor}{\headerseparator}}\LOCALpercentchar}
+		}{}
+	}{}
+	\global\def\GLOBALheaderlineitem {true}
+}
+
+% Agrega un item de texto al header
+%	#1	Texto
+\newcommand{\addheadertext}[1]{%
+	\global\def\GLOBALheaderseparatorsticky {false}
+	\insertheaderseparator
+	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#1}}\LOCALpercentchar}
+}
+
+% Agrega un correo al header
+%	#1	Correo
+\newcommand{\addheadermail}[1]{%
+	\global\def\GLOBALheaderseparatorsticky {false}
+	\insertheaderseparator
+	\immediate\write\fileheaderitems{\unexpanded{\href{mailto:#1}{#1}}\LOCALpercentchar}
+}
+
+% Agrega un enlace al header
+%	#1	Ícono de fontawesome, si está vacío se usa url normal
+%	#2	Enlace
+\newcommand{\addheaderlink}[2][]{%
+	\ifthenelse{\equal{#1}{}}{ % Sin ícono
+		\global\def\GLOBALheaderseparatorsticky {false}
+		\insertheaderseparator
+		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}
+	}{
+		\insertheaderseparator
+		\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
+			\global\def\GLOBALheaderfaimport {true}
+			\usepackage{fontawesome5}
+		}{}
+		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{true}}{%
+			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.2cm}}\LOCALpercentchar}
+		}{}
+		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}
+		\global\def\GLOBALheaderseparatorsticky {true}
+	}
+}
+
+% Agrega una nueva línea al header
+\newcommand{\addheadernewline}{%
+	\global\def\GLOBALheaderlineitem {false}
+	\global\def\GLOBALheaderseparatorsticky {false}
+	\immediate\write\fileheaderitems{\unexpanded{\\}\LOCALpercentchar}
 }
 
 % Escribe el encabezado del CV
@@ -789,34 +846,22 @@
 		\end{center}
 		\vspace{0.1cm}
 	}{}
-	\ifthenelse{\equal{\writelastchangeheader}{true}}{%
-		\maintitle{\textcolor{\titlecolor}{\nombreautor}}{\textcolor{\headertextcolor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}}{\textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}
-	}{%
-		\maintitle{\textcolor{\titlecolor}{\nombreautor}}{\textcolor{\headertextcolor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}}{}
-	}
 	
-	% Escribe datos autor
-	\vspace{0.2cm}
+	% Nombre
+	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\nombreautor}}
+	\ifthenelse{\equal{\writebirthdayheader}{true}}{%
+		\quad \emph{\textcolor{\headertextcolor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}}%
+	}{}%
+	\ifthenelse{\equal{\writelastchangeheader}{true}}{%
+		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}%
+	}{}%
+	\\ \vspace{-1em}%
+	
+	% Escribe items del header
+	\vspace{\headeritemsmargin cm}
 	{%
-		\noindent
-		\ifthenelse{\equal{\correoautor}{}}{}{%
-			\href{mailto:\correoautor}{\correoautor}%
-		}
-		\textcolor{\headertextcolor}{%
-		\ifthenelse{\equal{\telefonoautor}{}}{}{%
-			\headerseparator\telefonoautor}%
-		\ifthenelse{\equal{\ciautor}{\xspace}}{}{%
-			\headerseparator\nomciheader: \ciautor }%
-		\ifthenelse{\equal{\linkredsocial}{}}{}{%
-			\headerseparator\href{\linkredsocial}{\linkredsocial}} \\
-		\ifthenelse{\equal{\direccionautor}{\xspace}}{%
-			\ifthenelse{\equal{\regionautor}{\xspace}}{}{\regionautor\headerseparator}
-			\ifthenelse{\equal{\paisautor}{\xspace}}{}{\paisautor}
-		}{%
-			\direccionautor%
-			\ifthenelse{\equal{\regionautor}{\xspace}}{}{\headerseparator\regionautor}
-			\ifthenelse{\equal{\paisautor}{\xspace}}{}{\headerseparator\paisautor}
-		}}%
+		\noindent%
+		\input{\jobname.hitems}%
 	}
 }
 
@@ -963,14 +1008,31 @@
 	\enquote*{#1}%
 }
 
+% Inserta un texto con el formato de enlace
+% 	#1 	Enlace
+\newcommand{\hreftext}[1]{%
+	\ifthenelse{\equal{\fonturl}{same}}{%
+		#1%
+	}{%
+	\ifthenelse{\equal{\fonturl}{tt}}{%
+		\texttt{#1}%
+	}{%
+	\ifthenelse{\equal{\fonturl}{rm}}{%
+		\textrm{#1}%
+	}{%
+	\ifthenelse{\equal{\fonturl}{sf}}{%
+		\textsf{#1}%
+	}{}}}}%
+}
+
 % Inserta un email con un link cliqueable
 \newcommand{\insertemail}[1]{%
-	\href{mailto:#1}{\texttt{#1}}%
+	\href{mailto:#1}{\hreftext{#1}}%
 }
 
 % Inserta un teléfono celular
 \newcommand{\insertphone}[1]{%
-	\href{tel:#1}{\texttt{#1}}%
+	\href{tel:#1}{\hreftext{#1}}%
 }
 
 % Actualiza el padding de las celdas de las tablas
@@ -1234,12 +1296,8 @@
 \checkvardefined{\ciautor}
 \checkvardefined{\correoautor}
 \checkvardefined{\dianacimientoautor}
-\checkvardefined{\direccionautor}
-\checkvardefined{\edadautor}
-\checkvardefined{\linkredsocial}
 \checkvardefined{\mesnacimientoautor}
 \checkvardefined{\nombreautor}
-\checkvardefined{\regionautor}
 \checkvardefined{\telefonoautor}
 
 % Se añade \xspace a las variables
@@ -1247,12 +1305,8 @@
 \g@addto@macro\anonacimientoautor\xspace
 \g@addto@macro\ciautor\xspace
 \g@addto@macro\dianacimientoautor\xspace
-\g@addto@macro\direccionautor\xspace
-\g@addto@macro\edadautor\xspace
 \g@addto@macro\mesnacimientoautor\xspace
 \g@addto@macro\nombreautor\xspace
-\g@addto@macro\paisautor\xspace
-\g@addto@macro\regionautor\xspace
 \g@addto@macro\telefonoautor\xspace
 \makeatother
 
@@ -1277,22 +1331,19 @@
 		Autor.Email={\correoautor},
 		Autor.Nombre={\nombreautor},
 		Autor.Telefono={\telefonoautor},
-		Autor.Ubicacion.Direccion={\direccionautor},
-		Autor.Ubicacion.Pais={\paisautor},
-		Autor.Ubicacion.Region={\regionautor},
 		Template.Autor.Alias={ppizarror},
 		Template.Autor.Email={pablo@ppizarror.com},
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={17/08/2021},
+		Template.Fecha={22/08/2021},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.2-1},
-		Template.Version.Hash={7B3D54831014B367A226C5CC537EF252},
-		Template.Version.Release={2.2.2},
+		Template.Version.Dev={3.0.0-1},
+		Template.Version.Hash={9638B1329538B9762A8ED28E93CEFA3D},
+		Template.Version.Release={3.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1300,7 +1351,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v2.2.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.0.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -1353,11 +1404,21 @@
 \addtolength{\doubleparindent}{\parindent}
 
 % Configuración de hbox y vbox
-\hfuzz=200pt \vfuzz=200pt
-\hbadness=\maxdimen \vbadness=\maxdimen
+\hfuzz=200pt
+\vfuzz=200pt
+\hbadness=\maxdimen
+\vbadness=\maxdimen
 
 % Se activa el word-wrap para textos con \texttt{}
 \ttfamily \hyphenchar\the\font=`\-
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%
+	\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+	\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+	\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+	\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+	\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+	\do\Y\do\Z%
+}
 
 % Se define el tipo de texto de los url
 \urlstyle{\fonturl}

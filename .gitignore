@@ -4,6 +4,7 @@
 *.out
 log.txt
 *.synctex.gz
+*.hitems
 
 # Otros archivos
 other.tex

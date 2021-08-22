@@ -42,6 +42,8 @@
 % Idioma español, borrar esta línea si se desea usar otro idioma
 \ifthenelse{\equal{\usespanishbabel}{true}}{
 	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
+\ifthenelse{\equal{\useenglishbabel}{true}}{
+	\usepackage[english]{babel}}{}
 }
 \usepackage[utf8]{inputenc} % Codificación UTF-8
 

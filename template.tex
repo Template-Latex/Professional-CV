@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      3.0.0 (22/08/2021)
+% Versión:      3.0.1 (24/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -683,6 +683,7 @@
 \usepackage[T1]{fontenc} % Caracteres acentuados
 
 % Definición de variables globales
+\global\def\GLOBALcvfinishlist {false}
 \global\def\GLOBALhasinstitution {false}
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
@@ -895,7 +896,7 @@
 \newcommand{\personaltableentry}[2]{%
 	\emptyvarerr{\personaltableentry}{#1}{Nombre entrada no definido}%
 	\emptyvarerr{\personaltableentry}{#2}{Datos entrada no definidos}%
-	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\
+	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\%
 }
 
 % Inserta un objeto en un elemento institución
@@ -976,13 +977,13 @@
 		{\setlength{\leftmargin}{\doubleparindent}}%
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2%
 	\end{basedescript}
-	\vspace{-0.6cm}
+	\global\def\GLOBALcvfinishlist {true}%
 }
 
 % Inserta un elemento en el bloque de firma
 %	#1	Elemento en la firma
 \newcommand{\signatureentry}[1]{%
-	\texttt{\MakeUppercase{#1}} \\
+	\texttt{\MakeUppercase{#1}} \\%
 }
 
 % Crea un bull
@@ -1091,39 +1092,47 @@
 %	#1	Título
 %	#2	Estilo de línea
 \newenvironment{cvblock}[2][]{%
-	\textcolor{\cvblocklinecolor}{
-		\ifx\hfuzz#1\hfuzz
-			\breakvspace{1em} \hrule \nobreakvspace{0em}
-		\else
-			\ifthenelse{\equal{#1}{..}}{
-				\noindent \makebox[1\linewidth]{\dotfill}
-				\vspace{-2em}
-			}{
-				\ifthenelse{\equal{#1}{none}}{
-			}{
-				\throwwarning{Estilo de linea invalido}
-				\stop
-			}}
-		\fi
-	}
-	\ifx\hfuzz#2\hfuzz
-		\throwwarning{Titulo del bloque no definido}
-		\stop
-	\else
-		\roottitle{#2}
-	\fi
-	\vspace{0.15em}
-	}{
+	\needspace{4\baselineskip}%
+	\textcolor{\cvblocklinecolor}{%
+		\ifx\hfuzz#1\hfuzz%
+			\hrule%
+		\else%
+			\ifthenelse{\equal{#1}{..}}{%
+				\noindent%
+				\hspace*{-1.65em}%
+				\makebox[1.01\textwidth][l]{\dotfill}%
+				\vspace*{-2em}
+			}{%
+			\ifthenelse{\equal{#1}{none}}{%
+			}{%
+				\throwwarning{Estilo de linea invalido}%
+				\stop%
+			}}%
+		\fi%
+	}%
+	\ifx\hfuzz#2\hfuzz%
+		\throwwarning{Titulo del bloque no definido}%
+		\stop%
+	\else%
+		\roottitle{#2}%
+	\fi%
+	\vspace{0.15em}%
+	\global\def\GLOBALcvfinishlist {false}%
+	\global\def\GLOBALhasinstitution {false}%
+	\global\def\GLOBALinstitutionshortend {false}%
+	}{%
 	\ifthenelse{\equal{\GLOBALhasinstitution}{false}}{}{%
-		\ifthenelse{\equal{\GLOBALinstitutionshortend}{false}}{
-			\vspace{-0.1\baselineskip}%
+		\ifthenelse{\equal{\GLOBALinstitutionshortend}{false}}{%
+			\vspace{-0.15\baselineskip}%
 		}{%
-			\vspace{-\baselineskip}%
+			\vspace{-1.15\baselineskip}%
 		}%
-	}
-	\global\def\GLOBALinstitutionshortend {false}
-	\global\def\GLOBALhasinstitution {false}
-	\par
+	}%
+	\ifthenelse{\equal{\GLOBALcvfinishlist}{true}}{%
+		\vspace{-0.75\baselineskip}%
+	}{}
+	\par%
+	\vspace{0.6em}%
 }
 
 % Párrafo de descripción
@@ -1151,63 +1160,65 @@
 		\begin{minipage}[t]{\userphotosize cm}%
 			\begin{flushleft}%
 				\begingroup%
-				\setlength{\fboxsep}{0pt}
-				~ \\ \vspace{-0.75em}
-				\ifthenelse{\equal{\showuserphotoborder}{true}}{
-					\noindent \textcolor{\userphotobordercolor}{\fbox{\includegraphics[width=0.99\linewidth]{\fotoautor}}}
-				}{
-					\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\fotoautor}
-				}
-				\vspace{-0.7em}
-				\endgroup
-			\end{flushleft}
-		\end{minipage}
-		\hspace*{0.37cm}
-		\begingroup
-		\def\arraystretch{1.3}
-		\begin{minipage}[t]{\dimexpr\linewidth-\userphotosize cm-0.57cm}
-		}{
-		\end{minipage}
-		\endgroup
-		\par
-	\end{cvblock}
+				\setlength{\fboxsep}{0pt}%
+				~ \\ \vspace{-0.75em}%
+				\ifthenelse{\equal{\showuserphotoborder}{true}}{%
+					\noindent \textcolor{\userphotobordercolor}{\fbox{\includegraphics[width=0.99\linewidth]{\fotoautor}}}%
+				}{%
+					\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\fotoautor}%
+				}%
+				\vspace{-0.7em}%
+				\endgroup%
+			\end{flushleft}%
+		\end{minipage}%
+		\hspace*{0.54cm}%
+		\begingroup%
+		\def\arraystretch{1.3}%
+		\begin{minipage}[t]{\dimexpr\linewidth-\userphotosize cm-0.57cm}%
+		}{%
+		\end{minipage}%
+		\endgroup%
+		\par%
+	\end{cvblock}%
+	\vspace{1em}%
 }
 
 % Tabla de datos personales
 %	#1	Estilo de línea
 \newenvironment{personaltabledata}[1][]{%
 	\begin{cvblock}[#1]{\nompersonaldata}%
-		\vspace{0.1em}
-		\noindent
-		\ifthenelse{\equal{\personaltabledatapic}{true}}{
-			\begin{minipage}[t]{\userphotosize cm}
-				\begin{flushleft}
-					\begingroup
-					\setlength{\fboxsep}{0pt}
-					~ \\ \vspace{-0.95em}
-					\ifthenelse{\equal{\showuserphotoborder}{true}}{
+		\vspace{0.1em}%
+		\noindent%
+		\ifthenelse{\equal{\personaltabledatapic}{true}}{%
+			\begin{minipage}[t]{\userphotosize cm}%
+				\begin{flushleft}%
+					\begingroup%
+					\setlength{\fboxsep}{0pt}%
+					~ \\ \vspace{-0.95em}%
+					\ifthenelse{\equal{\showuserphotoborder}{true}}{%
 						\noindent \textcolor{\userphotobordercolor}{\fbox{\includegraphics[width=0.99\linewidth]{\fotoautor}}}
-					}{
-						\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\fotoautor}
-					}
-					\endgroup
-				\end{flushleft}
-			\end{minipage}
-		}{}
-		\hspace*{0cm}
-		\begingroup
-		\def\arraystretch{1.3}
-		\begin{minipage}[t]{0.79\linewidth}
-			\vspace*{-0.945cm}
-			\begin{table}[H]
-				\begin{tabular}{ll}
-				}{
-				\end{tabular}
-			\end{table}
-		\end{minipage}
-		\endgroup
-		\par
-	\end{cvblock}
+					}{%
+						\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\fotoautor}%
+					}%
+					\endgroup%
+				\end{flushleft}%
+			\end{minipage}%
+		}{}%
+		\hspace*{0.34cm}%
+		\begingroup%
+		\def\arraystretch{1.3}%
+		\begin{minipage}[t]{\linewidth-\userphotosize cm-0.37cm}%
+			\vspace*{-0.95cm}%
+			\begin{table}[H]%
+				\begin{tabular}{ll}%
+				}{%
+				\end{tabular}%
+			\end{table}%
+		\end{minipage}%
+		\endgroup%
+		\par%
+	\end{cvblock}%
+	\vspace{0.55em}%
 }
 
 % Nueva institución
@@ -1225,40 +1236,40 @@
 	\begin{indentsection}%
 		\item []%
 		\noindent%
-		\ifx\hfuzz#3\hfuzz
-			\begin{minipage}{\linewidth}
+		\ifx\hfuzz#3\hfuzz%
+			\begin{minipage}{\linewidth}%
+				\ifx\hfuzz#1\hfuzz%
+					\textscale{1.1}{\textcolor{\linkcolor}{\LOCALinstitutiontitle}}
+				\else
+					\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}
+				\fi
+			\end{minipage}
+		\else%
+			\begin{minipage}[t][][t]{.558\linewidth}%
 				\ifx\hfuzz#1\hfuzz
 					\textscale{1.1}{\textcolor{\linkcolor}{\LOCALinstitutiontitle}}
 				\else
 					\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}
 				\fi
 			\end{minipage}
-		\else
-			\begin{minipage}[t][][t]{.558\linewidth}
-				\ifx\hfuzz#1\hfuzz
-					\textscale{1.1}{\textcolor{\linkcolor}{\LOCALinstitutiontitle}}
-				\else
-					\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}
-				\fi
-			\end{minipage}
-			\begin{minipage}[t][][t]{.44\linewidth}
+			\begin{minipage}[t][][t]{.44\linewidth}%
 				\begin{flushright}
 					\noindent \textcolor{\instregioncolor}{\textsc{#3}}
 				\end{flushright}
 			\end{minipage}
-		\fi
-		\vspace*{-\baselineskip}
-		\break
+		\fi%
+		\vspace*{-\baselineskip}%
+		\break%
 	\end{indentsection}
-	\vspace{-1.5\baselineskip}
-	\noindent
+	\vspace{-1.5\baselineskip}%
+	\noindent%
 	\global\def\GLOBALinstitutionenabled {true}
-	}{
-	\global\def\GLOBALinstitutionenabled {false}
-	\global\def\GLOBALhasinstitution {true}
-	\par
-	\vspace{0.2\baselineskip}
-	\nopagebreak[4]
+	}{%
+	\global\def\GLOBALinstitutionenabled {false}%
+	\global\def\GLOBALhasinstitution {true}%
+	\par%
+	\vspace{0.2\baselineskip}%
+	\nopagebreak[4]%
 }
 
 % Crea la firma del usuario
@@ -1266,10 +1277,11 @@
 	\vfill%
 	\begin{flushright}%
 		\begin{tabular}{c}%
-			\includegraphics[width=\usersignaturesize cm]{\firmaautor} \\
-		}{
-		\end{tabular}
-	\end{flushright}
+			\includegraphics[width=\usersignaturesize cm]{\firmaautor} \\%
+		}{%
+		\end{tabular}%
+	\end{flushright}%
+	\vspace{-1em}%
 }
 
 % Itemize en negrita
@@ -1336,14 +1348,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={22/08/2021},
+		Template.Fecha={24/08/2021},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={3.0.0-2},
-		Template.Version.Hash={B90B6D9135D3B9B88CB93BCD7FCF1864},
-		Template.Version.Release={3.0.0},
+		Template.Version.Dev={3.0.1-2},
+		Template.Version.Hash={E1C875888979ABFA9FBDD2A4EE9383A9},
+		Template.Version.Release={3.0.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1351,7 +1363,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.0.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.0.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -1425,6 +1437,10 @@
 
 % Se define la versión menor a compilar
 \pdfminorversion=\pdfcompileversion
+
+% Configura items
+\AfterEndEnvironment{itemize}{\global\def\GLOBALcvfinishlist {true}}
+\AfterEndEnvironment{enumerate}{\global\def\GLOBALcvfinishlist {true}}
 
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES DE PÁGINA

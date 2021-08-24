@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.0.0 (22/08/2021)
+% Versión:      3.0.1 (24/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -12,6 +12,7 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 % Definición de variables globales
+\global\def\GLOBALcvfinishlist {false}
 \global\def\GLOBALhasinstitution {false}
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
@@ -305,13 +306,13 @@
 		{\setlength{\leftmargin}{\doubleparindent}}%
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2%
 	\end{basedescript}
-	\vspace{-0.6cm}
+	\global\def\GLOBALcvfinishlist {true}%
 }
 
 % Inserta un elemento en el bloque de firma
 %	#1	Elemento en la firma
 \newcommand{\signatureentry}[1]{%
-	\texttt{\MakeUppercase{#1}} \\
+	\texttt{\MakeUppercase{#1}} \\%
 }
 
 % Crea un bull

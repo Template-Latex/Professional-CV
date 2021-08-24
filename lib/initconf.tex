@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones iniciales del documento
-% Versión:      3.0.0 (22/08/2021)
+% Versión:      3.0.1 (24/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -56,14 +56,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={22/08/2021},
+		Template.Fecha={24/08/2021},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={3.0.0-2},
-		Template.Version.Hash={B90B6D9135D3B9B88CB93BCD7FCF1864},
-		Template.Version.Release={3.0.0},
+		Template.Version.Dev={3.0.1},
+		Template.Version.Hash={DFA42B060683DBC83FA9BC2F1DF5CA74},
+		Template.Version.Release={3.0.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -71,7 +71,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.0.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.0.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -145,3 +145,7 @@
 
 % Se define la versión menor a compilar
 \pdfminorversion=\pdfcompileversion
+
+% Configura items
+\AfterEndEnvironment{itemize}{\global\def\GLOBALcvfinishlist {true}}
+\AfterEndEnvironment{enumerate}{\global\def\GLOBALcvfinishlist {true}}

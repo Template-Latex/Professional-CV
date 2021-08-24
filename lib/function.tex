@@ -153,7 +153,7 @@
 			\usepackage{fontawesome5}
 		}{}
 		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{true}}{%
-			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.2cm}}\LOCALpercentchar}
+			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.25cm}}\LOCALpercentchar}
 		}{}
 		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}
 		\global\def\GLOBALheaderseparatorsticky {true}
@@ -193,6 +193,7 @@
 		\noindent%
 		\input{\jobname.hitems}%
 	}
+	\vspace{0.55em}%
 }
 
 % Título de las secciones principales
@@ -261,7 +262,7 @@
 		\vspace{-1.1\baselineskip}
 		\break
 		\ifx\hfuzz#7\hfuzz
-			\vspace*{-0.75\baselineskip}
+			\vspace{-0.75\baselineskip}
 			\global\def\GLOBALinstitutionshortend {true}%
 		\else
 			\begin{minipage}{1.0\linewidth}%

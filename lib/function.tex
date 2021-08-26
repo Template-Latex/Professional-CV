@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.0.1 (24/08/2021)
+% Versión:      3.0.2 (25/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -188,12 +188,14 @@
 	\\ \vspace{-1em}%
 	
 	% Escribe items del header
+	\hypersetup{urlcolor=\headerurlcolor}%
 	\vspace{\headeritemsmargin cm}
 	{%
 		\noindent%
 		\input{\jobname.hitems}%
 	}
 	\vspace{0.55em}%
+	\hypersetup{urlcolor=\urlcolor}%
 }
 
 % Título de las secciones principales
@@ -337,6 +339,30 @@
 % Inserta un texto entre comillas
 \newcommand{\quotes}[1]{%
 	\enquote*{#1}%
+}
+
+% Inserta un texto entre comillas y negrita
+%	#1 	Texto
+\newcommand{\quotesbf}[1]{%
+	\quotes{\textbf{#1}}%
+}
+
+% Inserta un texto entre comillas e itálico
+%	#1 	Texto
+\newcommand{\quotesit}[1]{%
+	\quotes{\textit{#1}}%
+}
+
+% Inserta un texto entre comillas y typewriter
+%	#1 	Texto
+\newcommand{\quotesttt}[1]{%
+	\quotes{\texttt{#1}}%
+}
+
+% Inserta un texto entre comillas dobles
+%	#1 	Texto
+\newcommand{\doublequotes}[1]{%
+	\enquote{#1}%
 }
 
 % Inserta un texto con el formato de enlace

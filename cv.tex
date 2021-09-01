@@ -4,8 +4,6 @@
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
-%        Facultad de Ciencias Físicas y Matemáticas
-%        Universidad de Chile
 %        pablo@ppizarror.com
 %
 % Sitio web:    [https://latex.ppizarror.com/professional-cv]
@@ -28,7 +26,7 @@
 \def\firmaautor {img/firma}
 
 % IMPORTACIÓN DEL TEMPLATE
-\input{template}
+\input{source_template}
 
 % CONFIGURA EL HEADER
 \addheadermail{\correoautor}
@@ -39,6 +37,9 @@
 \addheaderlink[twitter-square]{https://twitter.com/john.doe}
 \addheaderlink[github]{https://github.com/ppizarror}
 \addheadernewline
+
+\addheadericon{map-marker-alt}
+\addheaderspace{0.25cm}
 \addheadertext{Nombre Calle, \#123}
 \addheadertext{Región}
 \addheadertext{País}
@@ -77,9 +78,9 @@
 		\institutionentry{Ayudante de Oficina Técnica}{Junio \apo 14}{Diciembre \apo 14}{\lipsum[65]}
 	\end{institution}
 	
-	\begin{institution}{Empresa B}{Ciudad 2, Región 2, País 2}
+	\begin{institutionicon}{Empresa B}{Ciudad 2, Región 2, País 2}{img/icono}
 		\institutionentry{Ayudante de Ingeniería}{Febrero \apo 04}{Diciembre \apo 07}{}
-	\end{institution}
+	\end{institutionicon}
 
 	\begin{institution}{Empresa C}{Ciudad 3, Región 3, País 3}
 		\institutionentry{Ayudante de Oficina Técnica}{Marzo \apo 08}{Abril \apo 14}{\lipsum[133]}
@@ -102,8 +103,8 @@
 % OTROS
 \begin{cvblock}{Premios \& Reconocimientos}
 	\begin{itemize}
-		\item Premio N°1 del año 2000.
-		\item Reconocimiento N°2 al mejor ingeniero, \url{https://ing.com/johndoe}.
+		\item Premio N°1 del año 2000
+		\item Reconocimiento al mejor ingeniero, \url{https://ing.com/johndoe}
 	\end{itemize}
 \end{cvblock}
 

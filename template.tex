@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      3.0.2 (25/08/2021)
+% Versión:      3.0.3 (01/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -686,8 +686,6 @@
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
 \global\def\GLOBALheaderseparatorsticky {false}
-\global\def\GLOBALinstitutionenabled {false}
-\global\def\GLOBALinstitutionshortend {false}
 
 \def\LOCALpercentchar#1{}
 \edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
@@ -782,29 +780,29 @@
 \let\endchangemargin=\endlist
 
 % Agrega el separador entre items del header
-\newcommand{\insertheaderseparator}{%
+\newcommand{\addheaderseparator}{%
 	\ifthenelse{\equal{\GLOBALheaderlineitem}{true}}{%
 		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{false}}{%
-			\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headerseparatorcolor}{\headerseparator}}\LOCALpercentchar}
-		}{}
-	}{}
-	\global\def\GLOBALheaderlineitem {true}
+			\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headerseparatorcolor}{\headerseparator}}\LOCALpercentchar}%
+		}{}%
+	}{}%
+	\global\def\GLOBALheaderlineitem {true}%
 }
 
 % Agrega un item de texto al header
 %	#1	Texto
 \newcommand{\addheadertext}[1]{%
-	\global\def\GLOBALheaderseparatorsticky {false}
-	\insertheaderseparator
-	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#1}}\LOCALpercentchar}
+	\global\def\GLOBALheaderseparatorsticky {false}%
+	\addheaderseparator%
+	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#1}}\LOCALpercentchar}%
 }
 
 % Agrega un correo al header
 %	#1	Correo
 \newcommand{\addheadermail}[1]{%
-	\global\def\GLOBALheaderseparatorsticky {false}
-	\insertheaderseparator
-	\immediate\write\fileheaderitems{\unexpanded{\href{mailto:#1}{#1}}\LOCALpercentchar}
+	\global\def\GLOBALheaderseparatorsticky {false}%
+	\addheaderseparator%
+	\immediate\write\fileheaderitems{\unexpanded{\href{mailto:#1}{#1}}\LOCALpercentchar}%
 }
 
 % Agrega un enlace al header
@@ -812,28 +810,62 @@
 %	#2	Enlace
 \newcommand{\addheaderlink}[2][]{%
 	\ifthenelse{\equal{#1}{}}{ % Sin ícono
-		\global\def\GLOBALheaderseparatorsticky {false}
-		\insertheaderseparator
-		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}
-	}{
-		\insertheaderseparator
+		\global\def\GLOBALheaderseparatorsticky {false}%
+		\addheaderseparator%
+		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}%
+	}{%
+		\addheaderseparator
 		\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
 			\global\def\GLOBALheaderfaimport {true}
 			\usepackage{fontawesome5}
 		}{}
 		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{true}}{%
 			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.25cm}}\LOCALpercentchar}
-		}{}
-		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}
-		\global\def\GLOBALheaderseparatorsticky {true}
+		}{}%
+		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}%
+		\global\def\GLOBALheaderseparatorsticky {true}%
 	}
 }
 
 % Agrega una nueva línea al header
 \newcommand{\addheadernewline}{%
-	\global\def\GLOBALheaderlineitem {false}
-	\global\def\GLOBALheaderseparatorsticky {false}
-	\immediate\write\fileheaderitems{\unexpanded{\\}\LOCALpercentchar}
+	\global\def\GLOBALheaderlineitem {false}%
+	\global\def\GLOBALheaderseparatorsticky {false}%
+	\immediate\write\fileheaderitems{\unexpanded{\vspace{\headeritemslinespace cm}\\}\LOCALpercentchar}%
+}
+
+% Agrega un ícono
+%	#1	Nombre del ícono
+\newcommand{\addheadericon}[1]{%
+	\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
+		\global\def\GLOBALheaderfaimport {true}
+		\usepackage{fontawesome5}
+	}{}
+	\immediate\write\fileheaderitems{\unexpanded{\faIcon{#1}}\LOCALpercentchar}%
+	\global\def\GLOBALheaderseparatorsticky {false}%
+}
+
+% Agrega un espacio vertical
+%	#1	Tamaño del espacio
+\newcommand{\addheaderspace}[1]{%
+	\immediate\write\fileheaderitems{\unexpanded{\hspace{#1}}\LOCALpercentchar}%
+}
+
+% Agrega una imagen
+%	#1	Dirección de la imagen
+%	#2	Tamaño de la imagen {small, normal, large}
+\newcommand{\addheaderimage}[2]{%
+	\ifthenelse{\equal{#2}{small}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.01\baselineskip}{\includegraphics[height=0.65\baselineskip]{#1}}}\LOCALpercentchar}%
+	}{
+	\ifthenelse{\equal{#2}{normal}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.15\baselineskip}{\includegraphics[height=1\baselineskip]{#1}}}\LOCALpercentchar}%
+	}{
+	\ifthenelse{\equal{#2}{large}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip]{#1}}}\LOCALpercentchar}%
+	}{
+		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal o large}}}
+	}
 }
 
 % Escribe el encabezado del CV
@@ -1089,6 +1121,11 @@
 \definecolor{mylilas}{RGB}{170, 55, 241}
 \definecolor{ocre}{RGB}{243, 102, 25}
 
+% Definición de variables globales
+\global\def\GLOBALinstitutionenabled {false}
+\global\def\GLOBALinstitutionicon {}
+\global\def\GLOBALinstitutionshortend {false}
+
 % Crea una sección identada
 \newenvironment{indentsection}{%
 	\begin{list}{}{%
@@ -1265,6 +1302,7 @@
 		\noindent%
 		\ifx\hfuzz#3\hfuzz%
 			\begin{minipage}{\linewidth}%
+				\GLOBALinstitutionicon%
 				\ifx\hfuzz#1\hfuzz%
 					\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}
 				\else
@@ -1273,6 +1311,7 @@
 			\end{minipage}
 		\else%
 			\begin{minipage}[t][][t]{.558\linewidth}%
+				\GLOBALinstitutionicon%
 				\ifx\hfuzz#1\hfuzz
 					\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}
 				\else
@@ -1291,6 +1330,7 @@
 	\hypersetup{urlcolor=\urlcolor}%
 	\vspace{-1.5\baselineskip}%
 	\noindent%
+	\global\def\GLOBALinstitutionicon {}%
 	\global\def\GLOBALinstitutionenabled {true}
 	}{%
 	\global\def\GLOBALinstitutionenabled {false}%
@@ -1298,6 +1338,28 @@
 	\par%
 	\vspace{0.2\baselineskip}%
 	\nopagebreak[4]%
+}
+
+% Nueva institución con ícono
+%	#1	Opcional: url o link institución
+%	#2	Nombre institución
+%	#3	Ubicación institución
+%	#4	Ícono de la institución
+\newenvironment{institutionicon}[4][]{%
+	\ifthenelse{\equal{\institutioniconsize}{small}}{%
+		\global\def\GLOBALinstitutionicon {\raisebox{-0.01\baselineskip}{\includegraphics[height=0.65\baselineskip,width=0.65\baselineskip]{#4}}\hspace{0.5em}}
+	}{
+	\ifthenelse{\equal{\institutioniconsize}{normal}}{%
+		\global\def\GLOBALinstitutionicon {\raisebox{-0.15\baselineskip}{\includegraphics[height=1\baselineskip,width=1\baselineskip]{#4}}\hspace{0.65em}}
+	}{
+	\ifthenelse{\equal{\institutioniconsize}{large}}{%
+		\global\def\GLOBALinstitutionicon {\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip,width=1.25\baselineskip]{#4}}\hspace{0.75em}}
+	}{
+		\throwbadconfigondoc{Configuracion tamano icono incorrecto}{\institutioniconsize}{small,normal,large}}}
+	}
+	\begin{institution}[#1]{#2}{#3}%
+}{%
+	\end{institution}
 }
 
 % Crea la firma del usuario
@@ -1376,14 +1438,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={25/08/2021},
+		Template.Fecha={01/09/2021},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={3.0.2-4},
-		Template.Version.Hash={688A86E1DEB499274E92AF3BA7EFB406},
-		Template.Version.Release={3.0.2},
+		Template.Version.Dev={3.0.3-2},
+		Template.Version.Hash={DBB52CA4978D510DE3EFC2AAF5EAACA2},
+		Template.Version.Release={3.0.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1391,7 +1453,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.0.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.0.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

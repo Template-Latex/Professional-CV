@@ -4,8 +4,6 @@
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
-%        Facultad de Ciencias Físicas y Matemáticas
-%        Universidad de Chile
 %        pablo@ppizarror.com
 %
 % Sitio web:    [https://latex.ppizarror.com/professional-cv]
@@ -17,8 +15,6 @@
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
 \global\def\GLOBALheaderseparatorsticky {false}
-\global\def\GLOBALinstitutionenabled {false}
-\global\def\GLOBALinstitutionshortend {false}
 
 \def\LOCALpercentchar#1{}
 \edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
@@ -113,29 +109,29 @@
 \let\endchangemargin=\endlist
 
 % Agrega el separador entre items del header
-\newcommand{\insertheaderseparator}{%
+\newcommand{\addheaderseparator}{%
 	\ifthenelse{\equal{\GLOBALheaderlineitem}{true}}{%
 		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{false}}{%
-			\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headerseparatorcolor}{\headerseparator}}\LOCALpercentchar}
-		}{}
-	}{}
-	\global\def\GLOBALheaderlineitem {true}
+			\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headerseparatorcolor}{\headerseparator}}\LOCALpercentchar}%
+		}{}%
+	}{}%
+	\global\def\GLOBALheaderlineitem {true}%
 }
 
 % Agrega un item de texto al header
 %	#1	Texto
 \newcommand{\addheadertext}[1]{%
-	\global\def\GLOBALheaderseparatorsticky {false}
-	\insertheaderseparator
-	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#1}}\LOCALpercentchar}
+	\global\def\GLOBALheaderseparatorsticky {false}%
+	\addheaderseparator%
+	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#1}}\LOCALpercentchar}%
 }
 
 % Agrega un correo al header
 %	#1	Correo
 \newcommand{\addheadermail}[1]{%
-	\global\def\GLOBALheaderseparatorsticky {false}
-	\insertheaderseparator
-	\immediate\write\fileheaderitems{\unexpanded{\href{mailto:#1}{#1}}\LOCALpercentchar}
+	\global\def\GLOBALheaderseparatorsticky {false}%
+	\addheaderseparator%
+	\immediate\write\fileheaderitems{\unexpanded{\href{mailto:#1}{#1}}\LOCALpercentchar}%
 }
 
 % Agrega un enlace al header
@@ -143,28 +139,62 @@
 %	#2	Enlace
 \newcommand{\addheaderlink}[2][]{%
 	\ifthenelse{\equal{#1}{}}{ % Sin ícono
-		\global\def\GLOBALheaderseparatorsticky {false}
-		\insertheaderseparator
-		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}
-	}{
-		\insertheaderseparator
+		\global\def\GLOBALheaderseparatorsticky {false}%
+		\addheaderseparator%
+		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}%
+	}{%
+		\addheaderseparator
 		\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
 			\global\def\GLOBALheaderfaimport {true}
 			\usepackage{fontawesome5}
 		}{}
 		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{true}}{%
 			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.25cm}}\LOCALpercentchar}
-		}{}
-		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}
-		\global\def\GLOBALheaderseparatorsticky {true}
+		}{}%
+		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}%
+		\global\def\GLOBALheaderseparatorsticky {true}%
 	}
 }
 
 % Agrega una nueva línea al header
 \newcommand{\addheadernewline}{%
-	\global\def\GLOBALheaderlineitem {false}
-	\global\def\GLOBALheaderseparatorsticky {false}
-	\immediate\write\fileheaderitems{\unexpanded{\\}\LOCALpercentchar}
+	\global\def\GLOBALheaderlineitem {false}%
+	\global\def\GLOBALheaderseparatorsticky {false}%
+	\immediate\write\fileheaderitems{\unexpanded{\vspace{\headeritemslinespace cm}\\}\LOCALpercentchar}%
+}
+
+% Agrega un ícono
+%	#1	Nombre del ícono
+\newcommand{\addheadericon}[1]{%
+	\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
+		\global\def\GLOBALheaderfaimport {true}
+		\usepackage{fontawesome5}
+	}{}
+	\immediate\write\fileheaderitems{\unexpanded{\faIcon{#1}}\LOCALpercentchar}%
+	\global\def\GLOBALheaderseparatorsticky {false}%
+}
+
+% Agrega un espacio vertical
+%	#1	Tamaño del espacio
+\newcommand{\addheaderspace}[1]{%
+	\immediate\write\fileheaderitems{\unexpanded{\hspace{#1}}\LOCALpercentchar}%
+}
+
+% Agrega una imagen
+%	#1	Dirección de la imagen
+%	#2	Tamaño de la imagen {small, normal, large}
+\newcommand{\addheaderimage}[2]{%
+	\ifthenelse{\equal{#2}{small}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.01\baselineskip}{\includegraphics[height=0.65\baselineskip]{#1}}}\LOCALpercentchar}%
+	}{
+	\ifthenelse{\equal{#2}{normal}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.15\baselineskip}{\includegraphics[height=1\baselineskip]{#1}}}\LOCALpercentchar}%
+	}{
+	\ifthenelse{\equal{#2}{large}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip]{#1}}}\LOCALpercentchar}%
+	}{
+		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal o large}}}
+	}
 }
 
 % Escribe el encabezado del CV

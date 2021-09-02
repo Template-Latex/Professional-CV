@@ -842,7 +842,6 @@
 		\usepackage{fontawesome5}
 	}{}
 	\immediate\write\fileheaderitems{\unexpanded{\faIcon{#1}}\LOCALpercentchar}%
-	\global\def\GLOBALheaderseparatorsticky {false}%
 }
 
 % Agrega un espacio vertical
@@ -1186,16 +1185,15 @@
 	}{%
 	\ifthenelse{\equal{\GLOBALhasinstitution}{false}}{}{%
 		\ifthenelse{\equal{\GLOBALinstitutionshortend}{false}}{%
-			\vspace{-0.05\baselineskip}%
+			\vspace{0.45\baselineskip}%
 		}{%
-			\vspace{-1.15\baselineskip}%
+			\vspace{-0.55\baselineskip}%
 		}%
 	}%
 	\ifthenelse{\equal{\GLOBALcvfinishlist}{true}}{%
-		\vspace{-0.75\baselineskip}%
+		\vspace{-0.4\baselineskip}%
 	}{}
 	\par%
-	\vspace{0.6em}%
 }
 
 % Párrafo de descripción
@@ -1212,6 +1210,7 @@
 		\par
 		\endgroup
 	\end{cvblock}
+	\vspace{0.49\baselineskip}%
 }
 
 % Párrafo de descripción con foto de perfil
@@ -1243,7 +1242,7 @@
 		\endgroup%
 		\par%
 	\end{cvblock}%
-	\vspace{1em}%
+	\vspace{1.6em}%
 }
 
 % Tabla de datos personales
@@ -1443,8 +1442,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={3.0.3-2},
-		Template.Version.Hash={DBB52CA4978D510DE3EFC2AAF5EAACA2},
+		Template.Version.Dev={3.0.3-5},
+		Template.Version.Hash={3D80DD42E43E9E07215372779A610E89},
 		Template.Version.Release={3.0.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}

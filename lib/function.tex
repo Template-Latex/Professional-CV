@@ -10,7 +10,6 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 % Definición de variables globales
-\global\def\GLOBALcvfinishlist {false}
 \global\def\GLOBALhasinstitution {false}
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
@@ -338,7 +337,6 @@
 		{\setlength{\leftmargin}{\doubleparindent}}%
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2%
 	\end{basedescript}
-	\global\def\GLOBALcvfinishlist {true}%
 }
 
 % Inserta un elemento en el bloque de firma

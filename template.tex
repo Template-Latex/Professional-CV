@@ -681,7 +681,6 @@
 \usepackage[T1]{fontenc} % Caracteres acentuados
 
 % Definición de variables globales
-\global\def\GLOBALcvfinishlist {false}
 \global\def\GLOBALhasinstitution {false}
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
@@ -1009,7 +1008,6 @@
 		{\setlength{\leftmargin}{\doubleparindent}}%
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2%
 	\end{basedescript}
-	\global\def\GLOBALcvfinishlist {true}%
 }
 
 % Inserta un elemento en el bloque de firma
@@ -1179,7 +1177,6 @@
 		\roottitle{#2}%
 	\fi%
 	\vspace{0.15em}%
-	\global\def\GLOBALcvfinishlist {false}%
 	\global\def\GLOBALhasinstitution {false}%
 	\global\def\GLOBALinstitutionshortend {false}%
 	}{%
@@ -1190,9 +1187,6 @@
 			\vspace{-0.55\baselineskip}%
 		}%
 	}%
-	\ifthenelse{\equal{\GLOBALcvfinishlist}{true}}{%
-		\vspace{-0.4\baselineskip}%
-	}{}
 	\par%
 }
 
@@ -1280,7 +1274,7 @@
 		\endgroup%
 		\par%
 	\end{cvblock}%
-	\vspace{0.55em}%
+	\vspace{1.15em}%
 }
 
 % Nueva institución
@@ -1442,8 +1436,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={3.0.3-7},
-		Template.Version.Hash={4625C2E3F28C2EC78E9D3260A5DB8109},
+		Template.Version.Dev={3.0.3-9},
+		Template.Version.Hash={89A6F92C322C053B497FE19956ECC542},
 		Template.Version.Release={3.0.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
@@ -1527,8 +1521,8 @@
 \pdfminorversion=\pdfcompileversion
 
 % Configura items
-\AfterEndEnvironment{itemize}{\global\def\GLOBALcvfinishlist {true}}
-\AfterEndEnvironment{enumerate}{\global\def\GLOBALcvfinishlist {true}}
+\AfterEndEnvironment{itemize}{\vspace{-0.4\baselineskip}}
+\AfterEndEnvironment{enumerate}{\vspace{-0.4\baselineskip}}
 
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES DE PÁGINA

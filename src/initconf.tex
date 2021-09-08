@@ -10,20 +10,20 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 % Se revisa si las variables no han sido borradas
-\checkvardefined{\birthyear}
-\checkvardefined{\email}
 \checkvardefined{\birthday}
 \checkvardefined{\birthmonth}
+\checkvardefined{\birthyear}
+\checkvardefined{\email}
 \checkvardefined{\name}
 \checkvardefined{\phonenumber}
 
 % Se añade \xspace a las variables
 \makeatletter
-\g@addto@macro\birthyear\xspace
-\g@addto@macro\birthday\xspace
-\g@addto@macro\birthmonth\xspace
-\g@addto@macro\name\xspace
-\g@addto@macro\phonenumber\xspace
+	\g@addto@macro\birthday\xspace
+	\g@addto@macro\birthmonth\xspace
+	\g@addto@macro\birthyear\xspace
+	\g@addto@macro\name\xspace
+	\g@addto@macro\phonenumber\xspace
 \makeatother
 
 % Se define metadata del pdf
@@ -39,7 +39,7 @@
 	bookmarkstype={toc},
 	pdfauthor={\name},
 	pdfcenterwindow={\cfgpdfcenterwindow},
-	pdfcopyright={\headertitle, \name. Email: \email. Tel: \phonenumber},
+	pdfcopyright={\headertitle, \name. Email: \email. Phone: \phonenumber},
 	pdfcreator={LaTeX},
 	pdfdisplaydoctitle={\cfgpdfdisplaydoctitle},
 	pdffitwindow={\cfgpdffitwindow},
@@ -57,8 +57,8 @@
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.1.0},
-		Template.Version.Hash={857013CB2EF54BED94E1FCF989E02753},
+		Template.Version.Dev={3.1.0-1},
+		Template.Version.Hash={295E27C6F30D0400BC50D62B5556CC3D},
 		Template.Version.Release={3.1.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}

@@ -21,7 +21,7 @@
 
 | Página 1 | Página 2 |
 |:---:|:---:|
-| ![Professional-CV](https://latex.ppizarror.com/res/examples/professional_cv/p1.png)  | ![Professional-CV](https://latex.ppizarror.com/res/examples/professional_cv/p2.png) |
+| ![Professional-CV](https://latex.ppizarror.com/res/images/cv_p1.jpg)  | ![Professional-CV](https://latex.ppizarror.com/res/images/cv_p2.jpg) |
 
 ## Licencia
 

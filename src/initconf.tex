@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones iniciales del documento
-% Versión:      3.0.4 (08/09/2021)
+% Versión:      3.1.0 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -15,7 +15,7 @@
 \checkvardefined{\birthday}
 \checkvardefined{\birthmonth}
 \checkvardefined{\name}
-\checkvardefined{\phone}
+\checkvardefined{\phonenumber}
 
 % Se añade \xspace a las variables
 \makeatletter
@@ -23,7 +23,7 @@
 \g@addto@macro\birthday\xspace
 \g@addto@macro\birthmonth\xspace
 \g@addto@macro\name\xspace
-\g@addto@macro\phone\xspace
+\g@addto@macro\phonenumber\xspace
 \makeatother
 
 % Se define metadata del pdf
@@ -39,27 +39,27 @@
 	bookmarkstype={toc},
 	pdfauthor={\name},
 	pdfcenterwindow={\cfgpdfcenterwindow},
-	pdfcopyright={\headertitle, \name. Email: \email. Tel: \phone},
+	pdfcopyright={\headertitle, \name. Email: \email. Tel: \phonenumber},
 	pdfcreator={LaTeX},
 	pdfdisplaydoctitle={\cfgpdfdisplaydoctitle},
 	pdffitwindow={\cfgpdffitwindow},
 	pdfinfo={
 		Author.Email={\email},
 		Author.Name={\name},
-		Author.Phone={\phone},
+		Author.Phone={\phonenumber},
 		Template.Author.Alias={ppizarror},
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={01/09/2021},
+		Template.Date={08/09/2021},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.0.4},
-		Template.Version.Hash={E6710708D3DCE33A6810CB7142AB59F3},
-		Template.Version.Release={3.0.4},
+		Template.Version.Dev={3.1.0},
+		Template.Version.Hash={857013CB2EF54BED94E1FCF989E02753},
+		Template.Version.Release={3.1.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -67,7 +67,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.0.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.1.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

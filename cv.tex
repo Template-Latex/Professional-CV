@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Advertencia:  Archivo principal
-% Versión:      3.0.3 (01/09/2021)
+% Versión:      3.0.4 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -16,7 +16,6 @@
 \def\nombreautor {John Doe}
 \def\correoautor {john@email.com}
 \def\telefonoautor {+12 3456 7890}
-\def\ciautor {12.345.678-9}
 
 \def\dianacimientoautor {1}
 \def\mesnacimientoautor {Enero}
@@ -31,7 +30,7 @@
 % CONFIGURA EL HEADER
 \addheadermail{\correoautor}
 \addheadertext{\telefonoautor}
-\addheadertext{C.I. \ciautor}
+\addheadertext{RUT: 12.345.678-9}
 \addheaderlink{https://johndoe.com}
 \addheaderlink[linkedin]{https://linkedin.com/john.doe} % latex.ppizarror.com/icons
 \addheaderlink[twitter-square]{https://twitter.com/john.doe}
@@ -64,7 +63,7 @@
 	\personaltableentry{Edad}{99 años}
 	\personaltableentry{Nacionalidad}{Nación}
 	\personaltableentry{Estado Civil}{Soltero}
-	\personaltableentry{Cédula de Identidad}{\ciautor}
+	\personaltableentry{RUT}{12.345.678-9}
 \end{personaltabledata}
 
 % EXPERIENCIA
@@ -117,7 +116,6 @@
 \begin{signature}
 	\signatureentry{\nombreautor}
 	\signatureentry{Ingeniero Civil}
-	\signatureentry{C.I. \ciautor}
 \end{signature}
 
 % FIN DEL DOCUMENTO

@@ -13,23 +13,23 @@
 \documentclass[letterpaper]{article}
 
 % INFORMACIÓN DEL USUARIO
-\def\nombreautor {John Doe}
-\def\correoautor {john@email.com}
-\def\telefonoautor {+12 3456 7890}
+\def\name {John Doe}
+\def\email {john@email.com}
+\def\phone {+12 3456 7890}
 
-\def\dianacimientoautor {1}
-\def\mesnacimientoautor {Enero}
-\def\anonacimientoautor {1980}
+\def\birthday {1}
+\def\birthmonth {Enero}
+\def\birthyear {1980}
 
-\def\fotoautor {img/foto}
-\def\firmaautor {img/firma}
+\def\photo {img/foto}
+\def\sign {img/firma}
 
 % IMPORTACIÓN DEL TEMPLATE
 \input{template}
 
 % CONFIGURA EL HEADER
-\addheadermail{\correoautor}
-\addheadertext{\telefonoautor}
+\addheadermail{\email}
+\addheadertext{\phone}
 \addheadertext{RUT: 12.345.678-9}
 \addheaderlink{https://johndoe.com}
 \addheaderlink[linkedin]{https://linkedin.com/john.doe} % latex.ppizarror.com/icons
@@ -58,7 +58,7 @@
 % TABLA ANTECEDENTES PERSONALES
 %	Desactivar la foto con la configuración \personaltabledatapic
 \begin{personaltabledata}
-	\personaltableentry{Fecha de Nacimiento}{\dianacimientoautor de \mesnacimientoautor del \anonacimientoautor}
+	\personaltableentry{Fecha de Nacimiento}{\birthday de \birthmonth del \birthyear}
 	\personaltableentry{Lugar de Nacimiento}{Ciudad, Región, País}
 	\personaltableentry{Edad}{99 años}
 	\personaltableentry{Nacionalidad}{Nación}
@@ -114,7 +114,7 @@
 
 % FIRMA
 \begin{signature}
-	\signatureentry{\nombreautor}
+	\signatureentry{\name}
 	\signatureentry{Ingeniero Civil}
 \end{signature}
 

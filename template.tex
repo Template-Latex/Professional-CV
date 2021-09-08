@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      3.0.3 (01/09/2021)
+% Versión:      3.0.4 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -877,9 +877,9 @@
 	}{}
 	
 	% Nombre
-	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\nombreautor}}
+	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\name}}
 	\ifthenelse{\equal{\writebirthdayheader}{true}}{%
-		\quad \emph{\textcolor{\headertextcolor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}}%
+		\quad \emph{\textcolor{\headertextcolor}{\birthmonth \birthday, \birthyear}}%
 	}{}%
 	\ifthenelse{\equal{\writelastchangeheader}{true}}{%
 		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}%
@@ -1219,9 +1219,9 @@
 				\setlength{\fboxsep}{0pt}%
 				~ \\ \vspace{-0.75em}%
 				\ifthenelse{\equal{\showuserphotoborder}{true}}{%
-					\noindent \textcolor{\userphotobordercolor}{\fbox{\includegraphics[width=0.99\linewidth]{\fotoautor}}}%
+					\noindent \textcolor{\userphotobordercolor}{\fbox{\includegraphics[width=0.99\linewidth]{\photo}}}%
 				}{%
-					\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\fotoautor}%
+					\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\photo}%
 				}%
 				\vspace{-0.7em}%
 				\endgroup%
@@ -1252,9 +1252,9 @@
 					\setlength{\fboxsep}{0pt}%
 					~ \\ \vspace{-0.95em}%
 					\ifthenelse{\equal{\showuserphotoborder}{true}}{%
-						\noindent \textcolor{\userphotobordercolor}{\fbox{\includegraphics[width=0.99\linewidth]{\fotoautor}}}
+						\noindent \textcolor{\userphotobordercolor}{\fbox{\includegraphics[width=0.99\linewidth]{\photo}}}
 					}{%
-						\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\fotoautor}%
+						\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\photo}%
 					}%
 					\endgroup%
 				\end{flushleft}%
@@ -1360,7 +1360,7 @@
 	\vfill%
 	\begin{flushright}%
 		\begin{tabular}{c}%
-			\includegraphics[width=\usersignaturesize cm]{\firmaautor} \\%
+			\includegraphics[width=\usersignaturesize cm]{\sign} \\%
 		}{%
 		\end{tabular}%
 	\end{flushright}%
@@ -1387,23 +1387,21 @@
 % CONFIGURACIÓN INICIAL DEL DOCUMENTO
 % -----------------------------------------------------------------------------
 % Se revisa si las variables no han sido borradas
-\checkvardefined{\anonacimientoautor}
-\checkvardefined{\ciautor}
-\checkvardefined{\correoautor}
-\checkvardefined{\dianacimientoautor}
-\checkvardefined{\mesnacimientoautor}
+\checkvardefined{\birthyear}
+\checkvardefined{\email}
+\checkvardefined{\birthday}
+\checkvardefined{\birthmonth}
 \checkvardefined{\nombreautor}
-\checkvardefined{\telefonoautor}
+\checkvardefined{\nameor}
 
 % Se añade \xspace a las variables
 \makeatletter
-\g@addto@macro\anonacimientoautor\xspace
-\g@addto@macro\ciautor\xspace
-\g@addto@macro\dianacimientoautor\xspace
-\g@addto@macro\mesnacimientoautor\xspace
+\g@addto@macro\birthyear\xspace
+\g@addto@macro\birthday\xspace
+\g@addto@macro\birthmonth\xspace
 \g@addto@macro\nombreautor\xspace
-\g@addto@macro\telefonoautor\xspace
-\makeatother
+\g@addto@macro\phone\xspace
+\makeatother\name
 
 % Se define metadata del pdf
 \ifthenelse{\equal{\cfgshowbookmarkmenu}{true}}{
@@ -1418,15 +1416,15 @@
 	bookmarkstype={toc},
 	pdfauthor={\nombreautor},
 	pdfcenterwindow={\cfgpdfcenterwindow},
-	pdfcopyright={\headertitle, \nombreautor. Email: \correoautor. Tel: \telefonoautor},
+	pdfcopyrigh\nametle, \nombreautor. Email: \email. Tel: \phone},
 	pdfcreator={LaTeX},
-	pdfdisplaydoctitle={\cfgpdfdisplaydoctitle},
+	pdfdisplaydoctitle={\cfgpdfd\namele},
 	pdffitwindow={\cfgpdffitwindow},
 	pdfinfo={
-		Autor.Email={\correoautor},
+		Autor.Email={\email},
 		Autor.Nombre={\nombreautor},
-		Autor.Telefono={\telefonoautor},
-		Template.Autor.Alias={ppizarror},
+		Autor.Telefono={\phone},
+		Template.Autor\namearror},
 		Template.Autor.Email={pablo@ppizarror.com},
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
@@ -1436,24 +1434,24 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Professional-CV},
 		Template.Tipo={Normal},
-		Template.Version.Dev={3.0.3-9},
-		Template.Version.Hash={89A6F92C322C053B497FE19956ECC542},
-		Template.Version.Release={3.0.3},
+		Template.Version.Dev={3.0.4},
+		Template.Version.Hash={E6710708D3DCE33A6810CB7142AB59F3},
+		Template.Version.Release={3.0.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
-	pdfkeywords={CV, \nombreautor, \headertitle, \correoautor},
+	pdfkeywords={CV, \nombreautor, \headertitle, \email},
 	pdfmenubar={\cfgpdfmenubar},
-	pdfpagelayout={\cfgpdfpagemode},
+	pdfpagelayout={\c\namee},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.0.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.0.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
 	pdfsubject={CV \nombreautor},
 	pdftitle={\headertitle~ \nombreautor},
-	pdftoolbar={\cfgpdftoolbar},
-	pdftype={Text}
+	pdftoolbar={\cf\name,
+	pdftype={Text}\name
 }
 
 % Establece la carpeta de imágenes por defecto
@@ -1522,7 +1520,6 @@
 
 % Configura items
 \AfterEndEnvironment{itemize}{\vspace{-0.4\baselineskip}}
-\AfterEndEnvironment{enumerate}{\vspace{-0.4\baselineskip}}
 
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES DE PÁGINA
@@ -1547,7 +1544,7 @@
 		\fancyfoot[L]{\textcolor{\hftextcolor}{\fontsize{10}{12} \headertitle}}
 		\fancyfoot[C]{\textcolor{\hftextcolor}{\small \nombreautor}}
 		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
-		\renewcommand{\headrulewidth}{0pt}
+		\renewcommand{\headrulewidth}{0pt}\name
 		\renewcommand{\footrulewidth}{0pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style3}}{
@@ -1590,14 +1587,14 @@
 		\pagestyle{fancy} \fancyhf{}
 		\fancyfoot[L]{\textcolor{\hftextcolor}{\small \nombreautor}}
 		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
-		\renewcommand{\headrulewidth}{0pt}
+		\renewcommand{\headrulewidth}{0pt}\name
 		\renewcommand{\footrulewidth}{0.5pt}
 	}{
 	\ifthenelse{\equal{\hfstyle}{style10}}{
 		\pagestyle{fancy} \fancyhf{}
 		\fancyfoot[L]{\textcolor{\hftextcolor}{\small \nombreautor}}
 		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
-		\renewcommand{\headrulewidth}{0pt}
+		\renewcommand{\headrulewidth}{0pt}\name
 		\renewcommand{\footrulewidth}{0pt}
 	}{
 		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1..style10}}}}}}}}}}

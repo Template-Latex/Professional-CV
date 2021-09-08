@@ -10,20 +10,20 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 % Se revisa si las variables no han sido borradas
-\checkvardefined{\anonacimientoautor}
-\checkvardefined{\correoautor}
-\checkvardefined{\dianacimientoautor}
-\checkvardefined{\mesnacimientoautor}
-\checkvardefined{\nombreautor}
-\checkvardefined{\telefonoautor}
+\checkvardefined{\birthyear}
+\checkvardefined{\email}
+\checkvardefined{\birthday}
+\checkvardefined{\birthmonth}
+\checkvardefined{\name}
+\checkvardefined{\phone}
 
 % Se añade \xspace a las variables
 \makeatletter
-\g@addto@macro\anonacimientoautor\xspace
-\g@addto@macro\dianacimientoautor\xspace
-\g@addto@macro\mesnacimientoautor\xspace
-\g@addto@macro\nombreautor\xspace
-\g@addto@macro\telefonoautor\xspace
+\g@addto@macro\birthyear\xspace
+\g@addto@macro\birthday\xspace
+\g@addto@macro\birthmonth\xspace
+\g@addto@macro\name\xspace
+\g@addto@macro\phone\xspace
 \makeatother
 
 % Se define metadata del pdf
@@ -37,33 +37,33 @@
 	bookmarksopen={\cfgpdfbookmarkopen},
 	bookmarksopenlevel={\cfgbookmarksopenlevel},
 	bookmarkstype={toc},
-	pdfauthor={\nombreautor},
+	pdfauthor={\name},
 	pdfcenterwindow={\cfgpdfcenterwindow},
-	pdfcopyright={\headertitle, \nombreautor. Email: \correoautor. Tel: \telefonoautor},
+	pdfcopyright={\headertitle, \name. Email: \email. Tel: \phone},
 	pdfcreator={LaTeX},
 	pdfdisplaydoctitle={\cfgpdfdisplaydoctitle},
 	pdffitwindow={\cfgpdffitwindow},
 	pdfinfo={
-		Autor.Email={\correoautor},
-		Autor.Nombre={\nombreautor},
-		Autor.Telefono={\telefonoautor},
-		Template.Autor.Alias={ppizarror},
-		Template.Autor.Email={pablo@ppizarror.com},
-		Template.Autor.Nombre={Pablo Pizarro R.},
-		Template.Autor.Web={https://ppizarror.com/},
-		Template.Codificacion={UTF-8},
-		Template.Fecha={01/09/2021},
-		Template.Licencia.Tipo={MIT},
-		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
-		Template.Nombre={Professional-CV},
-		Template.Tipo={Normal},
+		Author.Email={\email},
+		Author.Name={\name},
+		Author.Phone={\phone},
+		Template.Author.Alias={ppizarror},
+		Template.Author.Email={pablo@ppizarror.com},
+		Template.Author.Name={Pablo Pizarro R.},
+		Template.Author.Web={https://ppizarror.com/},
+		Template.Date={01/09/2021},
+		Template.Encoding={UTF-8},
+		Template.License.Type={MIT},
+		Template.License.Web={https://opensource.org/licenses/MIT/},
+		Template.Name={Professional-CV},
+		Template.Type={Normal},
 		Template.Version.Dev={3.0.4},
 		Template.Version.Hash={E6710708D3DCE33A6810CB7142AB59F3},
 		Template.Version.Release={3.0.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
-	pdfkeywords={CV, \nombreautor, \headertitle, \correoautor},
+	pdfkeywords={CV, \name, \headertitle, \email},
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
@@ -71,8 +71,8 @@
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
-	pdfsubject={CV \nombreautor},
-	pdftitle={\headertitle~ \nombreautor},
+	pdfsubject={CV \name},
+	pdftitle={\headertitle~ \name},
 	pdftoolbar={\cfgpdftoolbar},
 	pdftype={Text}
 }

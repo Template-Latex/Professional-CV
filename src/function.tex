@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.0.3 (01/09/2021)
+% Versión:      3.0.4 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -206,9 +206,9 @@
 	}{}
 	
 	% Nombre
-	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\nombreautor}}
+	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\name}}
 	\ifthenelse{\equal{\writebirthdayheader}{true}}{%
-		\quad \emph{\textcolor{\headertextcolor}{\mesnacimientoautor \dianacimientoautor, \anonacimientoautor}}%
+		\quad \emph{\textcolor{\headertextcolor}{\birthmonth \birthday, \birthyear}}%
 	}{}%
 	\ifthenelse{\equal{\writelastchangeheader}{true}}{%
 		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}%

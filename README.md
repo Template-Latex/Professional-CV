@@ -21,11 +21,11 @@
 
 </div><br>
 
-## Ejemplo
+Este corresponde a un template para confeccionar currículums.
 
-| Página 1 | Página 2 |
-|:---:|:---:|
-| ![Professional-CV](https://latex.ppizarror.com/res/images/cv_p1.jpg)  | ![Professional-CV](https://latex.ppizarror.com/res/images/cv_p2.jpg) |
+<p align="center">
+  <img src="https://latex.ppizarror.com/res/images/collage_cv.png" alt="Auxiliar" width="70%" />
+</p>
 
 ## Licencia
 

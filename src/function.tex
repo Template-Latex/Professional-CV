@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.1.2 (21/09/2021)
+% Versión:      3.1.5 (31/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -93,8 +93,12 @@
 %	#2	Margen superior
 %	#3	Margen derecho
 %	#4	Margen inferior
-\newcommand{\setpagemargincm}[4]{%
-	\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}%
+\newcommand{\setpagemargincm}[4]{
+	\ifthenelse{\equal{\compilertype}{lualatex}}{
+		% Geometry no válido en lualatex
+	}{
+		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
+	}
 }
 
 % Cambia los márgenes del documento

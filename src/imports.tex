@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Importación de librerías
-% Versión:      3.1.2 (21/09/2021)
+% Versión:      3.1.5 (31/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -35,15 +35,34 @@
 % Librerías del núcleo
 % -----------------------------------------------------------------------------
 % Manejo de condicionales
+\usepackage{iftex}
 \usepackage{ifthen}
 
-% Idioma español, borrar esta línea si se desea usar otro idioma
-\ifthenelse{\equal{\usespanishbabel}{true}}{
-	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
-\ifthenelse{\equal{\useenglishbabel}{true}}{
-	\usepackage[english]{babel}}{}
+% Verifica el tipo de compilador
+\ifPDFTeX
+	\def\compilertype {pdf2latex}
+\else\ifXeTeX
+	\def\compilertype {xelatex}
+\else\ifLuaTeX
+	\def\compilertype {lualatex}
+\else
+	\errmessage{Compilador no soportado}
+	\stop
+	\fi\fi
+\fi
+
+% Carga el idioma
+\usepackage{tracklang}
+\IfTrackedLanguage{spanish}{
+	\usepackage[es-nosectiondot,es-lcroman,es-noquoting]{babel}
+}{ % english, otros
+	\usepackage{babel}
 }
-\usepackage[utf8]{inputenc} % Codificación UTF-8
+
+% Codificación
+\ifthenelse{\equal{\compilertype}{pdf2latex}}{
+	\usepackage[utf8]{inputenc}}{
+}
 
 % Evita error "Too many alphabets used in version normal"
 \newcommand\hmmax {0}
@@ -57,10 +76,8 @@
 \usepackage{booktabs}      % Permite manejar elementos visuales en tablas
 \usepackage{color}         % Colores
 \usepackage{colortbl}      % Administración de color en tablas
-\usepackage{csquotes}      % Citas y comillas
 \usepackage{enumitem}      % Permite enumerar ítems
 \usepackage{ifxetex}       % Detecta compilador
-\usepackage{geometry}      % Dimensiones y geometría del documento
 \usepackage{graphicx}      % Propiedades extra para los gráficos
 \usepackage{lipsum}        % Permite crear textos dummy
 \usepackage{mdwlist}       % Listas con encabezado
@@ -78,6 +95,13 @@
 \usepackage{xcolor}        % Administración de color avanzado
 \usepackage{xspace}        % Administra espacios en párrafos y líneas
 \usepackage{xurl}          % Permite añadir enlaces
+
+% Dimensiones y geometría del documento
+\ifthenelse{\equal{\compilertype}{lualatex}}{ % En lualatex sólo se puede cambiar 1 vez el margen
+	\usepackage[top=\pagemargintop cm,bottom=\pagemarginbottom cm,left=\pagemarginleft cm,right=\pagemarginright cm]{geometry}
+}{ % pdf2latex, xelatex
+	\usepackage{geometry}
+}
 
 % -----------------------------------------------------------------------------
 % Librerías con parámetros
@@ -671,3 +695,7 @@
 % Finales
 % -----------------------------------------------------------------------------
 \usepackage[T1]{fontenc} % Caracteres acentuados
+\usepackage{csquotes} % Citas y comillas
+\ifthenelse{\equal{\compilertype}{pdf2latex}}{
+	\inputencoding{utf8}}{
+}

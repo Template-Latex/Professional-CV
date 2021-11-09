@@ -23,10 +23,7 @@
 	}{
 	\ifthenelse{\equal{\hfstyle}{style2}}{
 		\pagestyle{fancy} \fancyhf{}
-		\fancyhead[L]{}
-		\fancyhead[C]{}
-		\fancyhead[R]{}
-		\fancyfoot[L]{\textcolor{\hftextcolor}{\fontsize{10}{12} \headertitle}}
+		\fancyfoot[L]{\textcolor{\hftextcolor}{\small \headertitle}}
 		\fancyfoot[C]{\textcolor{\hftextcolor}{\small \name}}
 		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
 		\renewcommand{\headrulewidth}{0pt}
@@ -82,7 +79,15 @@
 		\renewcommand{\headrulewidth}{0pt}
 		\renewcommand{\footrulewidth}{0pt}
 	}{
-		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1..style10}}}}}}}}}}
+	\ifthenelse{\equal{\hfstyle}{style11}}{
+		\pagestyle{fancy} \fancyhf{}
+		\fancyfoot[L]{\textcolor{\hftextcolor}{\small \name}}
+		\fancyfoot[C]{\textcolor{\hftextcolor}{\small \headertitle}}
+		\fancyfoot[R]{\textcolor{\hftextcolor}{\small \thepage}}
+		\renewcommand{\headrulewidth}{0pt}
+		\renewcommand{\footrulewidth}{0pt}
+	}{
+		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1..style11}}}}}}}}}}}
 	}
 	
 	% Escribe el encabezado

@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.2.0 (05/11/2021)
+% Versión:      3.2.1 (09/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -27,14 +27,14 @@
 % 	#1	Función del error
 %	#2	Mensaje
 \newcommand{\throwerror}[2]{%
-	\errmessage{LaTeX Error: \noexpand#1 #2 (linea \the\inputlineno)}
-	\stop
+	\errmessage{LaTeX Error: \noexpand#1 #2 (linea \the\inputlineno)}%
+	\stop%
 }
 
 % Lanza un mensaje de advertencia
 %	#1	Mensaje
 \newcommand{\throwwarning}[1]{%
-	\errmessage{LaTeX Warning: #1 (linea \the\inputlineno)}
+	\errmessage{LaTeX Warning: #1 (linea \the\inputlineno)}%
 }
 
 % Lanza un mensaje de error indicando mala configuración
@@ -42,8 +42,8 @@
 % 	#2	Configuración usada
 %	#3	Valores esperados
 \newcommand{\throwbadconfig}[3]{%
-	\errmessage{LaTeX Warning: #1 \noexpand #2=#2. Valores esperados: #3}
-	\stop
+	\errmessage{LaTeX Warning: #1 \noexpand #2=#2. Valores esperados: #3}%
+	\stop%
 }
 
 % Lanza un mensaje de error indicando mala configuración dentro de begin{document}
@@ -51,17 +51,17 @@
 % 	#2	Configuración usada
 %	#3	Valores esperados
 \newcommand{\throwbadconfigondoc}[3]{%
-	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}
-	\stop
+	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}%
+	\stop%
 }
 
 % Comprueba si una variable está definida
 %	#1	Variable
 \newcommand{\checkvardefined}[1]{%
 	\ifthenelse{\isundefined{#1}}{%
-		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
-		\stop
-	}{}
+		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}%
+		\stop%
+	}{}%
 }
 
 % Comprueba si una variable está definida
@@ -69,13 +69,13 @@
 %	#2	Mensaje
 \newcommand{\checkextravarexist}[2]{%
 	\ifthenelse{\isundefined{#1}}{%
-		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
+		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}%
 		\ifx\hfuzz#2\hfuzz%
-			\errmessage{LaTeX Warning: Defina la variable en el bloque de INFORMACION DEL USUARIO al comienzo del archivo principal del Template}
+			\errmessage{LaTeX Warning: Defina la variable en el bloque de INFORMACION DEL USUARIO al comienzo del archivo principal del Template}%
 		\else%
-			\errmessage{LaTeX Warning: #2}
+			\errmessage{LaTeX Warning: #2}%
 		\fi%
-	}{}
+	}{}%
 }
 
 % Lanza un mensaje de error si una variable no ha sido definida
@@ -84,8 +84,8 @@
 %	#3	Mensaje
 \newcommand{\emptyvarerr}[3]{
 	\ifx\hfuzz#2\hfuzz%
-		\errmessage{LaTeX Warning: \noexpand#1 #3 (linea \the\inputlineno)}
-	\fi
+		\errmessage{LaTeX Warning: \noexpand#1 #3 (linea \the\inputlineno)}%
+	\fi%
 }
 
 % Cambia márgenes de las páginas [cm]
@@ -146,17 +146,17 @@
 		\addheaderseparator%
 		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}%
 	}{%
-		\addheaderseparator
+		\addheaderseparator%
 		\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
-			\global\def\GLOBALheaderfaimport {true}
-			\usepackage{fontawesome5}
-		}{}
+			\global\def\GLOBALheaderfaimport {true}%
+			\usepackage{fontawesome5}%
+		}{}%
 		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{true}}{%
-			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.25cm}}\LOCALpercentchar}
+			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.25cm}}\LOCALpercentchar}%
 		}{}%
 		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}%
 		\global\def\GLOBALheaderseparatorsticky {true}%
-	}
+	}%
 }
 
 % Agrega una nueva línea al header
@@ -170,9 +170,9 @@
 %	#1	Nombre del ícono
 \newcommand{\addheadericon}[1]{%
 	\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
-		\global\def\GLOBALheaderfaimport {true}
-		\usepackage{fontawesome5}
-	}{}
+		\global\def\GLOBALheaderfaimport {true}%
+		\usepackage{fontawesome5}%
+	}{}%
 	\immediate\write\fileheaderitems{\unexpanded{\faIcon{#1}}\LOCALpercentchar}%
 }
 
@@ -188,15 +188,15 @@
 \newcommand{\addheaderimage}[2]{%
 	\ifthenelse{\equal{#2}{small}}{%
 		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.01\baselineskip}{\includegraphics[height=0.65\baselineskip]{#1}}}\LOCALpercentchar}%
-	}{
+	}{%
 	\ifthenelse{\equal{#2}{normal}}{%
 		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.15\baselineskip}{\includegraphics[height=1\baselineskip]{#1}}}\LOCALpercentchar}%
-	}{
+	}{%
 	\ifthenelse{\equal{#2}{large}}{%
 		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip]{#1}}}\LOCALpercentchar}%
-	}{
-		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal o large}}}
-	}
+	}{%
+		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal o large}}}%
+	}%
 }
 
 % Escribe el encabezado del CV
@@ -204,13 +204,13 @@
 	% Escribe título
 	\ifthenelse{\equal{\writetitleheader}{true}}{%
 		\begin{center}%
-			\fontsize{16}{12} \selectfont \vspace{0.3cm} \textcolor{\titlecolor}{\headertitle}
+			\fontsize{16}{12} \selectfont \vspace{0.3cm} \textcolor{\titlecolor}{\headertitle}%
 		\end{center}
-		\vspace{0.1cm}
-	}{}
+		\vspace{0.1cm}%
+	}{}%
 	
 	% Nombre
-	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\name}}
+	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\name}}%
 	\ifthenelse{\equal{\writebirthdayheader}{true}}{%
 		\quad \emph{\textcolor{\headertextcolor}{\birthmonth \birthday, \birthyear}}%
 	}{}%
@@ -221,7 +221,7 @@
 	
 	% Escribe items del header
 	\hypersetup{urlcolor=\headerurlcolor}%
-	\vspace{\headeritemsmargin cm}
+	\vspace{\headeritemsmargin cm}%
 	{%
 		\noindent%
 		\input{\jobname.hitems}%
@@ -233,15 +233,15 @@
 % Título de las secciones principales
 %	#1	Título
 \newcommand*{\roottitle}[1]{%
-	\emptyvarerr{\roottitle}{#1}{Titulo no definido}
-	\section*{#1}\vspace{-0.3em}\nopagebreak[4]
-	\addcontentsline{toc}{section}{#1}
+	\emptyvarerr{\roottitle}{#1}{Titulo no definido}%
+	\section*{#1}\vspace{-0.3em}\nopagebreak[4]%
+	\addcontentsline{toc}{section}{#1}%
 }
 
 % Crea un acrónimo de forma fácil
 %	#1	Acrónimo
 \newcommand*{\acr}[1]{%
-	\textscale{.85}{#1}
+	\textscale{.85}{#1}%
 }
 
 % Crea un campo de texto
@@ -249,9 +249,9 @@
 \newcommand{\bodytext}[1]{%
 	\nopagebreak[4]%
 	\begin{indentsection}%
-		\item[] #1
+		\item[] #1%
 	\end{indentsection}
-	\pagebreak[2]
+	\pagebreak[2]%
 }
 
 % Crea una entrada en la tabla de datos personales
@@ -275,36 +275,36 @@
 	\ifthenelse{\equal{\GLOBALinstitutionenabled}{true}}{}{%
 		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentryshort no pueden usarse fuera del entorno \noexpand\institution}\stop%
 	}%
-	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}
-	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}
-	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}
-	\nopagebreak[4]
-	\begin{indentsectiondouble}
-		\item []
-		\noindent
-		\begin{minipage}{1\linewidth}
+	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
+	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}%
+	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}%
+	\nopagebreak[4]%
+	\begin{indentsectiondouble}%
+		\item []%
+		\noindent%
+		\begin{minipage}{1\linewidth}%
 			\begin{minipage}[t][][t]{#5}%
-				{\textcolor{\instentrytitlecolor}{\textbf{#1}} ~ \\ \vspace{0.7em}}
+				{\textcolor{\instentrytitlecolor}{\textbf{#1}} ~ \\ \vspace{0.7em}}%
 			\end{minipage}
-			\hfill
+			\hfill%
 			\begin{minipage}[t][][t]{#6}%
-				\begin{flushright}
-					\noindent \textcolor{\datecolor}{\emph{#2#4#3}}
+				\begin{flushright}%
+					\noindent \textcolor{\datecolor}{\emph{#2#4#3}}%
 				\end{flushright}
 			\end{minipage}
 		\end{minipage}
-		\vspace{-1.1\baselineskip}
-		\break
-		\ifx\hfuzz#7\hfuzz
-			\vspace{-0.75\baselineskip}
+		\vspace{-1.1\baselineskip}%
+		\break%
+		\ifx\hfuzz#7\hfuzz%
+			\vspace{-0.75\baselineskip}%
 			\global\def\GLOBALinstitutionshortend {true}%
-		\else
+		\else%
 			\begin{minipage}{1.0\linewidth}%
-				\bodytext{#7}
-				\par
+				\bodytext{#7}%
+				\par%
 			\end{minipage}\vspace{0.1\baselineskip}%
 			\global\def\GLOBALinstitutionshortend {false}%
-		\fi
+		\fi%
 	\end{indentsectiondouble}
 }
 
@@ -427,8 +427,8 @@
 %	#1	Padding horizontal (em)
 %	#2	Padding vertical (em)
 \newcommand{\settablecellpadding}[2]{%
-	\emptyvarerr{\settablecellpadding}{#1}{Padding horizontal no definido}
-	\emptyvarerr{\settablecellpadding}{#2}{Padding vertical no definido}
+	\emptyvarerr{\settablecellpadding}{#1}{Padding horizontal no definido}%
+	\emptyvarerr{\settablecellpadding}{#2}{Padding vertical no definido}%
 	\setlength{\tabcolsep}{#1 em} % Horizontal
 	\def\arraystretch {#2} % Vertical
 }

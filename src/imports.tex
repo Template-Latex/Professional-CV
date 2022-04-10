@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Importación de librerías
-% Versión:      3.2.1 (09/11/2021)
+% Versión:      3.2.2 (09/04/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -8,6 +8,10 @@
 %
 % Manual template: [https://latex.ppizarror.com/professional-cv]
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
+
+% Se guardan variables antes de cargar librerías
+\let\RE\Re
+\let\IM\Im
 
 % Parches de librerías
 \let\counterwithout\relax
@@ -77,10 +81,12 @@
 \usepackage{color}         % Colores
 \usepackage{colortbl}      % Administración de color en tablas
 \usepackage{enumitem}      % Permite enumerar ítems
+\usepackage{graphicx}      % Propiedades extra para los gráficos
 \usepackage{ifxetex}       % Detecta compilador
 \usepackage{indentfirst}   % Identado en cada párrafo inicial
-\usepackage{graphicx}      % Propiedades extra para los gráficos
 \usepackage{lipsum}        % Permite crear textos dummy
+\usepackage{mathrsfs}      % Define más fuentes matemáticas
+\usepackage{mathtools}     % Permite utilizar notaciones matemáticas
 \usepackage{mdwlist}       % Listas con encabezado
 \usepackage{multicol}      % Múltiples columnas
 \usepackage{needspace}     % Maneja los espacios en página

@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      3.2.3 (04/06/2022)
+% Versión:      3.2.4 (02/09/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1171,7 +1171,7 @@
 		\setlength{\itemsep}{0pt}%
 		\setlength{\topsep}{0pt}}%
 	}{%
-	\end{list}
+	\end{list}%
 }
 
 % Crea una sección identada doble
@@ -1183,32 +1183,31 @@
 			\setlength{\itemsep}{0pt}%
 			\setlength{\topsep}{0pt}}%
 	}{%
-	\end{list}
+	\end{list}%
 }
 
 % Crea un bloque de contenido
-%	#1	Título
-%	#2	Estilo de línea
+%	#1	Estilo de línea
+%	#2	Título
 \newenvironment{cvblock}[2][]{%
 	\needspace{1\baselineskip}%
-	\textcolor{\cvblocklinecolor}{%
-		\ifx\hfuzz#1\hfuzz%
-			\hrule%
-		\else%
-			\ifthenelse{\equal{#1}{..}}{%
+	\ifx\hfuzz#1\hfuzz%
+		\textcolor{\cvblocklinecolor}{\hrule}%
+	\else%
+		\ifthenelse{\equal{#1}{..}}{%
+			\textcolor{\cvblocklinecolor}{%
 				\noindent%
 				\hspace*{-1.65em}%
 				\makebox[1.01\textwidth][l]{\dotfill}%
-				\vspace{-2em}
-			}{%
-			\ifthenelse{\equal{#1}{none}}{%
-				\vspace{-1em}%
-			}{%
-				\throwwarning{Estilo de linea invalido}%
-				\stop%
-			}}%
-		\fi%
-	}%
+				\vspace{-2em}%
+			}%
+		}{%
+		\ifthenelse{\equal{#1}{none}}{%
+		}{%
+			\throwwarning{Estilo de linea invalido}%
+			\stop%
+		}}%
+	\fi%
 	\ifx\hfuzz#2\hfuzz%
 		\throwwarning{Titulo del bloque no definido}%
 		\stop%
@@ -1238,7 +1237,7 @@
 		\begin{multicols}{2}%
 			\noindent%
 		}{%
-		\end{multicols}
+		\end{multicols}%
 		\vspace{-0.75\baselineskip}%
 		\par%
 		\endgroup%
@@ -1254,7 +1253,7 @@
 		}{%
 		\par%
 		\endgroup%
-	\end{cvblock}
+	\end{cvblock}%
 	\vspace{0.49\baselineskip}%
 }
 
@@ -1276,17 +1275,17 @@
 				}%
 				\vspace{-0.7em}%
 				\endgroup%
-			\end{flushleft}
-		\end{minipage}
+			\end{flushleft}%
+		\end{minipage}%
 		\hspace*{0.54cm}%
 		\begingroup%
 		\def\arraystretch{1.3}%
 		\begin{minipage}[t]{\dimexpr\linewidth-\userphotosize cm-0.57cm}%
 		}{%
-		\end{minipage}
+		\end{minipage}%
 		\endgroup%
 		\par%
-	\end{cvblock}
+	\end{cvblock}%
 	\vspace{1.6em}%
 }
 
@@ -1308,10 +1307,10 @@
 						\noindent \includegraphics[width=\userphotosize cm,height=\userphotosize cm]{\photo}%
 					}%
 					\endgroup%
-				\end{flushleft}
-			\end{minipage}
+				\end{flushleft}%
+			\end{minipage}%
 		}{}%
-		\hspace*{0.34cm}%
+		\hspace*{0.4cm}%
 		\begingroup%
 		\def\arraystretch{1.3}%
 		\begin{minipage}[t]{\linewidth-\userphotosize cm-0.37cm}%
@@ -1319,12 +1318,12 @@
 			\begin{table}[H]%
 				\begin{tabular}{ll}%
 				}{%
-				\end{tabular}
-			\end{table}
-		\end{minipage}
+				\end{tabular}%
+			\end{table}%
+		\end{minipage}%
 		\endgroup%
 		\par%
-	\end{cvblock}
+	\end{cvblock}%
 	\vspace{1.15em}%
 }
 
@@ -1352,7 +1351,7 @@
 				\else%
 					\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}%
 				\fi%
-			\end{minipage}
+			\end{minipage}%
 		\else%
 			\begin{minipage}[t][][t]{.558\linewidth}%
 				\GLOBALinstitutionicon%
@@ -1370,7 +1369,7 @@
 		\fi%
 		\vspace{-\baselineskip}%
 		\break%
-	\end{indentsection}
+	\end{indentsection}%
 	\hypersetup{urlcolor=\urlcolor}%
 	\vspace{-1.5\baselineskip}%
 	\noindent%
@@ -1403,7 +1402,7 @@
 	}%
 	\begin{institution}[#1]{#2}{#3}%
 }{%
-	\end{institution}
+	\end{institution}%
 }
 
 % Crea la firma del usuario
@@ -1413,8 +1412,8 @@
 		\begin{tabular}{c}%
 			\includegraphics[width=\usersignaturesize cm]{\sign} \\%
 		}{%
-		\end{tabular}
-	\end{flushright}
+		\end{tabular}%
+	\end{flushright}%
 	\vspace{-1em}%
 }
 
@@ -1423,7 +1422,7 @@
 \newenvironment{itemizebf}[1][]{%
 	\begin{itemize}[font=\bfseries,#1]%
 	}{%
-	\end{itemize}
+	\end{itemize}%
 }
 
 % Enumerate en negrita
@@ -1431,7 +1430,7 @@
 \newenvironment{enumeratebf}[1][]{%
 	\begin{enumerate}[font=\bfseries,#1]%
 	}{%
-	\end{enumerate}
+	\end{enumerate}%
 }
 
 % -----------------------------------------------------------------------------
@@ -1479,15 +1478,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={04/06/2022},
+		Template.Date={02/09/2022},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.3-1},
-		Template.Version.Hash={097AFEA40607232C513AC84021ED0832},
-		Template.Version.Release={3.2.3},
+		Template.Version.Dev={3.2.4-1},
+		Template.Version.Hash={77EEBE64A275CEE0115C3B2E5F104A87},
+		Template.Version.Release={3.2.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1495,7 +1494,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.2.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.2.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

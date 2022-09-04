@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.2.4 (02/09/2022)
+% Versión:      3.2.5 (03/09/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -205,7 +205,7 @@
 	\ifthenelse{\equal{\writetitleheader}{true}}{%
 		\begin{center}%
 			\fontsize{16}{12} \selectfont \vspace{0.3cm} \textcolor{\titlecolor}{\headertitle}%
-		\end{center}
+		\end{center}%
 		\vspace{\headertitlemargin cm}%
 	}{}%
 	
@@ -225,7 +225,7 @@
 	{%
 		\noindent%
 		\input{\jobname.hitems}%
-	}
+	}%
 	\vspace{0.55em}%
 	\hypersetup{urlcolor=\urlcolor}%
 }
@@ -364,7 +364,7 @@
 
 % Apóstrofe
 \newcommand{\apo}{%
-	\raisebox{-.18ex}{'}{\hspace{-.1em}}%
+	\raisebox{-.18ex}{'}{\hspace{0em}}%
 }
 
 % Inserta un texto entre comillas

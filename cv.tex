@@ -52,11 +52,14 @@
 % CONFIGURACIONES DE PÁGINA
 \templatePagecfg
 
-% PÁRRAFO DE RESUMEN (ALTERNATIVA: photosummary, summarynocol)
-\begin{summary}
+% PÁRRAFO DE RESUMEN (ALTERNATIVA: photosummary, summary, summarynocol)
+%	\begin{summarynocol}				Línea negra por defecto
+% 	\begin{summarynocol}[..]			Línea punteada
+%	\begin{summarynocol}[none]			Sin línea
+\begin{summarynocol}
 	\emph{\lipsum[75]} \\
 	\lipsum[4]
-\end{summary}
+\end{summarynocol}
 
 % TABLA ANTECEDENTES PERSONALES
 %	Desactivar la foto con la configuración \personaltabledatapic
@@ -81,11 +84,11 @@
 	\end{institution}
 	
 	\begin{institution}{Empresa B}{Ciudad 2, Región 2, País 2}
-		\institutionentry{Ayudante de Ingeniería}{Febrero \apo 04}{Diciembre \apo 07}{}
+		\institutionentry{Ayudante de Ingeniería}{Febrero 2004}{Diciembre 2007}{}
 	\end{institution}
 
 	\begin{institutionicon}{Empresa C}{Ciudad 3, Región 3, País 3}{img/icono}
-		\institutionentry{Ayudante de Oficina Técnica}{Marzo \apo 08}{Abril \apo 14}{\lipsum[133]}
+		\institutionentry{Ayudante de Oficina Técnica}{Marzo 2008}{Abril \apo 2014}{\lipsum[133]}
 	\end{institutionicon}
 \end{cvblock}
 

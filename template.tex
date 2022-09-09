@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      3.2.5 (03/09/2022)
+% Versión:      3.2.6 (09/09/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -916,6 +916,7 @@
 	}{}%
 	
 	% Nombre
+	\ifthenelse{\equal{\headertitlecentered}{true}}{\begin{center}}{}%
 	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\name}}%
 	\ifthenelse{\equal{\writebirthdayheader}{true}}{%
 		\quad \emph{\textcolor{\headertextcolor}{\birthmonth \birthday, \birthyear}}%
@@ -924,6 +925,7 @@
 		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}%
 	}{}%
 	\\ \vspace{-1em}%
+	\ifthenelse{\equal{\headertitlecentered}{true}}{\end{center}}{}%
 	
 	% Escribe items del header
 	\hypersetup{urlcolor=\headerurlcolor}%
@@ -940,8 +942,42 @@
 %	#1	Título
 \newcommand*{\roottitle}[1]{%
 	\emptyvarerr{\roottitle}{#1}{Titulo no definido}%
-	\section*{#1}\vspace{-0.3em}\nopagebreak[4]%
-	\addcontentsline{toc}{section}{#1}%
+	\ifthenelse{\equal{#1}{}}{}{%
+		\section*{#1}\vspace{-0.3em}\nopagebreak[4]%
+		\addcontentsline{toc}{section}{#1}%
+	}%
+}
+
+% Calcula el margen necesario para diferentes tipos de línea
+%	#1	Tipo de línea
+\newcommand{\summarystylemarginprefix}[1]{
+	\ifthenelse{\equal{#1}{}}{}{%	
+	\ifthenelse{\equal{#1}{..}}{}{%	
+	\ifthenelse{\equal{#1}{none}}{
+		\vspace{-0.75em}%
+		\ifthenelse{\equal{\nomsummary}{}}{%
+			\vspace{2em}%
+		}{%
+			\vspace{1em}%
+		}%
+	}{}}}%
+}
+
+% Calcula el margen necesario para diferentes tipos de línea
+%	#1	Tipo de línea
+\newcommand{\summarystylemarginpostfix}[1]{
+	\ifthenelse{\equal{#1}{}}{
+		\ifthenelse{\equal{\nomsummary}{}}{%
+			\vspace{1.5em}%
+		}{}%
+	}{%	
+	\ifthenelse{\equal{#1}{..}}{
+		\ifthenelse{\equal{\nomsummary}{}}{%
+			\vspace{0.5em}%
+			\\%
+		}{}%
+	}{%	
+	\ifthenelse{\equal{#1}{none}}{}{}}}%
 }
 
 % Crea un acrónimo de forma fácil
@@ -1199,7 +1235,7 @@
 				\noindent%
 				\hspace*{-1.65em}%
 				\makebox[1.01\textwidth][l]{\dotfill}%
-				\vspace{-2em}%
+				\vspace{-0.9em}%
 			}%
 		}{%
 		\ifthenelse{\equal{#1}{none}}{%
@@ -1231,8 +1267,10 @@
 % Párrafo de descripción
 %	#1	Estilo de línea
 \newenvironment{summary}[1][]{%
+	\summarystylemarginprefix{#1}%
 	\begin{cvblock}[#1]{\nomsummary}%
 		\begingroup%
+		\summarystylemarginpostfix{#1}%
 		\vspace{-1em}%
 		\begin{multicols}{2}%
 			\noindent%
@@ -1242,25 +1280,29 @@
 		\par%
 		\endgroup%
 	\end{cvblock}
-	\vspace{0.49\baselineskip}%
+	\vspace{0.375\baselineskip}%
 }
 
 % Párrafo de descripción
 %	#1	Estilo de línea
 \newenvironment{summarynocol}[1][]{%
+	\summarystylemarginprefix{#1}%
 	\begin{cvblock}[#1]{\nomsummary}%
+		\summarystylemarginpostfix{#1}%
 		\begingroup%
 		}{%
 		\par%
 		\endgroup%
 	\end{cvblock}%
-	\vspace{0.49\baselineskip}%
+	\vspace{0.375\baselineskip}%
 }
 
 % Párrafo de descripción con foto de perfil
 %	#1	Estilo de línea
 \newenvironment{photosummary}[1][]{%
+	\summarystylemarginprefix{#1}%
 	\begin{cvblock}[#1]{\nomsummary}%
+		\summarystylemarginpostfix{#1}%
 		\vspace{0.1em}%
 		\noindent%
 		\begin{minipage}[t]{\userphotosize cm}%
@@ -1478,15 +1520,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={03/09/2022},
+		Template.Date={09/09/2022},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.5},
-		Template.Version.Hash={32E735660B40B128462BE2EAA5987328},
-		Template.Version.Release={3.2.5},
+		Template.Version.Dev={3.2.6},
+		Template.Version.Hash={8239C680721A2B361F804214512B0D27},
+		Template.Version.Release={3.2.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1494,7 +1536,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.2.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.2.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

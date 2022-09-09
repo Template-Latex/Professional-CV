@@ -210,6 +210,7 @@
 	}{}%
 	
 	% Nombre
+	\ifthenelse{\equal{\headertitlecentered}{true}}{\begin{center}}{}%
 	\noindent {\fontsizemaintitle \stylemaintitle \textcolor{\titlecolor}{\name}}%
 	\ifthenelse{\equal{\writebirthdayheader}{true}}{%
 		\quad \emph{\textcolor{\headertextcolor}{\birthmonth \birthday, \birthyear}}%
@@ -218,6 +219,7 @@
 		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}%
 	}{}%
 	\\ \vspace{-1em}%
+	\ifthenelse{\equal{\headertitlecentered}{true}}{\end{center}}{}%
 	
 	% Escribe items del header
 	\hypersetup{urlcolor=\headerurlcolor}%
@@ -234,8 +236,42 @@
 %	#1	Título
 \newcommand*{\roottitle}[1]{%
 	\emptyvarerr{\roottitle}{#1}{Titulo no definido}%
-	\section*{#1}\vspace{-0.3em}\nopagebreak[4]%
-	\addcontentsline{toc}{section}{#1}%
+	\ifthenelse{\equal{#1}{}}{}{%
+		\section*{#1}\vspace{-0.3em}\nopagebreak[4]%
+		\addcontentsline{toc}{section}{#1}%
+	}%
+}
+
+% Calcula el margen necesario para diferentes tipos de línea
+%	#1	Tipo de línea
+\newcommand{\summarystylemarginprefix}[1]{
+	\ifthenelse{\equal{#1}{}}{}{%	
+	\ifthenelse{\equal{#1}{..}}{}{%	
+	\ifthenelse{\equal{#1}{none}}{
+		\vspace{-0.75em}%
+		\ifthenelse{\equal{\nomsummary}{}}{%
+			\vspace{2em}%
+		}{%
+			\vspace{1em}%
+		}%
+	}{}}}%
+}
+
+% Calcula el margen necesario para diferentes tipos de línea
+%	#1	Tipo de línea
+\newcommand{\summarystylemarginpostfix}[1]{
+	\ifthenelse{\equal{#1}{}}{
+		\ifthenelse{\equal{\nomsummary}{}}{%
+			\vspace{1.5em}%
+		}{}%
+	}{%	
+	\ifthenelse{\equal{#1}{..}}{
+		\ifthenelse{\equal{\nomsummary}{}}{%
+			\vspace{0.5em}%
+			\\%
+		}{}%
+	}{%	
+	\ifthenelse{\equal{#1}{none}}{}{}}}%
 }
 
 % Crea un acrónimo de forma fácil

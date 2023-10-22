@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.3.0 (21/10/2023)
+% Versión:      3.3.1 (22/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -94,10 +94,10 @@
 %	#3	Margen derecho
 %	#4	Margen inferior
 \newcommand{\setpagemargincm}[4]{
-	\ifthenelse{\equal{\compilertype}{lualatex}}{
+	\ifthenelse{\equal{\compilertype}{lualatex}}{%
 		% Geometry no válido en lualatex
-	}{
-		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
+	}{%
+		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}%
 	}
 }
 
@@ -247,7 +247,7 @@
 \newcommand{\summarystylemarginprefix}[1]{
 	\ifthenelse{\equal{#1}{}}{}{%	
 	\ifthenelse{\equal{#1}{..}}{}{%	
-	\ifthenelse{\equal{#1}{none}}{
+	\ifthenelse{\equal{#1}{none}}{%
 		\vspace{-0.75em}%
 		\ifthenelse{\equal{\nomsummary}{}}{%
 			\vspace{2em}%
@@ -260,12 +260,12 @@
 % Calcula el margen necesario para diferentes tipos de línea
 %	#1	Tipo de línea
 \newcommand{\summarystylemarginpostfix}[1]{
-	\ifthenelse{\equal{#1}{}}{
+	\ifthenelse{\equal{#1}{}}{%
 		\ifthenelse{\equal{\nomsummary}{}}{%
 			\vspace{1.5em}%
 		}{}%
 	}{%	
-	\ifthenelse{\equal{#1}{..}}{
+	\ifthenelse{\equal{#1}{..}}{%
 		\ifthenelse{\equal{\nomsummary}{}}{%
 			\vspace{0.5em}%
 			\\%
@@ -301,9 +301,9 @@
 
 % Inserta un objeto en un elemento institución
 %	#1	Cargo
-%	#2	Indica si escribe fechas o no
-%	#3	Fecha inicial
-%	#4	Fecha final
+%	#2	Fecha inicial
+%	#3	Fecha final
+%	#4	Separador entre fechas
 %	#5	Ancho título
 %	#6	Ancho fecha
 %	#7	Descripción
@@ -325,7 +325,17 @@
 			\hfill%
 			\begin{minipage}[t][][t]{#6}%
 				\begin{flushright}%
-					\noindent \textcolor{\datecolor}{\emph{#2#4#3}}%
+					\ifthenelse{\equal{#2}{}}{%
+						\ifthenelse{\equal{#3}{}}{}{%
+							\noindent \textcolor{\datecolor}{\emph{#3}}%
+						}
+					}{%
+						\ifthenelse{\equal{#3}{}}{%
+							\noindent \textcolor{\datecolor}{\emph{#2}}%
+						}{%
+							\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
+						}
+					}
 				\end{flushright}
 			\end{minipage}
 		\end{minipage}
@@ -350,7 +360,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentry}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.687\linewidth}{.31\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{.687\linewidth}{.31\linewidth}{#4}%
 }
 
 % Entrada en institución con fecha corta
@@ -359,7 +369,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2 }{ #3}{\dateseparator}{.833\linewidth}{.163\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{.833\linewidth}{.163\linewidth}{#4}%
 }
 
 % Entrada en institución sin fecha

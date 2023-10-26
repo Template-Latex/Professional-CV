@@ -26,6 +26,13 @@
 	\g@addto@macro\phonenumber\xspace
 \makeatother
 
+% Crea el título del documento
+\ifthenelse{\equal{\writetitleheader}{true}}{%
+	\def\cvdoctitle {\headertitle~ \name}
+}{
+	\def\cvdoctitle {\name}
+}%
+
 % Se define metadata del pdf
 \ifthenelse{\equal{\cfgshowbookmarkmenu}{true}}{
 	\def\cdfpagemodepdf {UseOutlines}
@@ -72,7 +79,7 @@
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
 	pdfsubject={CV \name},
-	pdftitle={\headertitle~ \name},
+	pdftitle={\cvdoctitle},
 	pdftoolbar={\cfgpdftoolbar},
 	pdftype={Text}
 }

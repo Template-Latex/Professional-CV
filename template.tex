@@ -88,10 +88,8 @@
 \usepackage{booktabs}      % Permite manejar elementos visuales en tablas
 \usepackage{color}         % Colores
 \usepackage{colortbl}      % Administración de color en tablas
-\usepackage{commonunicode} % Símbolos unicode
 \usepackage{enumitem}      % Permite enumerar ítems
 \usepackage{graphicx}      % Propiedades extra para los gráficos
-\usepackage{ifxetex}       % Detecta compilador
 \usepackage{indentfirst}   % Identado en cada párrafo inicial
 \usepackage{lipsum}        % Permite crear textos dummy
 \usepackage{mathrsfs}      % Define más fuentes matemáticas
@@ -711,6 +709,7 @@
 % Finales
 % -----------------------------------------------------------------------------
 \usepackage[T1]{fontenc} % Caracteres acentuados
+\usepackage{commonunicode} % Símbolos unicode
 \usepackage{csquotes} % Citas y comillas
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\inputencoding{utf8}}{
@@ -998,6 +997,9 @@
 %	#1	Nombre entrada
 %	#2	Datos entrada
 \newcommand{\personaltableentry}[2]{%
+	\ifthenelse{\equal{\GLOBALpersonaltableenabled}{true}}{}{%
+		\throwwarning{La funcion \noexpand\personaltableentry no puede usarse fuera del entorno \noexpand\personaltabledata}\stop%
+	}%
 	\emptyvarerr{\personaltableentry}{#1}{Nombre entrada no definido}%
 	\emptyvarerr{\personaltableentry}{#2}{Datos entrada no definidos}%
 	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\%
@@ -1199,6 +1201,7 @@
 % Definición de variables globales
 \global\def\GLOBALinstitutionenabled {false}
 \global\def\GLOBALinstitutionicon {}
+\global\def\GLOBALpersonaltableenabled {false}%
 
 % Crea una sección identada
 \newenvironment{indentsection}{%
@@ -1329,6 +1332,7 @@
 % Tabla de datos personales
 %	#1	Estilo de línea
 \newenvironment{personaltabledata}[1][]{%
+	\global\def\GLOBALpersonaltableenabled {true}%
 	\begin{cvblock}[#1]{\nompersonaldata}%
 		\vspace{0.1em}%
 		\noindent%
@@ -1347,10 +1351,10 @@
 				\end{flushleft}%
 			\end{minipage}%
 		}{}%
-		\hspace*{0.4cm}%
+		\hspace*{0.3cm}%
 		\begingroup%
-		\def\arraystretch{1.3}%
-		\begin{minipage}[t]{\linewidth-\userphotosize cm-0.37cm}%
+		\def\arraystretch{1.185}%
+		\begin{minipage}[t]{\linewidth-\userphotosize cm-0.3cm}%
 			\vspace{-0.95cm}%
 			\begin{table}[H]%
 				\begin{tabular}{ll}%
@@ -1362,6 +1366,7 @@
 		\par%
 	\end{cvblock}%
 	\vspace{1.15em}%
+	\global\def\GLOBALpersonaltableenabled {false}%
 }
 
 % Nueva institución
@@ -1420,7 +1425,7 @@
 	\vspace{-1.5\baselineskip}%
 	\noindent%
 	\global\def\GLOBALinstitutionicon {}%
-	\global\def\GLOBALinstitutionenabled {true}
+	\global\def\GLOBALinstitutionenabled {true}%
 	}{%
 	\global\def\GLOBALinstitutionenabled {false}%
 	\par%
@@ -1535,8 +1540,8 @@
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.3.2-1},
-		Template.Version.Hash={68B7F140DD91152DA8992A96CA3CFA28},
+		Template.Version.Dev={3.3.2-2},
+		Template.Version.Hash={67DAF673D63BA981A1ACB00611611B88},
 		Template.Version.Release={3.3.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}

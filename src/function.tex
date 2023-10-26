@@ -291,6 +291,9 @@
 %	#1	Nombre entrada
 %	#2	Datos entrada
 \newcommand{\personaltableentry}[2]{%
+	\ifthenelse{\equal{\GLOBALpersonaltableenabled}{true}}{}{%
+		\throwwarning{La funcion \noexpand\personaltableentry no puede usarse fuera del entorno \noexpand\personaltabledata}\stop%
+	}%
 	\emptyvarerr{\personaltableentry}{#1}{Nombre entrada no definido}%
 	\emptyvarerr{\personaltableentry}{#2}{Datos entrada no definidos}%
 	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\%

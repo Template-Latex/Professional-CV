@@ -10,7 +10,6 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 % Definición de variables globales
-\global\def\GLOBALhasinstitution {false}
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
 \global\def\GLOBALheaderseparatorsticky {false}
@@ -283,11 +282,9 @@
 % Crea un campo de texto
 % 	#1	Texto
 \newcommand{\bodytext}[1]{%
-	\nopagebreak[4]%
 	\begin{indentsection}%
 		\item[] #1%
-	\end{indentsection}
-	\pagebreak[2]%
+	\end{indentsection}%
 }
 
 % Crea una entrada en la tabla de datos personales
@@ -314,44 +311,38 @@
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
 	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}%
 	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}%
-	\nopagebreak[4]%
 	\begin{indentsectiondouble}%
 		\item []%
 		\noindent%
 		\begin{minipage}{1\linewidth}%
 			\begin{minipage}[t][][t]{#5}%
-				{\textcolor{\instentrytitlecolor}{\textbf{#1}} ~ \\ \vspace{0.7em}}%
-			\end{minipage}
-			\hfill%
-			\begin{minipage}[t][][t]{#6}%
-				\begin{flushright}%
-					\ifthenelse{\equal{#2}{}}{%
-						\ifthenelse{\equal{#3}{}}{}{%
-							\noindent \textcolor{\datecolor}{\emph{#3}}%
-						}
-					}{%
-						\ifthenelse{\equal{#3}{}}{%
-							\noindent \textcolor{\datecolor}{\emph{#2}}%
+				\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+				\vspace{-0.35em}%
+			\end{minipage}%
+			\ifthenelse{\equal{#6}{0}}{}{%
+				\begin{minipage}[t][][t]{#6}%
+					\begin{flushright}%
+						\ifthenelse{\equal{#2}{}}{%
+							\ifthenelse{\equal{#3}{}}{}{%
+								\noindent \textcolor{\datecolor}{\emph{#3}}%
+							}%
 						}{%
-							\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
-						}
-					}
-				\end{flushright}
-			\end{minipage}
-		\end{minipage}
-		\vspace{-1.1\baselineskip}%
-		\break%
-		\ifx\hfuzz#7\hfuzz%
-			\vspace{-0.75\baselineskip}%
-			\global\def\GLOBALinstitutionshortend {true}%
-		\else%
-			\begin{minipage}{1.0\linewidth}%
-				\bodytext{#7}%
-				\par%
-			\end{minipage}\vspace{0.1\baselineskip}%
-			\global\def\GLOBALinstitutionshortend {false}%
-		\fi%
-	\end{indentsectiondouble}
+							\ifthenelse{\equal{#3}{}}{%
+								\noindent \textcolor{\datecolor}{\emph{#2}}%
+							}{%
+								\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
+							}%
+						}%
+					\end{flushright}%
+				\end{minipage}%
+			}%
+		\end{minipage}%
+		\ifthenelse{\equal{#7}{}}{}{%
+			\bodytext{#7}%
+			\par%
+			\vspace{0.5\baselineskip}%
+		}%
+	\end{indentsectiondouble}%
 }
 
 % Entrada en institución
@@ -376,7 +367,7 @@
 %	#1	Cargo
 %	#2	Descripción
 \newcommand{\institutionentrynodate}[2]{%
-	\newinstitutionentry{#1}{}{}{}{\linewidth}{0\linewidth}{#2}%
+	\newinstitutionentry{#1}{}{}{}{\linewidth}{0}{#2}%
 }
 
 % Otro tipo de entrada en cvblock
@@ -386,7 +377,7 @@
 	\begin{basedescript}%
 		{\setlength{\leftmargin}{\doubleparindent}}%
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2%
-	\end{basedescript}
+	\end{basedescript}%
 }
 
 % Inserta un elemento en el bloque de firma

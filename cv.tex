@@ -36,7 +36,6 @@
 \addheadertext{RUT: 12.345.678-9}
 \addheaderlink{https://johndoe.com}
 \addheaderlink[linkedin]{https://linkedin.com/john.doe} % latex.ppizarror.com/icons
-\addheaderlink[twitter-square]{https://twitter.com/john.doe}
 \addheaderlink[github]{https://github.com/ppizarror}
 \addheadernewline
 
@@ -53,11 +52,12 @@
 \templatePagecfg
 
 % PÁRRAFO DE RESUMEN (ALTERNATIVA: photosummary, summary, summarynocol)
+% 	Variaciones por cada entorno:
 %	\begin{summarynocol}				Línea negra por defecto
 % 	\begin{summarynocol}[..]			Línea punteada
 %	\begin{summarynocol}[none]			Sin línea
-\begin{summarynocol}
-	\emph{\lipsum[75]} \\
+\begin{summarynocol}%
+	\noindent\emph{\lipsum[75]} \\
 	\lipsum[4]
 \end{summarynocol}
 
@@ -73,7 +73,7 @@
 \end{personaltabledata}
 
 % EXPERIENCIA
-% cvblock toma un parámetro opcional para definir el estilo de línea divisoria:
+%	cvblock toma un parámetro opcional para definir el estilo de línea divisoria:
 %	\begin{cvblock}[]{Experiencia}		Línea negra por defecto
 %	\begin{cvblock}[..]{Experiencia}	Línea punteada
 %	\begin{cvblock}[none]{Experiencia}	Sin línea

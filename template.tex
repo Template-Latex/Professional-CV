@@ -12,6 +12,27 @@
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES
 % -----------------------------------------------------------------------------
+% Definiciones previas
+\usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
+
+\definecolor{backcolour}{rgb}{0.95, 0.95, 0.92}
+\definecolor{codegray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{codegreen}{rgb}{0, 0.6, 0}
+\definecolor{codepurple}{rgb}{0.58, 0, 0.82}
+\definecolor{dark-blue}{rgb}{0.15, 0.15, 0.40}
+\definecolor{dgray}{RGB}{104, 108, 113}
+\definecolor{dkgreen}{rgb}{0, 0.6, 0}
+\definecolor{gray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{lbrown}{RGB}{255, 252, 249}
+\definecolor{lgray}{RGB}{180, 180, 180}
+\definecolor{lyellow}{rgb}{1.0, 1.0, 0.88}
+\definecolor{mauve}{rgb}{0.58, 0, 0.82}
+\definecolor{mygray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{mygreen}{rgb}{0, 0.6, 0}
+\definecolor{mylilas}{RGB}{170, 55, 241}
+\definecolor{ocre}{RGB}{243, 102, 25}
+
+% Ajustes usuario
 \input{template_config}
 
 % -----------------------------------------------------------------------------
@@ -106,7 +127,6 @@
 \usepackage{textcomp}      % Simbología común
 \usepackage{wasysym}       % Contiene caracteres misceláneos
 \usepackage{wrapfig}       % Permite comprimir imágenes
-\usepackage{xcolor}        % Administración de color avanzado
 \usepackage{xspace}        % Administra espacios en párrafos y líneas
 \usepackage{xurl}          % Permite añadir enlaces
 
@@ -1180,24 +1200,6 @@
 	\def\arraystretch {#2} % Vertical
 }
 
-% Definición de colores
-\definecolor{backcolour}{rgb}{0.95, 0.95, 0.92}
-\definecolor{codegray}{rgb}{0.5, 0.5, 0.5}
-\definecolor{codegreen}{rgb}{0, 0.6, 0}
-\definecolor{codepurple}{rgb}{0.58, 0, 0.82}
-\definecolor{dark-blue}{rgb}{0.15, 0.15, 0.40}
-\definecolor{dgray}{RGB}{104, 108, 113}
-\definecolor{dkgreen}{rgb}{0, 0.6, 0}
-\definecolor{gray}{rgb}{0.5, 0.5, 0.5}
-\definecolor{lbrown}{RGB}{255, 252, 249}
-\definecolor{lgray}{RGB}{180, 180, 180}
-\definecolor{lyellow}{rgb}{1.0, 1.0, 0.88}
-\definecolor{mauve}{rgb}{0.58, 0, 0.82}
-\definecolor{mygray}{rgb}{0.5, 0.5, 0.5}
-\definecolor{mygreen}{rgb}{0, 0.6, 0}
-\definecolor{mylilas}{RGB}{170, 55, 241}
-\definecolor{ocre}{RGB}{243, 102, 25}
-
 % Definición de variables globales
 \global\def\GLOBALinstitutionenabled {false}
 \global\def\GLOBALinstitutionicon {}
@@ -1211,7 +1213,7 @@
 		\setlength{\parskip}{0pt}%
 		\setlength{\itemsep}{0pt}%
 		\setlength{\topsep}{0pt}}%
-	}{%
+		}{%
 	\end{list}%
 }
 
@@ -1223,7 +1225,7 @@
 		\setlength{\parskip}{0pt}%
 		\setlength{\itemsep}{0pt}%
 		\setlength{\topsep}{0pt}}%
-	}{%
+		}{%
 	\end{list}%
 }
 
@@ -1541,8 +1543,8 @@
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.3.2-4},
-		Template.Version.Hash={A64E22B0388AD3A0CC7F9AF4EF469B02},
+		Template.Version.Dev={3.3.2-7},
+		Template.Version.Hash={49375F94B02E888D3276384E3C463942},
 		Template.Version.Release={3.3.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
@@ -1641,7 +1643,7 @@
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES DE PÁGINA
 % -----------------------------------------------------------------------------
-\newcommand{\templatePagecfg}{
+\newcommand{\templatePagecfg}{%
 	
 	% Se define el punto decimal
 	\ifthenelse{\equal{\pointdecimal}{true}}{%
@@ -1649,7 +1651,7 @@
 	}%
 	
 	% Configuración de estilo de página
-	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
+	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}%
 	\ifthenelse{\equal{\hfstyle}{style1}}{%
 		\pagestyle{empty}%
 	}{%
@@ -1723,9 +1725,9 @@
 	}%
 	
 	% Escribe el encabezado
-	\writeheader
+	\writeheader%
 	
 	% Estilo de título de secciones
-	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
+	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}%
 	
 }

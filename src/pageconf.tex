@@ -9,7 +9,7 @@
 % Manual template: [https://latex.ppizarror.com/professional-cv]
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
-\newcommand{\templatePagecfg}{
+\newcommand{\templatePagecfg}{%
 	
 	% Se define el punto decimal
 	\ifthenelse{\equal{\pointdecimal}{true}}{%
@@ -17,7 +17,7 @@
 	}%
 	
 	% Configuración de estilo de página
-	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
+	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}%
 	\ifthenelse{\equal{\hfstyle}{style1}}{%
 		\pagestyle{empty}%
 	}{%
@@ -91,9 +91,9 @@
 	}%
 	
 	% Escribe el encabezado
-	\writeheader
+	\writeheader%
 	
 	% Estilo de título de secciones
-	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
+	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}%
 	
 }

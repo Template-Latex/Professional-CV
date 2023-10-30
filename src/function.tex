@@ -70,22 +70,26 @@
 %	#1	Tipo de decisión al no satisfacer el espacio necesario
 %	#2	Tamaño mínimo (en baselineskip)
 %	#3	Contenido
-%	#4	Contenido a reemplazar en caso de fallar espaciado (requiere tipo "replace")
+%	#4	Contenido a reemplazar en caso de fallar espaciado (r, np, i) o aprobar espaciado (s)
 \newcommand{\printifspace}[4][np]{%
 	\global\def\GLOBALprintspacefilled {false}
 	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
 	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{%
-		#3%
-	}{%
-		\ifthenelse{\equal{#1}{r}}{ % Reemplaza
+		\ifthenelse{\equal{#1}{s}}{ % Reemplaza (exito)
 			#4%
 		}{%
-		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página
+			#3%
+		}%
+	}{%
+		\ifthenelse{\equal{#1}{r}}{ % Reemplaza (fallo)
+			#4%
+		}{%
+		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página (fallo)
 			\printifspacefill%
 			\newpage#3%
 		}{%
-		\ifthenelse{\equal{#1}{i}}{ % Nueva página
+		\ifthenelse{\equal{#1}{i}}{ % Nueva página (fallo)
 			\printifspacefill%
 			\newpage%
 		}{%

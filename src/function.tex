@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.3.4 (30/10/2023)
+% Versión:      3.3.5 (30/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -381,11 +381,11 @@
 				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Una sola línea
 					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
 					\hfill\LOCALinstitutionentrydate \\%
-					\vspace{-0.35em}%
+					\vspace{-0.5\baselineskip}%
 				}{%
 					\begin{minipage}[t][][t]{0.69\linewidth}%
 						\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
-						\vspace{-0.35em}%
+						\vspace{-0.5\baselineskip}%
 					\end{minipage}%
 					\begin{minipage}[t][][t]{0.31\linewidth}%
 						\begin{flushright}%

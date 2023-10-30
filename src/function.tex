@@ -334,52 +334,60 @@
 	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\%
 }
 
+% Crea el largo horizontal del box de los títulos
+\newlength\institutionentrytitle
+
 % Inserta un objeto en un elemento institución
 %	#1	Cargo
 %	#2	Fecha inicial
 %	#3	Fecha final
 %	#4	Separador entre fechas
-%	#5	Ancho título
-%	#6	Ancho fecha
-%	#7	Descripción
-\newcommand{\newinstitutionentry}[7]{%
+%	#5	Descripción
+\newcommand{\newinstitutionentry}[5]{%
 	\ifthenelse{\equal{\GLOBALinstitutionenabled}{true}}{}{%
-		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentryshort no pueden usarse fuera del entorno \noexpand\institution}\stop%
+		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentrynodate no pueden usarse fuera del entorno \noexpand\institution}\stop%
 	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
-	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}%
-	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}%
 	\nopagebreak[4]%
 	\begin{indentsectiondouble}%
 		\item []%
 		\noindent%
+		\hfuzz=2pt%
+		\def\LOCALinstitutionentrydate {%
+			\ifthenelse{\equal{#2}{}}{%
+				\ifthenelse{\equal{#3}{}}{}{%
+					\noindent \textcolor{\datecolor}{\emph{#3}}%
+				}%
+			}{%
+				\ifthenelse{\equal{#3}{}}{%
+					\noindent \textcolor{\datecolor}{\emph{#2}}%
+				}{%
+					\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
+				}%
+			}%
+		}%
 		\printifspace{2}{%
+			\settowidth\institutionentrytitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho del título
 			\begin{minipage}{1\linewidth}%
-				\begin{minipage}[t][][t]{#5}%
-					\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Aplica crop
+					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
+					\hfill\LOCALinstitutionentrydate \\%
 					\vspace{-0.35em}%
-				\end{minipage}%
-				\ifthenelse{\equal{#6}{0}}{}{%
-					\begin{minipage}[t][][t]{#6}%
+				}{%
+					\begin{minipage}[t][][t]{0.69\linewidth}%
+						\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+						\vspace{-0.35em}%
+					\end{minipage}%
+					\begin{minipage}[t][][t]{0.31\linewidth}%
 						\begin{flushright}%
-							\ifthenelse{\equal{#2}{}}{%
-								\ifthenelse{\equal{#3}{}}{}{%
-									\noindent \textcolor{\datecolor}{\emph{#3}}%
-								}%
-							}{%
-								\ifthenelse{\equal{#3}{}}{%
-									\noindent \textcolor{\datecolor}{\emph{#2}}%
-								}{%
-									\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
-								}%
-							}%
+							\LOCALinstitutionentrydate%
 						\end{flushright}%
 					\end{minipage}%
 				}%
 			\end{minipage}%
 		}%
-		\ifthenelse{\equal{#7}{}}{}{%
-			\bodytext{#7}%
+		\ifthenelse{\equal{#5}{}}{}{%
+			\bodytext{#5}%
 			\par%
 			\vspace{0.5\baselineskip}%
 		}%
@@ -392,7 +400,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentry}[4]{%
-	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{.687\linewidth}{.31\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{#4}%
 }
 
 % Entrada en institución con fecha corta
@@ -401,14 +409,14 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{.833\linewidth}{.163\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{#4}%
 }
 
 % Entrada en institución sin fecha
 %	#1	Cargo
 %	#2	Descripción
 \newcommand{\institutionentrynodate}[2]{%
-	\newinstitutionentry{#1}{}{}{}{\linewidth}{0}{#2}%
+	\newinstitutionentry{#1}{}{}{}{#2}%
 }
 
 % Otro tipo de entrada en cvblock

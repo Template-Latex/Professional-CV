@@ -13,6 +13,7 @@
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
 \global\def\GLOBALheaderseparatorsticky {false}
+\global\def\GLOBALprintspacefilled {false}
 
 \def\LOCALpercentchar#1{}
 \edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
@@ -27,27 +28,68 @@
 \newsavebox{\printspacemybox}
 \newlength{\printspaceboxheight}
 
+% Inserta un resorte que llena todo el espacio previo nueva línea
+%	#1	Tamaño a rellenar (baselineskip)
+\newcommand{\coreiprintifspacefill}[1]{%
+	\ifthenelse{\equal{\GLOBALprintspacefilled}{false}}{%
+		\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#1\baselineskip}}}%
+		\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+		\ifthenelse{\printspaceboxheight<\measurepage}{%
+			\vspace{#1\baselineskip}%
+			\global\def\GLOBALprintspacefilled {true}%
+		}{}%
+	}{}%
+}
+
+% Itera diferentes valores de espaciamiento si existe nueva línea
+\newcommand{\printifspacefill}{%
+	\coreiprintifspacefill{5}%
+	\coreiprintifspacefill{4.75}%
+	\coreiprintifspacefill{4.5}%
+	\coreiprintifspacefill{4.25}%
+	\coreiprintifspacefill{4}%
+	\coreiprintifspacefill{3.75}%
+	\coreiprintifspacefill{3.5}%
+	\coreiprintifspacefill{3.25}%
+	\coreiprintifspacefill{3}%
+	\coreiprintifspacefill{2.75}%
+	\coreiprintifspacefill{2.5}%
+	\coreiprintifspacefill{2.25}%
+	\coreiprintifspacefill{2}%
+	\coreiprintifspacefill{1.75}%
+	\coreiprintifspacefill{1.5}%
+	\coreiprintifspacefill{1.25}%
+	\coreiprintifspacefill{1}%
+	\coreiprintifspacefill{0.75}%
+	\coreiprintifspacefill{0.5}%
+	\coreiprintifspacefill{0.25}%
+	\coreiprintifspacefill{0.1}%
+}
+
 % Inserta un contenido dependiendo si posee el espacio mínimo necesario
 %	#1	Tipo de decisión al no satisfacer el espacio necesario
 %	#2	Tamaño mínimo (en baselineskip)
 %	#3	Contenido
 %	#4	Contenido a reemplazar en caso de fallar espaciado (requiere tipo "replace")
-\newcommand{\printifspace}[4][replace]{%
+\newcommand{\printifspace}[4][np]{%
+	\global\def\GLOBALprintspacefilled {false}
 	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
 	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{%
 		#3%
 	}{%
-		\ifthenelse{\equal{#1}{replace}}{ % Reemplaza
+		\ifthenelse{\equal{#1}{r}}{ % Reemplaza
 			#4%
 		}{%
 		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página
+			\printifspacefill%
 			\newpage#3%
 		}{%
 		\ifthenelse{\equal{#1}{i}}{ % Nueva página
+			\printifspacefill%
 			\newpage%
 		}{%
-			\throwwarning{Valor paging incorrecto, validos: replace, np, i}%
+			\throwwarning{Valor paging incorrecto, validos: r, np, i}%
 		}}}%
 	}%
 }

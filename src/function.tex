@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.3.3 (30/10/2023)
+% Versión:      3.3.4 (30/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -352,7 +352,7 @@
 	\begin{indentsectiondouble}%
 		\item []%
 		\noindent%
-		\hfuzz=2pt%
+		\hfuzz=4pt%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%
 				\ifthenelse{\equal{#3}{}}{}{%
@@ -366,10 +366,19 @@
 				}%
 			}%
 		}%
-		\printifspace{2}{%
-			\settowidth\institutionentrytitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho del título
-			\begin{minipage}{1\linewidth}%
-				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Aplica crop
+		\settowidth\institutionentrytitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho del título
+		\ifthenelse{\equal{#5}{}}{%
+			\def\LOCALinstitutionentryreqspace {0}%
+		}{%
+			\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Título en una sola línea
+				\def\LOCALinstitutionentryreqspace {2}%
+			}{%
+				\def\LOCALinstitutionentryreqspace {3}%
+			}%
+		}%
+		\printifspace{\LOCALinstitutionentryreqspace}{%
+			\begin{minipage}{1\linewidth} % Crea el título
+				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Una sola línea
 					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
 					\hfill\LOCALinstitutionentrydate \\%
 					\vspace{-0.35em}%

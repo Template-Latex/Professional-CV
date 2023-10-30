@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      3.3.2 (30/10/2023)
+% Versión:      3.3.3 (30/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -104,7 +104,6 @@
 \usepackage{mathtools}     % Permite utilizar notaciones matemáticas
 \usepackage{mdwlist}       % Listas con encabezado
 \usepackage{multicol}      % Múltiples columnas
-\usepackage{needspace}     % Maneja los espacios en página
 \usepackage{ragged2e}      % Mejora posicionado
 \usepackage{relsize}       % Escalado avanzado
 \usepackage{sectsty}       % Cambia el estilo de los títulos
@@ -735,6 +734,34 @@
 \immediate\openout\fileheaderitems=\jobname.hitems
 \AtBeginDocument{\immediate\closeout\fileheaderitems}
 
+% Espaciado necesario para printifspace
+\newcommand*\measurepage{\dimexpr\pagegoal-\pagetotal\relax}
+\newsavebox{\printspacemybox}
+\newlength{\printspaceboxheight}
+
+% Inserta un contenido dependiendo si posee el espacio mínimo necesario
+%	#1	Tipo de decisión al no satisfacer el espacio necesario
+%	#2	Tamaño mínimo (en baselineskip)
+%	#2	Contenido
+\newcommand{\printifspace}[3][np]{%
+	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
+	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+	\ifthenelse{\printspaceboxheight<\measurepage}{%
+		#3%
+	}{%
+		\ifthenelse{\equal{#1}{ignore}}{ % No inserta el elemento
+		}{%
+		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página
+			\newpage#3%
+		}{%
+		\ifthenelse{\equal{#1}{i}}{ % Nueva página
+			\newpage%
+		}{%
+			\throwwarning{Valor paging incorrecto}%
+		}}}%
+	}%
+}
+
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
@@ -822,6 +849,13 @@
 	\list{}{\rightmargin#2\leftmargin#1}\item[]%
 }
 \let\endchangemargin=\endlist
+
+% Actualiza newcolumn
+\ifthenelse{\isundefined{\newcolumn}}{%
+	\newcommand{\newcolumn}{\columnbreak}
+}{%
+	\renewcommand{\newcolumn}{\columnbreak}
+}
 
 % Agrega el separador entre items del header
 \newcommand{\addheaderseparator}{%
@@ -1012,50 +1046,60 @@
 	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\%
 }
 
+% Crea el largo horizontal del box de los títulos
+\newlength\institutionentrytitle
+
 % Inserta un objeto en un elemento institución
 %	#1	Cargo
 %	#2	Fecha inicial
 %	#3	Fecha final
 %	#4	Separador entre fechas
-%	#5	Ancho título
-%	#6	Ancho fecha
-%	#7	Descripción
-\newcommand{\newinstitutionentry}[7]{%
+%	#5	Descripción
+\newcommand{\newinstitutionentry}[5]{%
 	\ifthenelse{\equal{\GLOBALinstitutionenabled}{true}}{}{%
-		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentryshort no pueden usarse fuera del entorno \noexpand\institution}\stop%
+		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentrynodate no pueden usarse fuera del entorno \noexpand\institution}\stop%
 	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
-	\emptyvarerr{\newinstitutionentry}{#5}{Dimensiones de titulo no definido}%
-	\emptyvarerr{\newinstitutionentry}{#6}{Dimensiones de fecha no definido}%
 	\nopagebreak[4]%
 	\begin{indentsectiondouble}%
 		\item []%
 		\noindent%
-		\begin{minipage}{1\linewidth}%
-			\begin{minipage}[t][][t]{#5}%
-				\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
-				\vspace{-0.35em}%
-			\end{minipage}%
-			\ifthenelse{\equal{#6}{0}}{}{%
-				\begin{minipage}[t][][t]{#6}%
-					\begin{flushright}%
-						\ifthenelse{\equal{#2}{}}{%
-							\ifthenelse{\equal{#3}{}}{}{%
-								\noindent \textcolor{\datecolor}{\emph{#3}}%
-							}%
-						}{%
-							\ifthenelse{\equal{#3}{}}{%
-								\noindent \textcolor{\datecolor}{\emph{#2}}%
-							}{%
-								\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
-							}%
-						}%
-					\end{flushright}%
-				\end{minipage}%
+		\hfuzz=2pt%
+		\def\LOCALinstitutionentrydate {%
+			\ifthenelse{\equal{#2}{}}{%
+				\ifthenelse{\equal{#3}{}}{}{%
+					\noindent \textcolor{\datecolor}{\emph{#3}}%
+				}%
+			}{%
+				\ifthenelse{\equal{#3}{}}{%
+					\noindent \textcolor{\datecolor}{\emph{#2}}%
+				}{%
+					\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
+				}%
 			}%
-		\end{minipage}%
-		\ifthenelse{\equal{#7}{}}{}{%
-			\bodytext{#7}%
+		}%
+		\printifspace{2}{%
+			\settowidth\institutionentrytitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho del título
+			\begin{minipage}{1\linewidth}%
+				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Aplica crop
+					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
+					\hfill\LOCALinstitutionentrydate \\%
+					\vspace{-0.35em}%
+				}{%
+					\begin{minipage}[t][][t]{0.69\linewidth}%
+						\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+						\vspace{-0.35em}%
+					\end{minipage}%
+					\begin{minipage}[t][][t]{0.31\linewidth}%
+						\begin{flushright}%
+							\LOCALinstitutionentrydate%
+						\end{flushright}%
+					\end{minipage}%
+				}%
+			\end{minipage}%
+		}%
+		\ifthenelse{\equal{#5}{}}{}{%
+			\bodytext{#5}%
 			\par%
 			\vspace{0.5\baselineskip}%
 		}%
@@ -1068,7 +1112,7 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentry}[4]{%
-	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{.687\linewidth}{.31\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{#4}%
 }
 
 % Entrada en institución con fecha corta
@@ -1077,14 +1121,14 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentryshort}[4]{%
-	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{.833\linewidth}{.163\linewidth}{#4}%
+	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{#4}%
 }
 
 % Entrada en institución sin fecha
 %	#1	Cargo
 %	#2	Descripción
 \newcommand{\institutionentrynodate}[2]{%
-	\newinstitutionentry{#1}{}{}{}{\linewidth}{0}{#2}%
+	\newinstitutionentry{#1}{}{}{}{#2}%
 }
 
 % Otro tipo de entrada en cvblock
@@ -1220,9 +1264,8 @@
 %	#1	Estilo de línea
 %	#2	Título
 \newenvironment{cvblock}[2][]{%
-	\needspace{1\baselineskip}%
 	\ifx\hfuzz#1\hfuzz%
-		\textcolor{\cvblocklinecolor}{\hrule}%
+		\printifspace[i]{6}{\textcolor{\cvblocklinecolor}{\hrule}}%
 	\else%
 		\ifthenelse{\equal{#1}{..}}{%
 			\textcolor{\cvblocklinecolor}{%
@@ -1364,7 +1407,6 @@
 %	#2	Nombre institución
 %	#3	Ubicación institución
 \newenvironment{institution}[3][]{%
-	\needspace{2\baselineskip}%
 	\ifthenelse{\equal{\institutiontitlebold}{true}}{%
 		\def\LOCALinstitutiontitle {\textbf{#2}}%
 	}{%
@@ -1376,38 +1418,42 @@
 		\item []%
 		\noindent%
 		\ifx\hfuzz#3\hfuzz%
-			\begin{minipage}{\linewidth}%
-				\ifthenelse{\equal{\institutioniconleft}{true}}{%
-					\GLOBALinstitutionicon\hspace{0.65em}%
-				}{}%
-				\ifx\hfuzz#1\hfuzz%
-					\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}%
-				\else%
-					\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}%
-				\fi%
-				\ifthenelse{\equal{\institutioniconleft}{false}}{%
-					\hspace{0.65em}\GLOBALinstitutionicon%
-				}{}%
-			\end{minipage}%
+			\printifspace{4}{%
+				\begin{minipage}{\linewidth}%
+					\ifthenelse{\equal{\institutioniconleft}{true}}{%
+						\GLOBALinstitutionicon\hspace{0.65em}%
+					}{}%
+					\ifx\hfuzz#1\hfuzz%
+						\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}%
+					\else%
+						\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}%
+					\fi%
+					\ifthenelse{\equal{\institutioniconleft}{false}}{%
+						\hspace{0.65em}\GLOBALinstitutionicon%
+					}{}%
+				\end{minipage}%
+			}%
 		\else%
-			\begin{minipage}[t][][t]{.558\linewidth}%
-				\ifthenelse{\equal{\institutioniconleft}{true}}{%
-					\GLOBALinstitutionicon\hspace{0.65em}%
-				}{}%
-				\ifx\hfuzz#1\hfuzz%
-					\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}%
-				\else%
-					\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}%
-				\fi%
-				\ifthenelse{\equal{\institutioniconleft}{false}}{%
-					\hspace{0.65em}\GLOBALinstitutionicon%
-				}{}%
-			\end{minipage}%
-			\begin{minipage}[t][][t]{.44\linewidth}%
-				\begin{flushright}%
-					\noindent \textcolor{\instregioncolor}{\textsc{#3}}%
-				\end{flushright}%
-			\end{minipage}%
+			\printifspace{4}{%
+				\begin{minipage}[t][][t]{.558\linewidth}%
+					\ifthenelse{\equal{\institutioniconleft}{true}}{%
+						\GLOBALinstitutionicon\hspace{0.65em}%
+					}{}%
+					\ifx\hfuzz#1\hfuzz%
+						\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}%
+					\else%
+						\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}%
+					\fi%
+					\ifthenelse{\equal{\institutioniconleft}{false}}{%
+						\hspace{0.65em}\GLOBALinstitutionicon%
+					}{}%
+				\end{minipage}%
+				\begin{minipage}[t][][t]{.44\linewidth}%
+					\begin{flushright}%
+						\noindent \textcolor{\instregioncolor}{\textsc{#3}}%
+					\end{flushright}%
+				\end{minipage}%
+			}%
 		\fi%
 		\break%
 	\end{indentsection}%
@@ -1530,9 +1576,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.3.2-8},
-		Template.Version.Hash={551343C7B68C1D1084EB00BC9964ED34},
-		Template.Version.Release={3.3.2},
+		Template.Version.Dev={3.3.3},
+		Template.Version.Hash={212E42503CD077DEFFDCD5F3EFE51E97},
+		Template.Version.Release={3.3.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1540,7 +1586,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.3.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.3.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

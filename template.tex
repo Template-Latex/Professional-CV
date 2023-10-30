@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      3.3.4 (30/10/2023)
+% Versión:      3.3.9 (30/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -725,6 +725,7 @@
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
 \global\def\GLOBALheaderseparatorsticky {false}
+\global\def\GLOBALprintspacefilled {false}
 
 \def\LOCALpercentchar#1{}
 \edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
@@ -739,25 +740,72 @@
 \newsavebox{\printspacemybox}
 \newlength{\printspaceboxheight}
 
+% Inserta un resorte que llena todo el espacio previo nueva línea
+%	#1	Tamaño a rellenar (baselineskip)
+\newcommand{\coreiprintifspacefill}[1]{%
+	\ifthenelse{\equal{\GLOBALprintspacefilled}{false}}{%
+		\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#1\baselineskip}}}%
+		\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+		\ifthenelse{\printspaceboxheight<\measurepage}{%
+			\vspace{#1\baselineskip}%
+			\global\def\GLOBALprintspacefilled {true}%
+		}{}%
+	}{}%
+}
+
+% Itera diferentes valores de espaciamiento si existe nueva línea
+\newcommand{\printifspacefill}{%
+	\coreiprintifspacefill{5}%
+	\coreiprintifspacefill{4.75}%
+	\coreiprintifspacefill{4.5}%
+	\coreiprintifspacefill{4.25}%
+	\coreiprintifspacefill{4}%
+	\coreiprintifspacefill{3.75}%
+	\coreiprintifspacefill{3.5}%
+	\coreiprintifspacefill{3.25}%
+	\coreiprintifspacefill{3}%
+	\coreiprintifspacefill{2.75}%
+	\coreiprintifspacefill{2.5}%
+	\coreiprintifspacefill{2.25}%
+	\coreiprintifspacefill{2}%
+	\coreiprintifspacefill{1.75}%
+	\coreiprintifspacefill{1.5}%
+	\coreiprintifspacefill{1.25}%
+	\coreiprintifspacefill{1}%
+	\coreiprintifspacefill{0.75}%
+	\coreiprintifspacefill{0.5}%
+	\coreiprintifspacefill{0.25}%
+	\coreiprintifspacefill{0.1}%
+}
+
 % Inserta un contenido dependiendo si posee el espacio mínimo necesario
 %	#1	Tipo de decisión al no satisfacer el espacio necesario
 %	#2	Tamaño mínimo (en baselineskip)
-%	#2	Contenido
-\newcommand{\printifspace}[3][np]{%
+%	#3	Contenido
+%	#4	Contenido a reemplazar en caso de fallar espaciado (r, np, i) o aprobar espaciado (s)
+\newcommand{\printifspace}[4][np]{%
+	\global\def\GLOBALprintspacefilled {false}
 	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
 	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{%
-		#3%
-	}{%
-		\ifthenelse{\equal{#1}{ignore}}{ % No inserta el elemento
+		\ifthenelse{\equal{#1}{s}}{ % Reemplaza (exito)
+			#4%
 		}{%
-		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página
+			#3%
+		}%
+	}{%
+		\ifthenelse{\equal{#1}{r}}{ % Reemplaza (fallo)
+			#4%
+		}{%
+		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página (fallo)
+			\printifspacefill%
 			\newpage#3%
 		}{%
-		\ifthenelse{\equal{#1}{i}}{ % Nueva página
+		\ifthenelse{\equal{#1}{i}}{ % Nueva página (fallo)
+			\printifspacefill%
 			\newpage%
 		}{%
-			\throwwarning{Valor paging incorrecto}%
+			\throwwarning{Valor paging incorrecto, validos: r, np, i}%
 		}}}%
 	}%
 }
@@ -930,7 +978,7 @@
 
 % Agrega una imagen
 %	#1	Dirección de la imagen
-%	#2	Tamaño de la imagen {small, normal, large}
+%	#2	Tamaño de la imagen {small, normal, large, huge}
 \newcommand{\addheaderimage}[2]{%
 	\ifthenelse{\equal{#2}{small}}{%
 		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.01\baselineskip}{\includegraphics[height=0.65\baselineskip]{#1}}}\LOCALpercentchar}%
@@ -941,7 +989,10 @@
 	\ifthenelse{\equal{#2}{large}}{%
 		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip]{#1}}}\LOCALpercentchar}%
 	}{%
-		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal o large}}}%
+	\ifthenelse{\equal{#2}{huge}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.5\baselineskip}{\includegraphics[height=1.5\baselineskip]{#1}}}\LOCALpercentchar}%
+	}{%
+		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal, large o huge}}}}%
 	}%
 }
 
@@ -1063,8 +1114,6 @@
 	\nopagebreak[4]%
 	\begin{indentsectiondouble}%
 		\item []%
-		\noindent%
-		\hfuzz=4pt%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%
 				\ifthenelse{\equal{#3}{}}{}{%
@@ -1093,11 +1142,11 @@
 				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Una sola línea
 					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
 					\hfill\LOCALinstitutionentrydate \\%
-					\vspace{-0.35em}%
+					\vspace{-0.5\baselineskip}%
 				}{%
 					\begin{minipage}[t][][t]{0.69\linewidth}%
 						\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
-						\vspace{-0.35em}%
+						\vspace{-0.5\baselineskip}%
 					\end{minipage}%
 					\begin{minipage}[t][][t]{0.31\linewidth}%
 						\begin{flushright}%
@@ -1106,11 +1155,11 @@
 					\end{minipage}%
 				}%
 			\end{minipage}%
-		}%
+		}{}%
 		\ifthenelse{\equal{#5}{}}{}{%
 			\bodytext{#5}%
 			\par%
-			\vspace{0.5\baselineskip}%
+			\vspace{0.25\baselineskip}%
 		}%
 	\end{indentsectiondouble}%
 }
@@ -1243,6 +1292,7 @@
 % Definición de variables globales
 \global\def\GLOBALinstitutionenabled {false}
 \global\def\GLOBALinstitutionicon {}
+\global\def\GLOBALinstitutioniconmargin {}
 \global\def\GLOBALpersonaltableenabled {false}
 
 % Crea una sección identada
@@ -1274,17 +1324,23 @@
 %	#2	Título
 \newenvironment{cvblock}[2][]{%
 	\ifx\hfuzz#1\hfuzz%
-		\printifspace[i]{6}{\textcolor{\cvblocklinecolor}{\hrule}}%
+		\printifspace[i]{7}{%
+			\textcolor{\cvblocklinecolor}{\hrule}%
+			\vspace{0.15em}%
+		}{}%
 	\else%
 		\ifthenelse{\equal{#1}{..}}{%
-			\textcolor{\cvblocklinecolor}{%
-				\noindent%
-				\hspace*{-1.65em}%
-				\makebox[1.01\textwidth][l]{\dotfill}%
-				\vspace{-0.9em}%
-			}%
+			\printifspace[i]{7}{%
+				\textcolor{\cvblocklinecolor}{%
+					\noindent%
+					\hspace*{-1.65em}%
+					\makebox[1.01\textwidth][l]{\dotfill}%
+					\vspace{-0.8em}%
+				}%
+			}{}%
 		}{%
 		\ifthenelse{\equal{#1}{none}}{%
+			\printifspace[s]{3}{\vspace{3\baselineskip}}{}%
 		}{%
 			\throwwarning{Estilo de linea invalido}%
 			\stop%
@@ -1296,7 +1352,6 @@
 	\else%
 		\roottitle{#2}%
 	\fi%
-	\vspace{0.15em}%
 	\begin{sloppypar}%
 	}{%
 	\end{sloppypar}%
@@ -1423,51 +1478,58 @@
 	}%
 	\nopagebreak[4]%
 	\hypersetup{urlcolor=\instnamecolor}%
+	\hfuzz=4pt%
 	\begin{indentsection}%
 		\item []%
 		\noindent%
+		\def\LOCALinstitutioniconl {%
+			\ifthenelse{\equal{\institutioniconleft}{true}}{%
+				\ifthenelse{\equal{\GLOBALinstitutionicon}{}}{}{%
+					\GLOBALinstitutionicon\hspace{\GLOBALinstitutioniconmargin}%
+				}%
+			}{}%
+		}%
+		\def\LOCALinstitutioniconr {%
+			\ifthenelse{\equal{\institutioniconleft}{false}}{%
+				\ifthenelse{\equal{\GLOBALinstitutionicon}{}}{}{%
+					\hspace{\GLOBALinstitutioniconmargin}\GLOBALinstitutionicon%
+				}%
+			}{}%
+		}%
 		\ifx\hfuzz#3\hfuzz%
-			\printifspace{2}{%
+			\printifspace{2.5}{%
 				\begin{minipage}{\linewidth}%
-					\ifthenelse{\equal{\institutioniconleft}{true}}{%
-						\GLOBALinstitutionicon\hspace{0.65em}%
-					}{}%
+					\LOCALinstitutioniconl%
 					\ifx\hfuzz#1\hfuzz%
 						\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}%
 					\else%
 						\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}%
 					\fi%
-					\ifthenelse{\equal{\institutioniconleft}{false}}{%
-						\hspace{0.65em}\GLOBALinstitutionicon%
-					}{}%
+					\LOCALinstitutioniconr%
 				\end{minipage}%
-			}%
+			}{}%
 		\else%
-			\printifspace{2}{%
-				\begin{minipage}[t][][t]{.558\linewidth}%
-					\ifthenelse{\equal{\institutioniconleft}{true}}{%
-						\GLOBALinstitutionicon\hspace{0.65em}%
-					}{}%
+			\printifspace{2.5}{%
+				\begin{minipage}[t][][t]{.56\linewidth}%
+					\LOCALinstitutioniconl%
 					\ifx\hfuzz#1\hfuzz%
 						\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}%
 					\else%
 						\textscale{1.1}{\href{#1}{\LOCALinstitutiontitle}}%
 					\fi%
-					\ifthenelse{\equal{\institutioniconleft}{false}}{%
-						\hspace{0.65em}\GLOBALinstitutionicon%
-					}{}%
+					\LOCALinstitutioniconr%
 				\end{minipage}%
 				\begin{minipage}[t][][t]{.44\linewidth}%
 					\begin{flushright}%
 						\noindent \textcolor{\instregioncolor}{\textsc{#3}}%
 					\end{flushright}%
 				\end{minipage}%
-			}%
+			}{}%
 		\fi%
 		\break%
 	\end{indentsection}%
 	\hypersetup{urlcolor=\urlcolor}%
-	\vspace{-1.5\baselineskip}%
+	\vspace{-1.55\baselineskip}%
 	\noindent%
 	\global\def\GLOBALinstitutionicon {}%
 	\global\def\GLOBALinstitutionenabled {true}~%
@@ -1484,15 +1546,26 @@
 %	#4	Ícono de la institución
 \newenvironment{institutionicon}[4][]{%
 	\ifthenelse{\equal{\institutioniconsize}{small}}{%
-		\global\def\GLOBALinstitutionicon {\raisebox{-0.01\baselineskip}{\includegraphics[height=0.65\baselineskip,width=0.65\baselineskip]{#4}}}%
+		\global\def\GLOBALinstitutioniconmargin {0.55em}%
+		\global\def\GLOBALinstitutionicon {\raisebox{-0.01\baselineskip}{%
+				\includegraphics[height=0.65\baselineskip,width=0.65\baselineskip]{#4}}}%
 	}{%
 	\ifthenelse{\equal{\institutioniconsize}{normal}}{%
-		\global\def\GLOBALinstitutionicon {\raisebox{-0.15\baselineskip}{\includegraphics[height=1\baselineskip,width=1\baselineskip]{#4}}}%
+		\global\def\GLOBALinstitutioniconmargin {0.65em}%
+		\global\def\GLOBALinstitutionicon {\raisebox{-0.15\baselineskip}{%
+				\includegraphics[height=1\baselineskip,width=1\baselineskip]{#4}}}%
 	}{%
 	\ifthenelse{\equal{\institutioniconsize}{large}}{%
-		\global\def\GLOBALinstitutionicon {\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip,width=1.25\baselineskip]{#4}}}%
+		\global\def\GLOBALinstitutioniconmargin {0.65em}%
+		\global\def\GLOBALinstitutionicon {\raisebox{-0.25\baselineskip}{%
+				\includegraphics[height=1.25\baselineskip,width=1.25\baselineskip]{#4}}}%
 	}{%
-		\throwbadconfigondoc{Configuracion tamano icono incorrecto}{\institutioniconsize}{small,normal,large}}}%
+	\ifthenelse{\equal{\institutioniconsize}{huge}}{%
+		\global\def\GLOBALinstitutioniconmargin {0.7em}%
+		\global\def\GLOBALinstitutionicon {\raisebox{-0.5\baselineskip}{%
+			\includegraphics[height=1.5\baselineskip,width=1.5\baselineskip]{#4}}}%
+	}{%
+		\throwbadconfigondoc{Configuracion tamano icono incorrecto}{\institutioniconsize}{small,normal,large,huge}}}}%
 	}%
 	\begin{institution}[#1]{#2}{#3}%
 }{%
@@ -1585,9 +1658,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.3.4},
-		Template.Version.Hash={963CA7A74B71ED3D5511363CCDEECCEE},
-		Template.Version.Release={3.3.4},
+		Template.Version.Dev={3.3.9-3},
+		Template.Version.Hash={F978F69C8115337E3BC187194C5CD57B},
+		Template.Version.Release={3.3.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1595,7 +1668,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.3.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.3.9 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

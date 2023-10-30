@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.3.5 (30/10/2023)
+% Versión:      3.3.7 (30/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -30,14 +30,16 @@
 % Inserta un contenido dependiendo si posee el espacio mínimo necesario
 %	#1	Tipo de decisión al no satisfacer el espacio necesario
 %	#2	Tamaño mínimo (en baselineskip)
-%	#2	Contenido
-\newcommand{\printifspace}[3][np]{%
+%	#3	Contenido
+%	#4	Contenido a reemplazar en caso de fallar espaciado (requiere tipo "replace")
+\newcommand{\printifspace}[4][replace]{%
 	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
 	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{%
 		#3%
 	}{%
-		\ifthenelse{\equal{#1}{ignore}}{ % No inserta el elemento
+		\ifthenelse{\equal{#1}{replace}}{ % Reemplaza
+			#4%
 		}{%
 		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página
 			\newpage#3%
@@ -45,7 +47,7 @@
 		\ifthenelse{\equal{#1}{i}}{ % Nueva página
 			\newpage%
 		}{%
-			\throwwarning{Valor paging incorrecto}%
+			\throwwarning{Valor paging incorrecto, validos: replace, np, i}%
 		}}}%
 	}%
 }
@@ -396,7 +398,7 @@
 					\end{minipage}%
 				}%
 			\end{minipage}%
-		}%
+		}{}%
 		\ifthenelse{\equal{#5}{}}{}{%
 			\bodytext{#5}%
 			\par%

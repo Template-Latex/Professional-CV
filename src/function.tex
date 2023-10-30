@@ -218,7 +218,7 @@
 
 % Agrega una imagen
 %	#1	Dirección de la imagen
-%	#2	Tamaño de la imagen {small, normal, large}
+%	#2	Tamaño de la imagen {small, normal, large, huge}
 \newcommand{\addheaderimage}[2]{%
 	\ifthenelse{\equal{#2}{small}}{%
 		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.01\baselineskip}{\includegraphics[height=0.65\baselineskip]{#1}}}\LOCALpercentchar}%
@@ -229,7 +229,10 @@
 	\ifthenelse{\equal{#2}{large}}{%
 		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip]{#1}}}\LOCALpercentchar}%
 	}{%
-		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal o large}}}%
+	\ifthenelse{\equal{#2}{huge}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.5\baselineskip}{\includegraphics[height=1.5\baselineskip]{#1}}}\LOCALpercentchar}%
+	}{%
+		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal, large o huge}}}}%
 	}%
 }
 
@@ -351,7 +354,6 @@
 	\nopagebreak[4]%
 	\begin{indentsectiondouble}%
 		\item []%
-		\noindent%
 		\hfuzz=4pt%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%

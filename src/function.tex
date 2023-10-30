@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      3.3.9 (30/10/2023)
+% Versión:      4.0.0 (30/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -52,18 +52,30 @@
 	\coreiprintifspacefill{3.5}%
 	\coreiprintifspacefill{3.25}%
 	\coreiprintifspacefill{3}%
+	\coreiprintifspacefill{2.925}%
+	\coreiprintifspacefill{2.85}%
 	\coreiprintifspacefill{2.75}%
 	\coreiprintifspacefill{2.5}%
+	\coreiprintifspacefill{2.375}%
 	\coreiprintifspacefill{2.25}%
+	\coreiprintifspacefill{2.15}%
 	\coreiprintifspacefill{2}%
+	\coreiprintifspacefill{1.925}%
+	\coreiprintifspacefill{1.85}%
 	\coreiprintifspacefill{1.75}%
 	\coreiprintifspacefill{1.5}%
+	\coreiprintifspacefill{1.375}%
 	\coreiprintifspacefill{1.25}%
+	\coreiprintifspacefill{1.15}%
 	\coreiprintifspacefill{1}%
+	\coreiprintifspacefill{0.925}%
+	\coreiprintifspacefill{0.85}%
 	\coreiprintifspacefill{0.75}%
+	\coreiprintifspacefill{0.625}%
 	\coreiprintifspacefill{0.5}%
 	\coreiprintifspacefill{0.25}%
 	\coreiprintifspacefill{0.1}%
+	\coreiprintifspacefill{0.05}%
 }
 
 % Inserta un contenido dependiendo si posee el espacio mínimo necesario
@@ -444,7 +456,9 @@
 				}%
 			\end{minipage}%
 		}{}%
-		\ifthenelse{\equal{#5}{}}{}{%
+		\ifthenelse{\equal{#5}{}}{%
+			\vspace{0.05\baselineskip}%
+		}{%
 			\bodytext{#5}%
 			\par%
 			\vspace{0.25\baselineskip}%

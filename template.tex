@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      3.3.3 (30/10/2023)
+% Versión:      3.3.4 (30/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1064,7 +1064,7 @@
 	\begin{indentsectiondouble}%
 		\item []%
 		\noindent%
-		\hfuzz=2pt%
+		\hfuzz=4pt%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%
 				\ifthenelse{\equal{#3}{}}{}{%
@@ -1078,10 +1078,19 @@
 				}%
 			}%
 		}%
-		\printifspace{2}{%
-			\settowidth\institutionentrytitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho del título
-			\begin{minipage}{1\linewidth}%
-				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Aplica crop
+		\settowidth\institutionentrytitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho del título
+		\ifthenelse{\equal{#5}{}}{%
+			\def\LOCALinstitutionentryreqspace {0}%
+		}{%
+			\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Título en una sola línea
+				\def\LOCALinstitutionentryreqspace {2}%
+			}{%
+				\def\LOCALinstitutionentryreqspace {3}%
+			}%
+		}%
+		\printifspace{\LOCALinstitutionentryreqspace}{%
+			\begin{minipage}{1\linewidth} % Crea el título
+				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Una sola línea
 					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
 					\hfill\LOCALinstitutionentrydate \\%
 					\vspace{-0.35em}%
@@ -1418,7 +1427,7 @@
 		\item []%
 		\noindent%
 		\ifx\hfuzz#3\hfuzz%
-			\printifspace{4}{%
+			\printifspace{2}{%
 				\begin{minipage}{\linewidth}%
 					\ifthenelse{\equal{\institutioniconleft}{true}}{%
 						\GLOBALinstitutionicon\hspace{0.65em}%
@@ -1434,7 +1443,7 @@
 				\end{minipage}%
 			}%
 		\else%
-			\printifspace{4}{%
+			\printifspace{2}{%
 				\begin{minipage}[t][][t]{.558\linewidth}%
 					\ifthenelse{\equal{\institutioniconleft}{true}}{%
 						\GLOBALinstitutionicon\hspace{0.65em}%
@@ -1576,9 +1585,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={3.3.3},
-		Template.Version.Hash={212E42503CD077DEFFDCD5F3EFE51E97},
-		Template.Version.Release={3.3.3},
+		Template.Version.Dev={3.3.4},
+		Template.Version.Hash={963CA7A74B71ED3D5511363CCDEECCEE},
+		Template.Version.Release={3.3.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1586,7 +1595,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v3.3.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v3.3.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -1672,6 +1681,11 @@
 % Configura items
 \AfterEndEnvironment{itemize}{\vspace{-0.4\baselineskip}}
 \AfterEndEnvironment{enumerate}{\vspace{-0.4\baselineskip}}
+
+% Ejecuta al terminar el documento
+\AtEndDocument{%
+	\vfill%
+}
 
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES DE PÁGINA

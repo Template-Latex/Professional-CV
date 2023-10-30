@@ -22,6 +22,34 @@
 \immediate\openout\fileheaderitems=\jobname.hitems
 \AtBeginDocument{\immediate\closeout\fileheaderitems}
 
+% Espaciado necesario para printifspace
+\newcommand*\measurepage{\dimexpr\pagegoal-\pagetotal\relax}
+\newsavebox{\printspacemybox}
+\newlength{\printspaceboxheight}
+
+% Inserta un contenido dependiendo si posee el espacio mínimo necesario
+%	#1	Tipo de decisión al no satisfacer el espacio necesario
+%	#2	Tamaño mínimo (en baselineskip)
+%	#2	Contenido
+\newcommand{\printifspace}[3][np]{%
+	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
+	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+	\ifthenelse{\printspaceboxheight<\measurepage}{%
+		#3%
+	}{%
+		\ifthenelse{\equal{#1}{ignore}}{ % No inserta el elemento
+		}{%
+		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página
+			\newpage#3%
+		}{%
+		\ifthenelse{\equal{#1}{i}}{ % Nueva página
+			\newpage%
+		}{%
+			\throwwarning{Valor paging incorrecto}%
+		}}}%
+	}%
+}
+
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
@@ -109,6 +137,13 @@
 	\list{}{\rightmargin#2\leftmargin#1}\item[]%
 }
 \let\endchangemargin=\endlist
+
+% Actualiza newcolumn
+\ifthenelse{\isundefined{\newcolumn}}{%
+	\newcommand{\newcolumn}{\columnbreak}
+}{%
+	\renewcommand{\newcolumn}{\columnbreak}
+}
 
 % Agrega el separador entre items del header
 \newcommand{\addheaderseparator}{%
@@ -318,29 +353,31 @@
 	\begin{indentsectiondouble}%
 		\item []%
 		\noindent%
-		\begin{minipage}{1\linewidth}%
-			\begin{minipage}[t][][t]{#5}%
-				\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
-				\vspace{-0.35em}%
-			\end{minipage}%
-			\ifthenelse{\equal{#6}{0}}{}{%
-				\begin{minipage}[t][][t]{#6}%
-					\begin{flushright}%
-						\ifthenelse{\equal{#2}{}}{%
-							\ifthenelse{\equal{#3}{}}{}{%
-								\noindent \textcolor{\datecolor}{\emph{#3}}%
-							}%
-						}{%
-							\ifthenelse{\equal{#3}{}}{%
-								\noindent \textcolor{\datecolor}{\emph{#2}}%
-							}{%
-								\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
-							}%
-						}%
-					\end{flushright}%
+		\printifspace{2}{%
+			\begin{minipage}{1\linewidth}%
+				\begin{minipage}[t][][t]{#5}%
+					\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+					\vspace{-0.35em}%
 				\end{minipage}%
-			}%
-		\end{minipage}%
+				\ifthenelse{\equal{#6}{0}}{}{%
+					\begin{minipage}[t][][t]{#6}%
+						\begin{flushright}%
+							\ifthenelse{\equal{#2}{}}{%
+								\ifthenelse{\equal{#3}{}}{}{%
+									\noindent \textcolor{\datecolor}{\emph{#3}}%
+								}%
+							}{%
+								\ifthenelse{\equal{#3}{}}{%
+									\noindent \textcolor{\datecolor}{\emph{#2}}%
+								}{%
+									\noindent \textcolor{\datecolor}{\emph{#2 #4 #3}}%
+								}%
+							}%
+						\end{flushright}%
+					\end{minipage}%
+				}%
+			\end{minipage}%
+		}%
 		\ifthenelse{\equal{#7}{}}{}{%
 			\bodytext{#7}%
 			\par%

@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.0.0 (30/10/2023)
+% Versión:      4.0.0 (01/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1338,13 +1338,13 @@
 %	#2	Título
 \newenvironment{cvblock}[2][]{%
 	\ifx\hfuzz#1\hfuzz%
-		\printifspace[i]{7}{%
+		\printifspace[i]{8}{%
 			\textcolor{\cvblocklinecolor}{\hrule}%
 			\vspace{0.15em}%
 		}{}%
 	\else%
 		\ifthenelse{\equal{#1}{..}}{%
-			\printifspace[i]{7}{%
+			\printifspace[i]{8}{%
 				\textcolor{\cvblocklinecolor}{%
 					\noindent%
 					\hspace*{-1.65em}%
@@ -1600,7 +1600,7 @@
 		}{%
 		\end{tabular}%
 	\end{flushright}%
-	\vspace{-1em}%
+	\vspace{-1\baselineskip}%
 }
 
 % Itemize en negrita
@@ -1671,14 +1671,14 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={30/10/2023},
+		Template.Date={01/11/2023},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.0.0-2},
-		Template.Version.Hash={9D383F92CD914B2C3D8941190D305196},
+		Template.Version.Dev={4.0.0-3},
+		Template.Version.Hash={2A716FDDD672441DA6712E15235D9851},
 		Template.Version.Release={4.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}

@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.0.0 (01/11/2023)
+% Versión:      4.0.1 (03/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -785,6 +785,7 @@
 	\coreiprintifspacefill{0.75}%
 	\coreiprintifspacefill{0.625}%
 	\coreiprintifspacefill{0.5}%
+	\coreiprintifspacefill{0.375}%
 	\coreiprintifspacefill{0.25}%
 	\coreiprintifspacefill{0.1}%
 	\coreiprintifspacefill{0.05}%
@@ -1109,8 +1110,9 @@
 	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\%
 }
 
-% Crea el largo horizontal del box de los títulos
-\newlength\institutionentrytitle
+% Crea el largo horizontal de los boxes en institutionentry
+\newlength\institutionentrywdate
+\newlength\institutionentrywtitle
 
 % Inserta un objeto en un elemento institución
 %	#1	Cargo
@@ -1139,11 +1141,11 @@
 				}%
 			}%
 		}%
-		\settowidth\institutionentrytitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho del título
+		\settowidth\institutionentrywtitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho de la fecha
 		\ifthenelse{\equal{#5}{}}{%
 			\def\LOCALinstitutionentryreqspace {0}%
 		}{%
-			\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Título en una sola línea
+			\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{ % Título en una sola línea
 				\def\LOCALinstitutionentryreqspace {2}%
 			}{%
 				\def\LOCALinstitutionentryreqspace {3}%
@@ -1151,16 +1153,22 @@
 		}%
 		\printifspace{\LOCALinstitutionentryreqspace}{%
 			\begin{minipage}{1\linewidth} % Crea el título
-				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Una sola línea
+				\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{ % Una sola línea
 					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
 					\hfill\LOCALinstitutionentrydate \\%
 					\vspace{-0.5\baselineskip}%
 				}{%
-					\begin{minipage}[t][][t]{0.69\linewidth}%
+					\settowidth\institutionentrywdate{\LOCALinstitutionentrydate} % Calcula ancho del título
+					\ifthenelse{\institutionentrywdate<\dimexpr0.175\linewidth}{%
+						\def\LOCALinstitutionentrypagew {0.17}%
+					}{%
+						\def\LOCALinstitutionentrypagew {0.3}%
+					}%
+					\begin{minipage}[t][][t]{\dimexpr\linewidth-\LOCALinstitutionentrypagew\linewidth}%
 						\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
 						\vspace{-0.5\baselineskip}%
 					\end{minipage}%
-					\begin{minipage}[t][][t]{0.31\linewidth}%
+					\begin{minipage}[t][][t]{\dimexpr\LOCALinstitutionentrypagew\linewidth}%
 						\begin{flushright}%
 							\LOCALinstitutionentrydate%
 						\end{flushright}%
@@ -1548,11 +1556,12 @@
 		\break%
 	\end{indentsection}%
 	\hypersetup{urlcolor=\urlcolor}%
-	\vspace{-1.55\baselineskip}%
+	\vspace{-1.75\baselineskip}%
 	\noindent%
 	\global\def\GLOBALinstitutionicon {}%
 	\global\def\GLOBALinstitutionenabled {true}~%
 	}{%
+	\vspace{0.25\baselineskip}%
 	\global\def\GLOBALinstitutionenabled {false}%
 	\par%
 	\nopagebreak[4]%
@@ -1671,15 +1680,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={01/11/2023},
+		Template.Date={03/11/2023},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.0.0-3},
-		Template.Version.Hash={2A716FDDD672441DA6712E15235D9851},
-		Template.Version.Release={4.0.0},
+		Template.Version.Dev={4.0.1},
+		Template.Version.Hash={DB49D4B19BEB147FC347CD18989C88C6},
+		Template.Version.Release={4.0.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1687,7 +1696,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.0.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.0.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

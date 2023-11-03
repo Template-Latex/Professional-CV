@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      4.0.0 (01/11/2023)
+% Versión:      4.0.1 (03/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -73,6 +73,7 @@
 	\coreiprintifspacefill{0.75}%
 	\coreiprintifspacefill{0.625}%
 	\coreiprintifspacefill{0.5}%
+	\coreiprintifspacefill{0.375}%
 	\coreiprintifspacefill{0.25}%
 	\coreiprintifspacefill{0.1}%
 	\coreiprintifspacefill{0.05}%
@@ -397,8 +398,9 @@
 	\textcolor{\personaltblentcolor}{\textbf{#1:}} & #2 \\%
 }
 
-% Crea el largo horizontal del box de los títulos
-\newlength\institutionentrytitle
+% Crea el largo horizontal de los boxes en institutionentry
+\newlength\institutionentrywdate
+\newlength\institutionentrywtitle
 
 % Inserta un objeto en un elemento institución
 %	#1	Cargo
@@ -427,11 +429,11 @@
 				}%
 			}%
 		}%
-		\settowidth\institutionentrytitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho del título
+		\settowidth\institutionentrywtitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho de la fecha
 		\ifthenelse{\equal{#5}{}}{%
 			\def\LOCALinstitutionentryreqspace {0}%
 		}{%
-			\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Título en una sola línea
+			\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{ % Título en una sola línea
 				\def\LOCALinstitutionentryreqspace {2}%
 			}{%
 				\def\LOCALinstitutionentryreqspace {3}%
@@ -439,16 +441,22 @@
 		}%
 		\printifspace{\LOCALinstitutionentryreqspace}{%
 			\begin{minipage}{1\linewidth} % Crea el título
-				\ifthenelse{\institutionentrytitle<\dimexpr0.95\linewidth}{ % Una sola línea
+				\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{ % Una sola línea
 					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
 					\hfill\LOCALinstitutionentrydate \\%
 					\vspace{-0.5\baselineskip}%
 				}{%
-					\begin{minipage}[t][][t]{0.69\linewidth}%
+					\settowidth\institutionentrywdate{\LOCALinstitutionentrydate} % Calcula ancho del título
+					\ifthenelse{\institutionentrywdate<\dimexpr0.175\linewidth}{%
+						\def\LOCALinstitutionentrypagew {0.17}%
+					}{%
+						\def\LOCALinstitutionentrypagew {0.3}%
+					}%
+					\begin{minipage}[t][][t]{\dimexpr\linewidth-\LOCALinstitutionentrypagew\linewidth}%
 						\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
 						\vspace{-0.5\baselineskip}%
 					\end{minipage}%
-					\begin{minipage}[t][][t]{0.31\linewidth}%
+					\begin{minipage}[t][][t]{\dimexpr\LOCALinstitutionentrypagew\linewidth}%
 						\begin{flushright}%
 							\LOCALinstitutionentrydate%
 						\end{flushright}%

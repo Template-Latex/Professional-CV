@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      4.0.1 (03/11/2023)
+% Versión:      4.0.2 (04/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -79,32 +79,39 @@
 	\coreiprintifspacefill{0.05}%
 }
 
+% Inserta una nueva página sólo si es necesario
+\newcommand{\printifnewpage}{%
+	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{0.01\baselineskip}}}%
+	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+	\ifthenelse{\printspaceboxheight<\measurepage}{\newpage}{}%
+}
+
 % Inserta un contenido dependiendo si posee el espacio mínimo necesario
 %	#1	Tipo de decisión al no satisfacer el espacio necesario
 %	#2	Tamaño mínimo (en baselineskip)
 %	#3	Contenido
 %	#4	Contenido a reemplazar en caso de fallar espaciado (r, np, i) o aprobar espaciado (s)
 \newcommand{\printifspace}[4][np]{%
-	\global\def\GLOBALprintspacefilled {false}
+	\global\def\GLOBALprintspacefilled {false}%
 	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
 	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{%
-		\ifthenelse{\equal{#1}{s}}{ % Reemplaza (exito)
+		\ifthenelse{\equal{#1}{s}}{% Reemplaza (exito)
 			#4%
 		}{%
 			#3%
 		}%
-	}{%
-		\ifthenelse{\equal{#1}{r}}{ % Reemplaza (fallo)
+	}{% Ejecuta en caso de fallo
+		\ifthenelse{\equal{#1}{r}}{% Reemplaza
 			#4%
 		}{%
-		\ifthenelse{\equal{#1}{np}}{ % Lo inserta pero con una nueva página (fallo)
+		\ifthenelse{\equal{#1}{np}}{% Lo inserta pero con una nueva página
 			\printifspacefill%
-			\newpage#3%
+			\printifnewpage#3%
 		}{%
-		\ifthenelse{\equal{#1}{i}}{ % Nueva página (fallo)
+		\ifthenelse{\equal{#1}{i}}{% Nueva página
 			\printifspacefill%
-			\newpage%
+			\printifnewpage%
 		}{%
 			\throwwarning{Valor paging incorrecto, validos: r, np, i}%
 		}}}%
@@ -236,7 +243,7 @@
 %	#1	Ícono de fontawesome, si está vacío se usa url normal
 %	#2	Enlace
 \newcommand{\addheaderlink}[2][]{%
-	\ifthenelse{\equal{#1}{}}{ % Sin ícono
+	\ifthenelse{\equal{#1}{}}{% Sin ícono
 		\global\def\GLOBALheaderseparatorsticky {false}%
 		\addheaderseparator%
 		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}%
@@ -330,16 +337,6 @@
 	\hypersetup{urlcolor=\urlcolor}%
 }
 
-% Título de las secciones principales
-%	#1	Título
-\newcommand*{\roottitle}[1]{%
-	\emptyvarerr{\roottitle}{#1}{Titulo no definido}%
-	\ifthenelse{\equal{#1}{}}{}{%
-		\section*{#1}\vspace{-0.3em}\nopagebreak[4]%
-		\addcontentsline{toc}{section}{#1}%
-	}%
-}
-
 % Calcula el margen necesario para diferentes tipos de línea
 %	#1	Tipo de línea
 \newcommand{\summarystylemarginprefix}[1]{%
@@ -376,14 +373,6 @@
 %	#1	Acrónimo
 \newcommand*{\acr}[1]{%
 	\textscale{.85}{#1}%
-}
-
-% Crea un campo de texto
-% 	#1	Texto
-\newcommand{\bodytext}[1]{%
-	\begin{indentsection}%
-		\item[] #1%
-	\end{indentsection}%
 }
 
 % Crea una entrada en la tabla de datos personales
@@ -433,7 +422,7 @@
 		\ifthenelse{\equal{#5}{}}{%
 			\def\LOCALinstitutionentryreqspace {0}%
 		}{%
-			\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{ % Título en una sola línea
+			\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{% Título en una sola línea
 				\def\LOCALinstitutionentryreqspace {2}%
 			}{%
 				\def\LOCALinstitutionentryreqspace {3}%
@@ -441,7 +430,7 @@
 		}%
 		\printifspace{\LOCALinstitutionentryreqspace}{%
 			\begin{minipage}{1\linewidth} % Crea el título
-				\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{ % Una sola línea
+				\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{% Una sola línea
 					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
 					\hfill\LOCALinstitutionentrydate \\%
 					\vspace{-0.5\baselineskip}%
@@ -467,8 +456,9 @@
 		\ifthenelse{\equal{#5}{}}{%
 			\vspace{0.05\baselineskip}%
 		}{%
-			\bodytext{#5}%
-			\par%
+			\begin{indentsection}%
+				\item[] #5%
+			\end{indentsection}%
 			\vspace{0.25\baselineskip}%
 		}%
 	\end{indentsectiondouble}%
@@ -480,15 +470,6 @@
 %	#3	Fecha final
 %	#4	Descripción
 \newcommand{\institutionentry}[4]{%
-	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{#4}%
-}
-
-% Entrada en institución con fecha corta
-%	#1	Cargo
-%	#2	Fecha inicial
-%	#3	Fecha final
-%	#4	Descripción
-\newcommand{\institutionentryshort}[4]{%
 	\newinstitutionentry{#1}{#2}{#3}{\dateseparator}{#4}%
 }
 
@@ -587,14 +568,4 @@
 % Inserta un teléfono celular
 \newcommand{\insertphone}[1]{%
 	\href{tel:#1}{\hreftext{#1}}%
-}
-
-% Actualiza el padding de las celdas de las tablas
-%	#1	Padding horizontal (em)
-%	#2	Padding vertical (em)
-\newcommand{\settablecellpadding}[2]{%
-	\emptyvarerr{\settablecellpadding}{#1}{Padding horizontal no definido}%
-	\emptyvarerr{\settablecellpadding}{#2}{Padding vertical no definido}%
-	\setlength{\tabcolsep}{#1 em} % Horizontal
-	\def\arraystretch {#2} % Vertical
 }

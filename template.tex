@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.0.2 (04/11/2023)
+% Versión:      4.0.2 (05/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -747,6 +747,7 @@
 		\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#1\baselineskip}}}%
 		\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
 		\ifthenelse{\printspaceboxheight<\measurepage}{%
+			% \throwwarning{iprintifspace: #1 (page \thepage)}%
 			\vspace{#1\baselineskip}%
 			\global\def\GLOBALprintspacefilled {true}%
 		}{}%
@@ -755,6 +756,39 @@
 
 % Itera diferentes valores de espaciamiento si existe nueva línea
 \newcommand{\printifspacefill}{%
+	\coreiprintifspacefill{8}%
+	\coreiprintifspacefill{7.925}%
+	\coreiprintifspacefill{7.85}%
+	\coreiprintifspacefill{7.75}%
+	\coreiprintifspacefill{7.625}%
+	\coreiprintifspacefill{7.5}%
+	\coreiprintifspacefill{7.375}%
+	\coreiprintifspacefill{7.25}%
+	\coreiprintifspacefill{7.15}%
+	\coreiprintifspacefill{7.1}%
+	\coreiprintifspacefill{7.05}%
+	\coreiprintifspacefill{7}%
+	\coreiprintifspacefill{6.925}%
+	\coreiprintifspacefill{6.85}%
+	\coreiprintifspacefill{6.75}%
+	\coreiprintifspacefill{6.625}%
+	\coreiprintifspacefill{6.5}%
+	\coreiprintifspacefill{6.375}%
+	\coreiprintifspacefill{6.25}%
+	\coreiprintifspacefill{6.15}%
+	\coreiprintifspacefill{6.1}%
+	\coreiprintifspacefill{6.05}%
+	\coreiprintifspacefill{6}%
+	\coreiprintifspacefill{5.925}%
+	\coreiprintifspacefill{5.85}%
+	\coreiprintifspacefill{5.75}%
+	\coreiprintifspacefill{5.625}%
+	\coreiprintifspacefill{5.5}%
+	\coreiprintifspacefill{5.375}%
+	\coreiprintifspacefill{5.25}%
+	\coreiprintifspacefill{5.15}%
+	\coreiprintifspacefill{5.1}%
+	\coreiprintifspacefill{5.05}%
 	\coreiprintifspacefill{5}%
 	\coreiprintifspacefill{4.925}%
 	\coreiprintifspacefill{4.85}%
@@ -1675,14 +1709,14 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={04/11/2023},
+		Template.Date={05/11/2023},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.0.2-3},
-		Template.Version.Hash={EE4167245FC39D163EB9A242B9EB07B6},
+		Template.Version.Dev={4.0.2-4},
+		Template.Version.Hash={5129D83A4BCD6770C4B8AD3540FDE54D},
 		Template.Version.Release={4.0.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
@@ -1782,6 +1816,7 @@
 % Ejecuta al terminar el documento
 \AtEndDocument{%
 	\vfill%
+	\printifspacefill%
 }
 
 % -----------------------------------------------------------------------------

@@ -15,6 +15,13 @@
 \global\def\GLOBALheaderseparatorsticky {false}
 \global\def\GLOBALprintspacefilled {false}
 
+% Ignora linebreaks
+\def\ignorelinebreaks{%
+	\catcode`\^^M=9%
+	\endlinechar=`\^^M%
+}
+
+% Percentchar para archivos
 \def\LOCALpercentchar#1{}
 \edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
 

@@ -64,7 +64,7 @@
 % TABLA ANTECEDENTES PERSONALES
 %	Desactivar la foto con la configuración \personaltabledatapic
 \begin{personaltabledata}
-	\personaltableentry{Fecha de Nacimiento}{\birthday de \birthmonth del \birthyear}
+	\personaltableentry{Fecha de Nacimiento}{\birthday, \birthmonth del \birthyear}
 	\personaltableentry{Lugar de Nacimiento}{Ciudad, Región, País}
 	\personaltableentry{Edad}{99 años}
 	\personaltableentry{Nacionalidad}{Nación}
@@ -74,10 +74,14 @@
 
 % EXPERIENCIA
 %	cvblock toma un parámetro opcional para definir el estilo de línea divisoria:
-%	\begin{cvblock}[]{Experiencia}		Línea negra por defecto
-%	\begin{cvblock}[..]{Experiencia}	Línea punteada
-%	\begin{cvblock}[none]{Experiencia}	Sin línea
-\begin{cvblock}[]{Experiencia}
+%		\begin{cvblock}[]{Experiencia}		Línea negra por defecto
+%		\begin{cvblock}[..]{Experiencia}	Línea punteada
+%		\begin{cvblock}[none]{Experiencia}	Sin línea
+%	Además existen los bloques estrictos (cvsblock) que ignoran todos los saltos
+%	de línea; se recomienda para que el espaciado sea consistente independiente
+%	de los espacios y líneas nuevas que existan dentro de éste. Los argumentos son
+%	exactamente los mismos que cvblock normal
+\begin{cvsblock}[]{Experiencia}
 	\begin{institution}[http://empresa.com]{Empresa A}{Ciudad 1, Región 1, País 1}
 		\institutionentry{Jefe de Obras}{Enero \apo 15}{\present}{\lipsum[66]}
 		\institutionentry{Ayudante de Oficina Técnica}{Junio \apo 14}{diciembre \apo 14}{\lipsum[65]}
@@ -90,7 +94,7 @@
 	\begin{institutionicon}{Empresa C}{Ciudad 3, Región 3, País 3}{img/icono}
 		\institutionentry{Ayudante de Oficina Técnica}{Marzo 2008}{abril 2014}{\lipsum[133]}
 	\end{institutionicon}
-\end{cvblock}
+\end{cvsblock}
 
 % EDUCACIÓN
 \begin{cvblock}{Educación}
@@ -100,7 +104,7 @@
 	\end{institution}
 
 	\begin{institution}[http://colegio.com]{Colegio}{Ciudad, Región, País}
-		\institutionentry{Enseñanza básica}{1984}{1990}{} % Modo fecha corta
+		\institutionentry{Enseñanza básica}{1984}{1990}{}
 		\institutionentry{Enseñanza media}{1991}{1994}{}
 	\end{institution}
 \end{cvblock}

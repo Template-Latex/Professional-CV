@@ -727,6 +727,13 @@
 \global\def\GLOBALheaderseparatorsticky {false}
 \global\def\GLOBALprintspacefilled {false}
 
+% Ignora linebreaks
+\def\ignorelinebreaks{%
+	\catcode`\^^M=9%
+	\endlinechar=`\^^M%
+}
+
+% Percentchar para archivos
 \def\LOCALpercentchar#1{}
 \edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
 
@@ -1408,6 +1415,17 @@
 	\end{sloppypar}%
 }
 
+% Crea un bloque de contenido estricto a los saltos de línea
+%	#1	Estilo de línea
+%	#2	Título
+\newenvironment{cvsblock}[2][]{
+	\begin{ignorelinebreaks}%
+	\begin{cvblock}[#1]{#2}%
+		}{
+	\end{cvblock}%
+	\end{ignorelinebreaks}%
+}
+
 % Párrafo de descripción
 %	#1	Estilo de línea
 \newenvironment{summary}[1][]{%
@@ -1709,8 +1727,8 @@
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.0.2-6},
-		Template.Version.Hash={38D124C3F338100F5CFE427E5F7F3299},
+		Template.Version.Dev={4.0.2-8},
+		Template.Version.Hash={DE22623674EA530C85919691621B0EF2},
 		Template.Version.Release={4.0.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
@@ -1771,6 +1789,8 @@
 \newlength{\doubleparindent}
 \addtolength{\doubleparindent}{\parindent}
 \addtolength{\doubleparindent}{\parindent}
+\setenumerate{itemsep=0pt}
+\setitemize{itemsep=0pt}
 
 % Configuración de hbox y vbox
 \hfuzz=200pt

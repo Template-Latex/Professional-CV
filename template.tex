@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.0.2 (05/11/2023)
+% Versión:      4.0.3 (11/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1197,9 +1197,9 @@
 			\def\LOCALinstitutionentryreqspace {0}%
 		}{%
 			\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{% Título en una sola línea
-				\def\LOCALinstitutionentryreqspace {2}%
+				\def\LOCALinstitutionentryreqspace {1.75}%
 			}{%
-				\def\LOCALinstitutionentryreqspace {3}%
+				\def\LOCALinstitutionentryreqspace {2.5}%
 			}%
 		}%
 		\printifspace{\LOCALinstitutionentryreqspace}{%
@@ -1617,22 +1617,26 @@
 	\ifthenelse{\equal{\institutioniconsize}{small}}{%
 		\global\def\GLOBALinstitutioniconmargin {0.55em}%
 		\global\def\GLOBALinstitutionicon {\raisebox{-0.01\baselineskip}{%
-				\includegraphics[height=0.65\baselineskip,width=0.65\baselineskip]{#4}}}%
+			\includegraphics[height=0.65\baselineskip,width=0.65\baselineskip]{#4}}%
+		}%
 	}{%
 	\ifthenelse{\equal{\institutioniconsize}{normal}}{%
 		\global\def\GLOBALinstitutioniconmargin {0.65em}%
 		\global\def\GLOBALinstitutionicon {\raisebox{-0.15\baselineskip}{%
-				\includegraphics[height=1\baselineskip,width=1\baselineskip]{#4}}}%
+			\includegraphics[height=1\baselineskip,width=1\baselineskip]{#4}}%
+		}%
 	}{%
 	\ifthenelse{\equal{\institutioniconsize}{large}}{%
 		\global\def\GLOBALinstitutioniconmargin {0.65em}%
 		\global\def\GLOBALinstitutionicon {\raisebox{-0.25\baselineskip}{%
-				\includegraphics[height=1.25\baselineskip,width=1.25\baselineskip]{#4}}}%
+			\includegraphics[height=1.25\baselineskip,width=1.25\baselineskip]{#4}}%
+		}%
 	}{%
 	\ifthenelse{\equal{\institutioniconsize}{huge}}{%
 		\global\def\GLOBALinstitutioniconmargin {0.7em}%
 		\global\def\GLOBALinstitutionicon {\raisebox{-0.5\baselineskip}{%
-			\includegraphics[height=1.5\baselineskip,width=1.5\baselineskip]{#4}}}%
+			\includegraphics[height=1.5\baselineskip,width=1.5\baselineskip]{#4}}%
+		}%
 	}{%
 		\throwbadconfigondoc{Configuracion tamano icono incorrecto}{\institutioniconsize}{small,normal,large,huge}}}}%
 	}%
@@ -1721,15 +1725,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={05/11/2023},
+		Template.Date={11/11/2023},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.0.2-9},
-		Template.Version.Hash={7F46C0E51C0CD882764DA42EC4F0DEA9},
-		Template.Version.Release={4.0.2},
+		Template.Version.Dev={4.0.3-1},
+		Template.Version.Hash={C493409CCAA63B1705C650567B06F0CA},
+		Template.Version.Release={4.0.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1737,7 +1741,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.0.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.0.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

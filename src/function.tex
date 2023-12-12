@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      4.0.4 (13/11/2023)
+% Versión:      4.0.5 (11/12/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -169,7 +169,8 @@
 		}{%
 		\ifthenelse{\equal{#1}{np}}{% Lo inserta pero con una nueva página
 			\printifspacefill%
-			\printifnewpage#3%
+			\printifnewpage%
+			#3%
 		}{%
 		\ifthenelse{\equal{#1}{i}}{% Nueva página
 			\printifspacefill%

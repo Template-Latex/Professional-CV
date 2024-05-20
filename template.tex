@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.0.6 (07/03/2024)
+% Versión:      4.0.7 (20/05/2024)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1151,7 +1151,7 @@
 % Crea un acrónimo de forma fácil
 %	#1	Acrónimo
 \newcommand*{\acr}[1]{%
-	\textscale{.85}{#1}%
+	\textscale{0.85}{#1}%
 }
 
 % Crea una entrada en la tabla de datos personales
@@ -1277,7 +1277,7 @@
 
 % Crea un bull
 \newcommand{\sbullet}{%
-	\ \ \raisebox{0.11em}[-1em][-1em]{\tiny $\bullet$} \ \ %
+	\ \ \raisebox{0.15em}[-1em][-1em]{\scriptsize $\bullet$} \ \ %
 }
 
 % Variaciones de vspace
@@ -1616,7 +1616,7 @@
 			}{}%
 		\else%
 			\printifspace{3}{%
-				\begin{minipage}[t][][t]{.56\linewidth}%
+				\begin{minipage}[t][][t]{0.56\linewidth}%
 					\LOCALinstitutioniconl%
 					\ifx\hfuzz#1\hfuzz%
 						\textscale{1.1}{\textcolor{\instnamecolor}{\LOCALinstitutiontitle}}%
@@ -1625,7 +1625,7 @@
 					\fi%
 					\LOCALinstitutioniconr%
 				\end{minipage}%
-				\begin{minipage}[t][][t]{.44\linewidth}%
+				\begin{minipage}[t][][t]{0.44\linewidth}%
 					\begin{flushright}%
 						\noindent \textcolor{\instregioncolor}{\textsc{#3}}%
 					\end{flushright}%
@@ -1762,15 +1762,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={07/03/2024},
+		Template.Date={20/05/2024},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.0.6},
-		Template.Version.Hash={9F09B04146BC15C4CB7DF22E5126EAA3},
-		Template.Version.Release={4.0.6},
+		Template.Version.Dev={4.0.7},
+		Template.Version.Hash={ABD02F2B9988FD29416805CEAED9ECAD},
+		Template.Version.Release={4.0.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1778,7 +1778,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.0.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.0.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

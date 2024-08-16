@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.0.7 (20/05/2024)
+% Versión:      4.0.8 (16/08/2024)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -987,9 +987,9 @@
 
 % Actualiza newcolumn
 \ifthenelse{\isundefined{\newcolumn}}{%
-	\newcommand{\newcolumn}{\columnbreak}
+	\newcommand{\newcolumn}{\columnbreak}%
 }{%
-	\renewcommand{\newcolumn}{\columnbreak}
+	\renewcommand{\newcolumn}{\columnbreak}%
 }
 
 % Agrega el separador entre items del header
@@ -1003,11 +1003,16 @@
 }
 
 % Agrega un item de texto al header
-%	#1	Texto
-\newcommand{\addheadertext}[1]{%
+%	#1	Ícono de fontawesome (opcional)
+%	#2	Texto
+\newcommand{\addheadertext}[2][]{%
 	\global\def\GLOBALheaderseparatorsticky {false}%
 	\addheaderseparator%
-	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#1}}\LOCALpercentchar}%
+	\ifthenelse{\equal{#1}{}}{}{%
+		\addheadericon{#1}%
+		\addheaderspace{\headericonhmargin cm}%
+	}%
+	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#2}}\LOCALpercentchar}%
 }
 
 % Agrega un correo al header
@@ -1019,7 +1024,7 @@
 }
 
 % Agrega un enlace al header
-%	#1	Ícono de fontawesome, si está vacío se usa url normal
+%	#1	Ícono de fontawesome, si está vacío se usa url normal (opcional)
 %	#2	Enlace
 \newcommand{\addheaderlink}[2][]{%
 	\ifthenelse{\equal{#1}{}}{% Sin ícono
@@ -1033,7 +1038,7 @@
 			\usepackage{fontawesome5}%
 		}{}%
 		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{true}}{%
-			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.25cm}}\LOCALpercentchar}%
+			\addheaderspace{\headericonhmargin cm}%
 		}{}%
 		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}%
 		\global\def\GLOBALheaderseparatorsticky {true}%
@@ -1088,7 +1093,8 @@
 	% Escribe título
 	\ifthenelse{\equal{\writetitleheader}{true}}{%
 		\begin{center}%
-			\fontsize{16}{12} \selectfont \vspace{0.3cm} \textcolor{\titlecolor}{\headertitle}%
+			\fontsize{16}{12} \selectfont \vspace{0.3cm}%
+			\textcolor{\titlecolor}{\headertitle}%
 		\end{center}%
 		\vspace{\headertitlemargin cm}%
 	}{}%
@@ -1478,6 +1484,7 @@
 		}%
 		\begin{multicols}{2}%
 			\noindent%
+			\summaryfontsize%
 		}{%
 		\end{multicols}%
 		\vspace{-0.75\baselineskip}%
@@ -1493,6 +1500,7 @@
 	\begin{cvblock}[#1]{\nomsummary}%
 		\summarystylemarginpostfix{#1}%
 		\begingroup%
+		\summaryfontsize%
 		}{%
 		\endgroup%
 	\end{cvblock}%
@@ -1525,6 +1533,7 @@
 		\begingroup%
 		\def\arraystretch {1.3}%
 		\begin{minipage}[t]{\dimexpr\linewidth-\userphotosize cm-0.57cm}%
+		\summaryfontsize%
 		}{%
 		\end{minipage}%
 		\endgroup%
@@ -1762,15 +1771,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={20/05/2024},
+		Template.Date={16/08/2024},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.0.7},
-		Template.Version.Hash={ABD02F2B9988FD29416805CEAED9ECAD},
-		Template.Version.Release={4.0.7},
+		Template.Version.Dev={4.0.8},
+		Template.Version.Hash={925CEA12F6BB309AB1CA465CBB8BB3F4},
+		Template.Version.Release={4.0.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1778,7 +1787,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.0.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.0.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

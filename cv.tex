@@ -31,6 +31,9 @@
 \input{template}
 
 % CONFIGURA EL HEADER
+% 	Otras funciones:
+%	\addheadericon{map-marker-alt}	Inserta un ícono
+%	\addheaderspace{0.25cm}			Agrega un espacio horizontal
 \addheadermail{\email}
 \addheadertext{\phonenumber}
 \addheadertext{RUT: 12.345.678-9}
@@ -39,9 +42,7 @@
 \addheaderlink[github]{https://github.com/ppizarror}
 \addheadernewline
 
-\addheadericon{map-marker-alt}
-\addheaderspace{0.25cm}
-\addheadertext{Nombre Calle, \#123}
+\addheadertext[map-marker-alt]{Nombre Calle, \#123} % Ícono opcional en [...]
 \addheadertext{Región}
 \addheadertext{País}
 
@@ -78,9 +79,9 @@
 %		\begin{cvblock}[..]{Experiencia}	Línea punteada
 %		\begin{cvblock}[none]{Experiencia}	Sin línea
 %	Además existen los bloques estrictos (cvsblock) que ignoran todos los saltos
-%	de línea; se recomienda para que el espaciado sea consistente independiente
-%	de los espacios y líneas nuevas que existan dentro de éste. Los argumentos son
-%	exactamente los mismos que cvblock normal
+%	de línea;  se recomienda para que el espaciado sea consistente independiente
+%	de los espacios y  líneas nuevas que existan dentro de éste.  Los argumentos
+%	son exactamente los mismos que cvblock normal
 \begin{cvsblock}[]{Experiencia}
 	\begin{institution}[http://empresa.com]{Empresa A}{Ciudad 1, Región 1, País 1}
 		\institutionentry{Jefe de Obras}{Enero \apo 15}{\present}{\lipsum[66]}

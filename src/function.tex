@@ -271,9 +271,9 @@
 
 % Actualiza newcolumn
 \ifthenelse{\isundefined{\newcolumn}}{%
-	\newcommand{\newcolumn}{\columnbreak}
+	\newcommand{\newcolumn}{\columnbreak}%
 }{%
-	\renewcommand{\newcolumn}{\columnbreak}
+	\renewcommand{\newcolumn}{\columnbreak}%
 }
 
 % Agrega el separador entre items del header
@@ -287,11 +287,16 @@
 }
 
 % Agrega un item de texto al header
-%	#1	Texto
-\newcommand{\addheadertext}[1]{%
+%	#1	Ícono de fontawesome (opcional)
+%	#2	Texto
+\newcommand{\addheadertext}[2][]{%
 	\global\def\GLOBALheaderseparatorsticky {false}%
 	\addheaderseparator%
-	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#1}}\LOCALpercentchar}%
+	\ifthenelse{\equal{#1}{}}{}{%
+		\addheadericon{#1}%
+		\addheaderspace{\headericonhmargin cm}%
+	}%
+	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#2}}\LOCALpercentchar}%
 }
 
 % Agrega un correo al header
@@ -303,7 +308,7 @@
 }
 
 % Agrega un enlace al header
-%	#1	Ícono de fontawesome, si está vacío se usa url normal
+%	#1	Ícono de fontawesome, si está vacío se usa url normal (opcional)
 %	#2	Enlace
 \newcommand{\addheaderlink}[2][]{%
 	\ifthenelse{\equal{#1}{}}{% Sin ícono
@@ -317,7 +322,7 @@
 			\usepackage{fontawesome5}%
 		}{}%
 		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{true}}{%
-			\immediate\write\fileheaderitems{\unexpanded{\hspace{0.25cm}}\LOCALpercentchar}%
+			\addheaderspace{\headericonhmargin cm}%
 		}{}%
 		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}%
 		\global\def\GLOBALheaderseparatorsticky {true}%
@@ -372,7 +377,8 @@
 	% Escribe título
 	\ifthenelse{\equal{\writetitleheader}{true}}{%
 		\begin{center}%
-			\fontsize{16}{12} \selectfont \vspace{0.3cm} \textcolor{\titlecolor}{\headertitle}%
+			\fontsize{16}{12} \selectfont \vspace{0.3cm}%
+			\textcolor{\titlecolor}{\headertitle}%
 		\end{center}%
 		\vspace{\headertitlemargin cm}%
 	}{}%

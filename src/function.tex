@@ -585,11 +585,7 @@
 
 % Inserta un texto entre comillas
 \newcommand{\quotes}[1]{%
-	\ifthenelse{\equal{\quotesdouble}{true}}{%
-		\enquote{#1}%
-	}{%
-		\enquote*{#1}%
-	}%
+	\enquote{#1}%
 }
 
 % Inserta un texto entre comillas y negrita

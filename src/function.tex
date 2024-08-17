@@ -585,7 +585,11 @@
 
 % Inserta un texto entre comillas
 \newcommand{\quotes}[1]{%
-	\enquote*{#1}%
+	\ifthenelse{\equal{\quotesdouble}{true}}{%
+		\enquote{#1}%
+	}{%
+		\enquote*{#1}%
+	}%
 }
 
 % Inserta un texto entre comillas y negrita
@@ -604,12 +608,6 @@
 %	#1 	Texto
 \newcommand{\quotesttt}[1]{%
 	\quotes{\texttt{#1}}%
-}
-
-% Inserta un texto entre comillas dobles
-%	#1 	Texto
-\newcommand{\doublequotes}[1]{%
-	\enquote{#1}%
 }
 
 % Inserta un texto con el formato de enlace

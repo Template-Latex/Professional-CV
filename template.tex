@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.0.9 (16/08/2024)
+% Versión:      4.1.0 (18/08/2024)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1110,7 +1110,7 @@
 		\quad \emph{\textcolor{\headertextcolor}{\birthmonth \birthday, \birthyear}}%
 	}{}%
 	\ifthenelse{\equal{\writelastchangeheader}{true}}{%
-		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}%
+		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\namelastchange\ \today}}%
 	}{}%
 	\\ \vspace{-1em}%
 	\ifthenelse{\equal{\headertitlecentered}{true}}{\end{center}}{}%
@@ -1133,7 +1133,7 @@
 	\ifthenelse{\equal{#1}{..}}{}{%
 	\ifthenelse{\equal{#1}{none}}{%
 		\vspace{-0.75em}%
-		\ifthenelse{\equal{\nomsummary}{}}{%
+		\ifthenelse{\equal{\namesummary}{}}{%
 			\vspace{2em}%
 		}{%
 			\vspace{1em}%
@@ -1145,12 +1145,12 @@
 %	#1	Tipo de línea
 \newcommand{\summarystylemarginpostfix}[1]{%
 	\ifthenelse{\equal{#1}{}}{%
-		\ifthenelse{\equal{\nomsummary}{}}{%
+		\ifthenelse{\equal{\namesummary}{}}{%
 			\vspace{1.5em}%
 		}{}%
 	}{%	
 	\ifthenelse{\equal{#1}{..}}{%
-		\ifthenelse{\equal{\nomsummary}{}}{%
+		\ifthenelse{\equal{\namesummary}{}}{%
 			\vspace{0.5em}%
 			\\%
 		}{}%
@@ -1192,8 +1192,9 @@
 	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
 	\nopagebreak[4]%
-	\begin{indentsectiondouble}%
-		\item []%
+	\begin{indentsection}\item []%%
+	\begin{indentsection}
+		\item[]%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%
 				\ifthenelse{\equal{#3}{}}{}{%
@@ -1250,7 +1251,8 @@
 			\end{indentsection}%
 			\vspace{0.25\baselineskip}%
 		}%
-	\end{indentsectiondouble}%
+	\end{indentsection}%
+	\end{indentsection}%
 }
 
 % Entrada en institución
@@ -1273,8 +1275,7 @@
 %	#1	Título
 %	#2	Contenido
 \newcommand{\otherentry}[2]{%
-	\begin{basedescript}%
-		{\setlength{\leftmargin}{\doubleparindent}}%
+	\begin{basedescript}{}%
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2%
 	\end{basedescript}%
 }
@@ -1358,29 +1359,25 @@
 \global\def\GLOBALinstitutionicon {}
 \global\def\GLOBALinstitutioniconmargin {}
 \global\def\GLOBALpersonaltableenabled {false}
+\newcounter{indentsectiondepth}
 
 % Crea una sección identada
 \newenvironment{indentsection}{%
+	\stepcounter{indentsectiondepth}%
 	\begin{list}{}{%
-		\setlength{\leftmargin}{0.75\newparindent}%
+		\ifnum\value{indentsectiondepth}=1%
+			\setlength{\leftmargin}{0.5\newparindent}%
+		\else%
+			\setlength{\leftmargin}{\newparindent}%
+		\fi%
 		\setlength{\parsep}{0pt}%
 		\setlength{\parskip}{0pt}%
 		\setlength{\itemsep}{0pt}%
-		\setlength{\topsep}{0pt}}%
+		\setlength{\topsep}{0pt}%
+	}%
 		}{%
 	\end{list}%
-}
-
-% Crea una sección identada doble
-\newenvironment{indentsectiondouble}{%
-	\begin{list}{}{%
-		\setlength{\leftmargin}{1.5\newparindent}%
-		\setlength{\parsep}{0pt}%
-		\setlength{\parskip}{0pt}%
-		\setlength{\itemsep}{0pt}%
-		\setlength{\topsep}{0pt}}%
-		}{%
-	\end{list}%
+	\addtocounter{indentsectiondepth}{-1}%
 }
 
 % Crea un bloque de contenido
@@ -1471,11 +1468,11 @@
 %	#1	Estilo de línea
 \newenvironment{summary}[1][]{%
 	\summarystylemarginprefix{#1}%
-	\begin{cvblock}[#1]{\nomsummary}%
+	\begin{cvblock}[#1]{\namesummary}%
 		\begingroup%
 		\setlength\columnsep{20pt}%
 		\summarystylemarginpostfix{#1}%
-		\ifthenelse{\equal{\nomsummary}{}}{%
+		\ifthenelse{\equal{\namesummary}{}}{%
 			\vspace{-\baselineskip}%
 		}{%
 			\vspace{-0.75\baselineskip}%
@@ -1495,7 +1492,7 @@
 %	#1	Estilo de línea
 \newenvironment{summarynocol}[1][]{%
 	\summarystylemarginprefix{#1}%
-	\begin{cvblock}[#1]{\nomsummary}%
+	\begin{cvblock}[#1]{\namesummary}%
 		\summarystylemarginpostfix{#1}%
 		\begingroup%
 		\summaryfontsize%
@@ -1509,7 +1506,7 @@
 %	#1	Estilo de línea
 \newenvironment{photosummary}[1][]{%
 	\summarystylemarginprefix{#1}%
-	\begin{cvblock}[#1]{\nomsummary}%
+	\begin{cvblock}[#1]{\namesummary}%
 		\summarystylemarginpostfix{#1}%
 		\vspace{0.1em}%
 		\noindent%
@@ -1543,7 +1540,7 @@
 %	#1	Estilo de línea
 \newenvironment{personaltabledata}[1][]{%
 	\global\def\GLOBALpersonaltableenabled {true}%
-	\begin{cvblock}[#1]{\nompersonaldata}%
+	\begin{cvblock}[#1]{\namepersonaldata}%
 		\vspace{0.1em}%
 		\noindent%
 		\ifthenelse{\equal{\personaltabledatapic}{true}}{%
@@ -1769,15 +1766,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={16/08/2024},
+		Template.Date={18/08/2024},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.0.9-5},
-		Template.Version.Hash={6D4C78BFB06D4B2924E05E5B27F103EE},
-		Template.Version.Release={4.0.9},
+		Template.Version.Dev={4.1.0},
+		Template.Version.Hash={6D47898B62B5C9E4E6E8171239B0D614},
+		Template.Version.Release={4.1.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1785,7 +1782,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.0.9 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.1.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -1833,12 +1830,11 @@
 
 % Configuración de la identación
 \newlength{\newparindent}
-\addtolength{\newparindent}{\parindent}
-\newlength{\doubleparindent}
-\addtolength{\doubleparindent}{\parindent}
-\addtolength{\doubleparindent}{\parindent}
+\addtolength{\newparindent}{\indentwidth pt}
 \setenumerate{itemsep=0pt}
 \setitemize{itemsep=0pt}
+\newlength{\defaulttopsep}
+\addtolength{\defaulttopsep}{\topsep}
 
 % Configuración de hbox y vbox
 \hfuzz=200pt

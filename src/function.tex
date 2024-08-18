@@ -472,8 +472,9 @@
 	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
 	\nopagebreak[4]%
-	\begin{indentsectiondouble}%
-		\item []%
+	\begin{indentsection}\item []%
+	\begin{indentsection}%
+		\item[]%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%
 				\ifthenelse{\equal{#3}{}}{}{%
@@ -530,7 +531,8 @@
 			\end{indentsection}%
 			\vspace{0.25\baselineskip}%
 		}%
-	\end{indentsectiondouble}%
+	\end{indentsection}%
+	\end{indentsection}%
 }
 
 % Entrada en institución
@@ -553,8 +555,7 @@
 %	#1	Título
 %	#2	Contenido
 \newcommand{\otherentry}[2]{%
-	\begin{basedescript}%
-		{\setlength{\leftmargin}{2\newparindent}}%
+	\begin{basedescript}{}%
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2%
 	\end{basedescript}%
 }

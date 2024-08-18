@@ -42,9 +42,7 @@
 \addheaderlink[github]{https://github.com/ppizarror}
 \addheadernewline
 
-\addheadertext[map-marker-alt]{Nombre Calle, \#123} % Ícono opcional en [...]
-\addheadertext{Región}
-\addheadertext{País}
+\addheadertext[map-marker-alt]{Calle \#123, Región, País} % Ícono opcional en []
 
 % INICIO DEL DOCUMENTO
 \begin{document}
@@ -57,12 +55,12 @@
 %	\begin{summary}				Línea negra por defecto
 % 	\begin{summary}[..]			Línea punteada
 %	\begin{summary}[none]		Sin línea
-\begin{summary}%
+\begin{summary}[none]%
 	\noindent\emph{\lipsum[75]} \\
-	\lipsum[4]
+	\lipsum[75]
 \end{summary}
 
-% TABLA ANTECEDENTES PERSONALES
+% TABLA ANTECEDENTES PERSONALES (YA NO SE SUELE UTILIZAR)
 %	Desactivar la foto con la configuración \personaltabledatapic
 \begin{personaltabledata}
 	\personaltableentry{Fecha de Nacimiento}{\birthday, \birthmonth del \birthyear}

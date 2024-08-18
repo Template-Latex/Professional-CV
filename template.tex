@@ -1181,7 +1181,7 @@
 \newlength\institutionentrywtitle
 
 % Inserta un objeto en un elemento institución
-%	#1	Cargo
+%	#1	Cargo/Posición
 %	#2	Fecha inicial
 %	#3	Fecha final
 %	#4	Separador entre fechas
@@ -1192,9 +1192,7 @@
 	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
 	\nopagebreak[4]%
-	\begin{indentsection}\item []%%
-	\begin{indentsection}
-		\item[]%
+	\begin{institutionindent}%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%
 				\ifthenelse{\equal{#3}{}}{}{%
@@ -1208,7 +1206,7 @@
 				}%
 			}%
 		}%
-		\settowidth\institutionentrywtitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho de la fecha
+		\settowidth\institutionentrywtitle{\textbf{#1}\LOCALinstitutionentrydate}% Calcula ancho de la fecha
 		\ifthenelse{\equal{#5}{}}{%
 			\def\LOCALinstitutionentryreqspace {0}%
 		}{%
@@ -1218,41 +1216,42 @@
 				\def\LOCALinstitutionentryreqspace {2.5}%
 			}%
 		}%
-		\printifspace{\LOCALinstitutionentryreqspace}{%
-			\begin{minipage}{1\linewidth} % Crea el título
-				\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{% Una sola línea
-					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
-					\hfill\LOCALinstitutionentrydate \\%
-					\vspace{-0.5\baselineskip}%
-				}{%
-					\settowidth\institutionentrywdate{\LOCALinstitutionentrydate} % Calcula ancho del título
-					\ifthenelse{\institutionentrywdate<\dimexpr0.175\linewidth}{%
-						\def\LOCALinstitutionentrypagew {0.17}%
-					}{%
-						\def\LOCALinstitutionentrypagew {0.3}%
-					}%
-					\begin{minipage}[t][][t]{\dimexpr\linewidth-\LOCALinstitutionentrypagew\linewidth}%
-						\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+		\begin{institutionindent}%
+			\printifspace{\LOCALinstitutionentryreqspace}{%
+				\begin{minipage}{1\linewidth}% Crea el título
+					\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{% Una sola línea
+						\textcolor{\instentrytitlecolor}{\textbf{#1}}%
+						\hfill\LOCALinstitutionentrydate \\%
 						\vspace{-0.5\baselineskip}%
-					\end{minipage}%
-					\begin{minipage}[t][][t]{\dimexpr\LOCALinstitutionentrypagew\linewidth}%
-						\begin{flushright}%
-							\LOCALinstitutionentrydate%
-						\end{flushright}%
-					\end{minipage}%
-				}%
-			\end{minipage}%
-		}{}%
-		\ifthenelse{\equal{#5}{}}{%
-			\vspace{0.05\baselineskip}%
-		}{%
-			\begin{indentsection}%
-				\item[] #5%
-			\end{indentsection}%
-			\vspace{0.25\baselineskip}%
-		}%
-	\end{indentsection}%
-	\end{indentsection}%
+					}{%
+						\settowidth\institutionentrywdate{\LOCALinstitutionentrydate}% Calcula ancho del título
+						\ifthenelse{\institutionentrywdate<\dimexpr0.175\linewidth}{%
+							\def\LOCALinstitutionentrypagew {0.17}%
+						}{%
+							\def\LOCALinstitutionentrypagew {0.3}%
+						}%
+						\begin{minipage}[t][][t]{\dimexpr\linewidth-\LOCALinstitutionentrypagew\linewidth}%
+							\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+							\vspace{-0.5\baselineskip}%
+						\end{minipage}%
+						\begin{minipage}[t][][t]{\dimexpr\LOCALinstitutionentrypagew\linewidth}%
+							\begin{flushright}%
+								\LOCALinstitutionentrydate%
+							\end{flushright}%
+						\end{minipage}%
+					}%
+				\end{minipage}%
+			}{}%
+			\ifthenelse{\equal{#5}{}}{%
+				\vspace{0.05\baselineskip}%
+			}{%
+				\begin{institutionindent}%
+					#5%
+				\end{institutionindent}%
+				\vspace{0.25\baselineskip}%
+			}%
+		\end{institutionindent}%
+	\end{institutionindent}%
 }
 
 % Entrada en institución
@@ -1359,26 +1358,7 @@
 \global\def\GLOBALinstitutionicon {}
 \global\def\GLOBALinstitutioniconmargin {}
 \global\def\GLOBALpersonaltableenabled {false}
-\newcounter{indentsectiondepth}
-
-% Crea una sección identada
-\newenvironment{indentsection}{%
-	\stepcounter{indentsectiondepth}%
-	\begin{list}{}{%
-		\ifnum\value{indentsectiondepth}=1%
-			\setlength{\leftmargin}{0.5\newparindent}%
-		\else%
-			\setlength{\leftmargin}{\newparindent}%
-		\fi%
-		\setlength{\parsep}{0pt}%
-		\setlength{\parskip}{0pt}%
-		\setlength{\itemsep}{0pt}%
-		\setlength{\topsep}{0pt}%
-	}%
-		}{%
-	\end{list}%
-	\addtocounter{indentsectiondepth}{-1}%
-}
+\newcounter{institutionindentdepth}
 
 % Crea un bloque de contenido
 %	#1	Estilo de línea
@@ -1589,8 +1569,7 @@
 	\nopagebreak[4]%
 	\hypersetup{urlcolor=\instnamecolor}%
 	\hfuzz=4pt%
-	\begin{indentsection}%
-		\item []%
+	\begin{institutionindent}%
 		\noindent%
 		\def\LOCALinstitutioniconl {%
 			\ifthenelse{\equal{\institutioniconleft}{true}}{%
@@ -1637,7 +1616,7 @@
 			}{}%
 		\fi%
 		\break%
-	\end{indentsection}%
+	\end{institutionindent}%
 	\hypersetup{urlcolor=\urlcolor}%
 	\vspace{-1.75\baselineskip}%
 	\noindent%
@@ -1647,6 +1626,26 @@
 	\vspace{0.25\baselineskip}%
 	\global\def\GLOBALinstitutionenabled {false}%
 	\nopagebreak[4]%
+}
+
+% Crea una sección identada para las instituciones
+\newenvironment{institutionindent}{%
+	\stepcounter{institutionindentdepth}%
+	\begin{list}{}{%
+		\ifnum\value{institutionindentdepth}=1%
+			\setlength{\leftmargin}{0.5\newparindent}%
+		\else%
+			\setlength{\leftmargin}{\newparindent}%
+		\fi%
+		\setlength{\parsep}{0pt}%
+		\setlength{\parskip}{0pt}%
+		\setlength{\itemsep}{0pt}%
+		\setlength{\topsep}{0pt}%
+	}%
+		\item []%
+		}{%
+	\end{list}%
+	\addtocounter{institutionindentdepth}{-1}%
 }
 
 % Nueva institución con ícono
@@ -1772,8 +1771,8 @@
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.1.0},
-		Template.Version.Hash={6D47898B62B5C9E4E6E8171239B0D614},
+		Template.Version.Dev={4.1.0-3},
+		Template.Version.Hash={A2A828BA31C398A38FF5331D4EE4A1D5},
 		Template.Version.Release={4.1.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
@@ -1833,8 +1832,6 @@
 \addtolength{\newparindent}{\indentwidth pt}
 \setenumerate{itemsep=0pt}
 \setitemize{itemsep=0pt}
-\newlength{\defaulttopsep}
-\addtolength{\defaulttopsep}{\topsep}
 
 % Configuración de hbox y vbox
 \hfuzz=200pt

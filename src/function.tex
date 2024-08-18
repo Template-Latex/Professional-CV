@@ -472,9 +472,8 @@
 	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
 	\nopagebreak[4]%
-	\begin{indentsection}\item []%
 	\begin{indentsection}%
-		\item[]%
+	\begin{indentsection}%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%
 				\ifthenelse{\equal{#3}{}}{}{%
@@ -527,7 +526,7 @@
 			\vspace{0.05\baselineskip}%
 		}{%
 			\begin{indentsection}%
-				\item[] #5%
+				#5%
 			\end{indentsection}%
 			\vspace{0.25\baselineskip}%
 		}%

@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones del template
-% Versión:      4.0.9 (16/08/2024)
+% Versión:      4.1.0 (18/08/2024)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -12,7 +12,7 @@
 % CONFIGURACIONES GENERALES
 \def\documentfontsize {11}        % Tamaño de la fuente del documento [pt]
 \def\documentinterline {1.1}      % Interlineado del documento defecto [factor]
-\def\fontdocument {default}       % Tipografía base, ver soportadas en manual
+\def\fontdocument {default}       % Tipografía base, ver manual
 \def\fonttypewriter {cmodern}     % Tipografía de \texttt, ver manual
 \def\fonturl {same}               % Tipo de fuente url {tt,sf,rm,same}
 \def\pointdecimal {false}         % Decimales con punto en vez de coma
@@ -20,12 +20,13 @@
 % CONFIGURACIÓN DEL ESTILO DEL TEMPLATE
 \def\dateseparator {--}           % Carácter que separa las fechas
 \def\headericonhmargin {0.225}    % Margen horizontal post ícono en header [cm]
-\def\headeritemsmargin {0.3}      % Margen vertical de los ítems del header [cm]
+\def\headeritemsmargin {0.5}      % Margen vertical de los ítems del header [cm]
 \def\headeritemslinespace {0.1}   % Distancia entre líneas del header [cm]
 \def\headerseparator {\sbullet}   % Separador entre elementos del encabezado
 \def\headertitlecentered {false}  % Header centrado
 \def\headertitlemargin {0.25}     % Margen de \headertitle [cm]
-\def\hfstyle {style5}             % Estilos de encabezado y pie de pag (11 disp.)
+\def\hfstyle {style10}            % Estilos de encabezado y pie de pag (11 disp.)
+\def\indentwidth {15}             % Tamaño indentación [pt]
 \def\institutioniconleft {false}  % Íconos a la izquierda o derecha
 \def\institutioniconsize {normal} % Tamaño ícono {small,normal,large,huge}
 \def\institutiontitlebold {false} % Título institución en negrita
@@ -34,7 +35,7 @@
 \def\summaryfontsize{\normalsize} % Tamaño de la fuente de texto en summary
 \def\userphotosize {3.5}          % Dimensiones de la foto del usuario [cm]
 \def\usersignaturesize {5.0}      % Ancho de la foto de la firma [cm]
-\def\writebirthdayheader {true}   % Escribe año nacimiento encabezado
+\def\writebirthdayheader {false}  % Escribe año nacimiento encabezado
 \def\writelastchangeheader{false} % Escribe fecha último cambio en el encabezado
 \def\writetitleheader {false}     % Escribe el \headertitle en el encabezado
 
@@ -88,7 +89,7 @@
 
 % NOMBRES DE LOS OBJETOS
 \def\headertitle {Curriculum Vitae}   % Título principal en el header
-\def\nomlastchange {Último cambio el} % Nombre apartado último cambio
-\def\nompersonaldata {Antecedentes Personales} % Título antecedentes personales
-\def\nomsummary {Descripción}         % Título sección descripción
+\def\namelastchange{Último cambio el} % Nombre apartado último cambio
+\def\namepersonaldata {Antecedentes Personales} % Título antecedentes personales
+\def\namesummary {}                   % Título sección summary. Vacío lo oculta
 \def\present {presente}               % Fecha presente en <institutionitem>

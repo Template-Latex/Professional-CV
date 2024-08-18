@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      4.0.9 (16/08/2024)
+% Versión:      4.1.0 (18/08/2024)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -390,7 +390,7 @@
 		\quad \emph{\textcolor{\headertextcolor}{\birthmonth \birthday, \birthyear}}%
 	}{}%
 	\ifthenelse{\equal{\writelastchangeheader}{true}}{%
-		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\nomlastchange\ \today}}%
+		\hfill \quad {\scriptsize \textcolor{\lastchangeheadercolor}{\namelastchange\ \today}}%
 	}{}%
 	\\ \vspace{-1em}%
 	\ifthenelse{\equal{\headertitlecentered}{true}}{\end{center}}{}%
@@ -413,7 +413,7 @@
 	\ifthenelse{\equal{#1}{..}}{}{%
 	\ifthenelse{\equal{#1}{none}}{%
 		\vspace{-0.75em}%
-		\ifthenelse{\equal{\nomsummary}{}}{%
+		\ifthenelse{\equal{\namesummary}{}}{%
 			\vspace{2em}%
 		}{%
 			\vspace{1em}%
@@ -425,12 +425,12 @@
 %	#1	Tipo de línea
 \newcommand{\summarystylemarginpostfix}[1]{%
 	\ifthenelse{\equal{#1}{}}{%
-		\ifthenelse{\equal{\nomsummary}{}}{%
+		\ifthenelse{\equal{\namesummary}{}}{%
 			\vspace{1.5em}%
 		}{}%
 	}{%	
 	\ifthenelse{\equal{#1}{..}}{%
-		\ifthenelse{\equal{\nomsummary}{}}{%
+		\ifthenelse{\equal{\namesummary}{}}{%
 			\vspace{0.5em}%
 			\\%
 		}{}%
@@ -554,7 +554,7 @@
 %	#2	Contenido
 \newcommand{\otherentry}[2]{%
 	\begin{basedescript}%
-		{\setlength{\leftmargin}{\doubleparindent}}%
+		{\setlength{\leftmargin}{2\newparindent}}%
 		\item[\hspace{\newparindent}\textcolor{\otherentrytitlecolor}{\textbf{#1}}] #2%
 	\end{basedescript}%
 }

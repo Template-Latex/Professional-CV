@@ -461,7 +461,7 @@
 \newlength\institutionentrywtitle
 
 % Inserta un objeto en un elemento institución
-%	#1	Cargo
+%	#1	Cargo/Posición
 %	#2	Fecha inicial
 %	#3	Fecha final
 %	#4	Separador entre fechas
@@ -472,8 +472,7 @@
 	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
 	\nopagebreak[4]%
-	\begin{indentsection}%
-	\begin{indentsection}%
+	\begin{institutionindent}%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%
 				\ifthenelse{\equal{#3}{}}{}{%
@@ -487,7 +486,7 @@
 				}%
 			}%
 		}%
-		\settowidth\institutionentrywtitle{\textbf{#1}\LOCALinstitutionentrydate} % Calcula ancho de la fecha
+		\settowidth\institutionentrywtitle{\textbf{#1}\LOCALinstitutionentrydate}% Calcula ancho de la fecha
 		\ifthenelse{\equal{#5}{}}{%
 			\def\LOCALinstitutionentryreqspace {0}%
 		}{%
@@ -497,41 +496,42 @@
 				\def\LOCALinstitutionentryreqspace {2.5}%
 			}%
 		}%
-		\printifspace{\LOCALinstitutionentryreqspace}{%
-			\begin{minipage}{1\linewidth} % Crea el título
-				\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{% Una sola línea
-					\textcolor{\instentrytitlecolor}{\textbf{#1}}%
-					\hfill\LOCALinstitutionentrydate \\%
-					\vspace{-0.5\baselineskip}%
-				}{%
-					\settowidth\institutionentrywdate{\LOCALinstitutionentrydate} % Calcula ancho del título
-					\ifthenelse{\institutionentrywdate<\dimexpr0.175\linewidth}{%
-						\def\LOCALinstitutionentrypagew {0.17}%
-					}{%
-						\def\LOCALinstitutionentrypagew {0.3}%
-					}%
-					\begin{minipage}[t][][t]{\dimexpr\linewidth-\LOCALinstitutionentrypagew\linewidth}%
-						\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+		\begin{institutionindent}%
+			\printifspace{\LOCALinstitutionentryreqspace}{%
+				\begin{minipage}{1\linewidth}% Crea el título
+					\ifthenelse{\institutionentrywtitle<\dimexpr0.95\linewidth}{% Una sola línea
+						\textcolor{\instentrytitlecolor}{\textbf{#1}}%
+						\hfill\LOCALinstitutionentrydate \\%
 						\vspace{-0.5\baselineskip}%
-					\end{minipage}%
-					\begin{minipage}[t][][t]{\dimexpr\LOCALinstitutionentrypagew\linewidth}%
-						\begin{flushright}%
-							\LOCALinstitutionentrydate%
-						\end{flushright}%
-					\end{minipage}%
-				}%
-			\end{minipage}%
-		}{}%
-		\ifthenelse{\equal{#5}{}}{%
-			\vspace{0.05\baselineskip}%
-		}{%
-			\begin{indentsection}%
-				#5%
-			\end{indentsection}%
-			\vspace{0.25\baselineskip}%
-		}%
-	\end{indentsection}%
-	\end{indentsection}%
+					}{%
+						\settowidth\institutionentrywdate{\LOCALinstitutionentrydate}% Calcula ancho del título
+						\ifthenelse{\institutionentrywdate<\dimexpr0.175\linewidth}{%
+							\def\LOCALinstitutionentrypagew {0.17}%
+						}{%
+							\def\LOCALinstitutionentrypagew {0.3}%
+						}%
+						\begin{minipage}[t][][t]{\dimexpr\linewidth-\LOCALinstitutionentrypagew\linewidth}%
+							\textcolor{\instentrytitlecolor}{\textbf{#1}} \\%
+							\vspace{-0.5\baselineskip}%
+						\end{minipage}%
+						\begin{minipage}[t][][t]{\dimexpr\LOCALinstitutionentrypagew\linewidth}%
+							\begin{flushright}%
+								\LOCALinstitutionentrydate%
+							\end{flushright}%
+						\end{minipage}%
+					}%
+				\end{minipage}%
+			}{}%
+			\ifthenelse{\equal{#5}{}}{%
+				\vspace{0.05\baselineskip}%
+			}{%
+				\begin{institutionindent}%
+					#5%
+				\end{institutionindent}%
+				\vspace{0.25\baselineskip}%
+			}%
+		\end{institutionindent}%
+	\end{institutionindent}%
 }
 
 % Entrada en institución

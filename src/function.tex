@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Funciones utilitarias
-% Versión:      4.1.0 (18/08/2024)
+% Versión:      4.1.1 (14/12/2024)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -14,6 +14,7 @@
 \global\def\GLOBALheaderlineitem {false}
 \global\def\GLOBALheaderseparatorsticky {false}
 \global\def\GLOBALprintspacefilled {false}
+\newcounter{institutionentrycount}
 
 % Ignora linebreaks
 \def\ignorelinebreaks{%
@@ -471,7 +472,10 @@
 		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentrynodate no pueden usarse fuera del entorno \noexpand\institution}\stop%
 	}%
 	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
-	\nopagebreak[4]%
+	\stepcounter{institutionentrycount}%
+	\ifnum\value{institutionentrycount}=1%
+		\nopagebreak[4]%
+	\fi%
 	\begin{institutionindent}%
 		\def\LOCALinstitutionentrydate {%
 			\ifthenelse{\equal{#2}{}}{%

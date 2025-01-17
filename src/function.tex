@@ -33,15 +33,15 @@
 
 % Espaciado necesario para printifspace
 \newcommand*\measurepage{\dimexpr\pagegoal-\pagetotal\relax}
-\newsavebox{\printspacemybox}
-\newlength{\printspaceboxheight}
+\newsavebox{\printspacebox}
+\newlength {\printspaceboxheight}
 
 % Inserta un resorte que llena todo el espacio previo nueva línea
 %	#1	Tamaño a rellenar (baselineskip)
 \newcommand{\coreiprintifspacefill}[1]{%
 	\ifthenelse{\equal{\GLOBALprintspacefilled}{false}}{%
-		\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#1\baselineskip}}}%
-		\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+		\sbox{\printspacebox}{\parbox{\textwidth}{\vspace{#1\baselineskip}}}%
+		\setlength{\printspaceboxheight}{\ht\printspacebox+\dp\printspacebox}%
 		\ifthenelse{\printspaceboxheight<\measurepage}{%
 			% \throwwarning{iprintifspace: #1 (page \thepage)}%
 			\vspace{#1\baselineskip}%
@@ -144,8 +144,8 @@
 
 % Inserta una nueva página sólo si es necesario
 \newcommand{\printifnewpage}{%
-	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{0.01\baselineskip}}}%
-	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+	\sbox{\printspacebox}{\parbox{\textwidth}{\vspace{0.01\baselineskip}}}%
+	\setlength{\printspaceboxheight}{\ht\printspacebox+\dp\printspacebox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{\newpage}{}%
 }
 
@@ -156,8 +156,8 @@
 %	#4	Contenido a reemplazar en caso de fallar espaciado (r, np, i) o aprobar espaciado (s)
 \newcommand{\printifspace}[4][np]{%
 	\global\def\GLOBALprintspacefilled {false}%
-	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
-	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+	\sbox{\printspacebox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
+	\setlength{\printspaceboxheight}{\ht\printspacebox+\dp\printspacebox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{%
 		\ifthenelse{\equal{#1}{s}}{% Reemplaza (exito)
 			#4%
@@ -471,7 +471,7 @@
 	\ifthenelse{\equal{\GLOBALinstitutionenabled}{true}}{}{%
 		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentrynodate no pueden usarse fuera del entorno \noexpand\institution}\stop%
 	}%
-	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
+	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posicion no definido}%
 	\stepcounter{institutionentrycount}%
 	\ifnum\value{institutionentrycount}=1%
 		\nopagebreak[4]%
@@ -532,7 +532,9 @@
 				\begin{institutionindent}%
 					#5%
 				\end{institutionindent}%
-				\vspace{0.25\baselineskip}%
+				\printifspace[r]{2}{%
+					\vspace{0.23\baselineskip}%
+				}{}%
 			}%
 		\end{institutionindent}%
 	\end{institutionindent}%
@@ -632,7 +634,7 @@
 	\href{mailto:#1}{\hreftext{#1}}%
 }
 
-% Inserta un teléfono celular
+% Inserta un número de teléfono
 \newcommand{\insertphone}[1]{%
 	\href{tel:#1}{\hreftext{#1}}%
 }

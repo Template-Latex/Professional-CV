@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.1.1 (14/12/2024)
+% Versión:      4.1.2 (17/01/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -753,15 +753,15 @@
 
 % Espaciado necesario para printifspace
 \newcommand*\measurepage{\dimexpr\pagegoal-\pagetotal\relax}
-\newsavebox{\printspacemybox}
-\newlength{\printspaceboxheight}
+\newsavebox{\printspacebox}
+\newlength {\printspaceboxheight}
 
 % Inserta un resorte que llena todo el espacio previo nueva línea
 %	#1	Tamaño a rellenar (baselineskip)
 \newcommand{\coreiprintifspacefill}[1]{%
 	\ifthenelse{\equal{\GLOBALprintspacefilled}{false}}{%
-		\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#1\baselineskip}}}%
-		\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+		\sbox{\printspacebox}{\parbox{\textwidth}{\vspace{#1\baselineskip}}}%
+		\setlength{\printspaceboxheight}{\ht\printspacebox+\dp\printspacebox}%
 		\ifthenelse{\printspaceboxheight<\measurepage}{%
 			% \throwwarning{iprintifspace: #1 (page \thepage)}%
 			\vspace{#1\baselineskip}%
@@ -864,8 +864,8 @@
 
 % Inserta una nueva página sólo si es necesario
 \newcommand{\printifnewpage}{%
-	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{0.01\baselineskip}}}%
-	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+	\sbox{\printspacebox}{\parbox{\textwidth}{\vspace{0.01\baselineskip}}}%
+	\setlength{\printspaceboxheight}{\ht\printspacebox+\dp\printspacebox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{\newpage}{}%
 }
 
@@ -876,8 +876,8 @@
 %	#4	Contenido a reemplazar en caso de fallar espaciado (r, np, i) o aprobar espaciado (s)
 \newcommand{\printifspace}[4][np]{%
 	\global\def\GLOBALprintspacefilled {false}%
-	\sbox{\printspacemybox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
-	\setlength{\printspaceboxheight}{\ht\printspacemybox+\dp\printspacemybox}%
+	\sbox{\printspacebox}{\parbox{\textwidth}{\vspace{#2\baselineskip}#3}}%
+	\setlength{\printspaceboxheight}{\ht\printspacebox+\dp\printspacebox}%
 	\ifthenelse{\printspaceboxheight<\measurepage}{%
 		\ifthenelse{\equal{#1}{s}}{% Reemplaza (exito)
 			#4%
@@ -1191,7 +1191,7 @@
 	\ifthenelse{\equal{\GLOBALinstitutionenabled}{true}}{}{%
 		\throwwarning{Funciones \noexpand\newinstitutionentry, \noexpand\institutionentry o \noexpand\institutionentrynodate no pueden usarse fuera del entorno \noexpand\institution}\stop%
 	}%
-	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posición no definido}%
+	\emptyvarerr{\newinstitutionentry}{#1}{Cargo o posicion no definido}%
 	\stepcounter{institutionentrycount}%
 	\ifnum\value{institutionentrycount}=1%
 		\nopagebreak[4]%
@@ -1252,7 +1252,9 @@
 				\begin{institutionindent}%
 					#5%
 				\end{institutionindent}%
-				\vspace{0.25\baselineskip}%
+				\printifspace[r]{2}{%
+					\vspace{0.23\baselineskip}%
+				}{}%
 			}%
 		\end{institutionindent}%
 	\end{institutionindent}%
@@ -1352,7 +1354,7 @@
 	\href{mailto:#1}{\hreftext{#1}}%
 }
 
-% Inserta un teléfono celular
+% Inserta un número de teléfono
 \newcommand{\insertphone}[1]{%
 	\href{tel:#1}{\hreftext{#1}}%
 }
@@ -1770,15 +1772,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={14/12/2024},
+		Template.Date={17/01/2025},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.1.1},
-		Template.Version.Hash={7302B7C24BC65A3AE80B2D44E3B099FC},
-		Template.Version.Release={4.1.1},
+		Template.Version.Dev={4.1.2},
+		Template.Version.Hash={9CB3083E40DF5FC8185EE3E25B141B00},
+		Template.Version.Release={4.1.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1786,7 +1788,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.1.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.1.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -1873,9 +1875,6 @@
 \AfterEndEnvironment{itemize}{\vspace{-0.4\baselineskip}}
 \AfterEndEnvironment{enumerate}{\vspace{-0.4\baselineskip}}
 \renewcommand{\labelitemi}{\raisebox{0.5\height}{\scalebox{0.5}{$\blacksquare$}}}
-
-% Configura document
-% \AtEndDocument{\printifspacefill}
 
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES DE PÁGINA

@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.1.3 (24/02/2025)
+% Versión:      4.1.4 (02/03/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1386,12 +1386,18 @@
 				}%
 			}{}%
 		}{%
+		\ifthenelse{\equal{#1}{--}}{%
+			\printifspace[i]{8}{%
+				\textcolor{\cvblocklinecolor}{\hrule}%
+				\vspace{0.15em}%
+			}{}%
+		}{%
 		\ifthenelse{\equal{#1}{none}}{%
 			\printifspace[s]{3}{\vspace{3\baselineskip}}{}%
 		}{%
 			\throwwarning{Estilo de linea invalido}%
 			\stop%
-		}}%
+		}}}%
 	\fi%
 	\ifx\hfuzz#2\hfuzz%
 		\throwwarning{Titulo del cvblock no definido}%
@@ -1772,15 +1778,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={24/02/2025},
+		Template.Date={02/03/2025},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.1.3},
-		Template.Version.Hash={1E812172BAE1E7DF800923ECF78D47DE},
-		Template.Version.Release={4.1.3},
+		Template.Version.Dev={4.1.4},
+		Template.Version.Hash={537A4DB770823175FF4CCD91CA20B882},
+		Template.Version.Release={4.1.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1788,7 +1794,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.1.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.1.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

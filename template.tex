@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Núcleo del template
-% Versión:      4.1.6 (08/11/2025)
+% Versión:      4.1.7 (05/01/2026)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -732,8 +732,9 @@
 % Definición de variables globales
 \global\def\GLOBALheaderfaimport {false}
 \global\def\GLOBALheaderlineitem {false}
-\global\def\GLOBALheaderseparatorsticky {false}
 \global\def\GLOBALprintspacefilled {false}
+\newcounter{headerseparatorsticky}
+\newcounter{headerseparatorstickyhs}
 \newcounter{institutionentrycount}
 
 % Ignora linebreaks
@@ -997,66 +998,6 @@
 	\renewcommand{\newcolumn}{\columnbreak}%
 }
 
-% Agrega el separador entre items del header
-\newcommand{\addheaderseparator}{%
-	\ifthenelse{\equal{\GLOBALheaderlineitem}{true}}{%
-		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{false}}{%
-			\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headerseparatorcolor}{\headerseparator}}\LOCALpercentchar}%
-		}{}%
-	}{}%
-	\global\def\GLOBALheaderlineitem {true}%
-}
-
-% Agrega un item de texto al header
-%	#1	Ícono de fontawesome (opcional)
-%	#2	Texto
-\newcommand{\addheadertext}[2][]{%
-	\global\def\GLOBALheaderseparatorsticky {false}%
-	\addheaderseparator%
-	\ifthenelse{\equal{#1}{}}{}{%
-		\addheadericon{#1}%
-		\addheaderspace{\headericonhmargin cm}%
-	}%
-	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#2}}\LOCALpercentchar}%
-}
-
-% Agrega un correo al header
-%	#1	Correo
-\newcommand{\addheadermail}[1]{%
-	\global\def\GLOBALheaderseparatorsticky {false}%
-	\addheaderseparator%
-	\immediate\write\fileheaderitems{\unexpanded{\href{mailto:#1}{#1}}\LOCALpercentchar}%
-}
-
-% Agrega un enlace al header
-%	#1	Ícono de fontawesome, si está vacío se usa url normal (opcional)
-%	#2	Enlace
-\newcommand{\addheaderlink}[2][]{%
-	\ifthenelse{\equal{#1}{}}{% Sin ícono
-		\global\def\GLOBALheaderseparatorsticky {false}%
-		\addheaderseparator%
-		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}%
-	}{%
-		\addheaderseparator%
-		\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
-			\global\def\GLOBALheaderfaimport {true}%
-			\usepackage{fontawesome5}%
-		}{}%
-		\ifthenelse{\equal{\GLOBALheaderseparatorsticky}{true}}{%
-			\addheaderspace{\headericonhmargin cm}%
-		}{}%
-		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{\faIcon{#1}}}\LOCALpercentchar}%
-		\global\def\GLOBALheaderseparatorsticky {true}%
-	}%
-}
-
-% Agrega una nueva línea al header
-\newcommand{\addheadernewline}{%
-	\global\def\GLOBALheaderlineitem {false}%
-	\global\def\GLOBALheaderseparatorsticky {false}%
-	\immediate\write\fileheaderitems{\unexpanded{\vspace{\headeritemslinespace cm}\\}\LOCALpercentchar}%
-}
-
 % Agrega un ícono
 %	#1	Nombre del ícono
 \newcommand{\addheadericon}[1]{%
@@ -1067,12 +1008,6 @@
 	\immediate\write\fileheaderitems{\unexpanded{\faIcon{#1}}\LOCALpercentchar}%
 }
 
-% Agrega un espacio vertical
-%	#1	Tamaño del espacio
-\newcommand{\addheaderspace}[1]{%
-	\immediate\write\fileheaderitems{\unexpanded{\hspace{#1}}\LOCALpercentchar}%
-}
-
 % Agrega una imagen
 %	#1	Dirección de la imagen
 %	#2	Tamaño de la imagen {small, normal, large, huge}
@@ -1080,16 +1015,100 @@
 	\ifthenelse{\equal{#2}{small}}{%
 		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.01\baselineskip}{\includegraphics[height=0.65\baselineskip]{#1}}}\LOCALpercentchar}%
 	}{%
-	\ifthenelse{\equal{#2}{normal}}{%
-		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.15\baselineskip}{\includegraphics[height=1\baselineskip]{#1}}}\LOCALpercentchar}%
+		\ifthenelse{\equal{#2}{normal}}{%
+			\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.15\baselineskip}{\includegraphics[height=1\baselineskip]{#1}}}\LOCALpercentchar}%
+		}{%
+		\ifthenelse{\equal{#2}{large}}{%
+			\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip]{#1}}}\LOCALpercentchar}%
+		}{%
+		\ifthenelse{\equal{#2}{huge}}{%
+			\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.5\baselineskip}{\includegraphics[height=1.5\baselineskip]{#1}}}\LOCALpercentchar}%
+		}{%
+			\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal, large o huge}%
+		}}}%
+	}%
+}
+
+% Agrega un enlace al header con ícono
+%	#1	Ícono de fontawesome, si está vacío se usa url normal (opcional)
+%	#2	Enlace
+\newcommand{\addheaderlink}[2][]{%
+	\ifthenelse{\equal{#1}{}}{%
+		\addheaderurl{#2}%
 	}{%
-	\ifthenelse{\equal{#2}{large}}{%
-		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.25\baselineskip}{\includegraphics[height=1.25\baselineskip]{#1}}}\LOCALpercentchar}%
+		\ifthenelse{\equal{\GLOBALheaderfaimport}{false}}{%
+			\global\def\GLOBALheaderfaimport {true}%
+			\usepackage{fontawesome5}%
+		}{}%
+		\ifnum\value{headerseparatorsticky}>0%
+			\ifnum\value{headerseparatorstickyhs}>0%
+				\addheaderspace{\headericonhmargin cm}%
+			\fi%
+		\fi%
+		\addheaderurl[\unexpanded{\faIcon{#1}}]{#2}%
+		\stepcounter{headerseparatorsticky}%
+		\stepcounter{headerseparatorstickyhs}%
+	}%
+}
+
+% Agrega un correo al header
+%	#1	Correo
+\newcommand{\addheadermail}[1]{%
+	\addheaderurl[#1]{mailto:#1}%
+}
+
+% Agrega una nueva línea al header
+\newcommand{\addheadernewline}{%
+	\global\def\GLOBALheaderlineitem {false}%
+	\setcounter{headerseparatorsticky}{0}%
+	\immediate\write\fileheaderitems{\unexpanded{\vspace{\headeritemslinespace cm}\\}\LOCALpercentchar}%
+}
+
+% Agrega el separador entre items del header
+\newcommand{\addheaderseparator}[1][]{%
+	\ifthenelse{\equal{#1}{}}{%
+		\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headerseparatorcolor}{\headerseparator}}\LOCALpercentchar}%
+		\setcounter{headerseparatorstickyhs}{0}
+	}{
+		\ifthenelse{\equal{\GLOBALheaderlineitem}{true}}{%
+			\ifnum\value{headerseparatorsticky}=0%
+				\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headerseparatorcolor}{\headerseparator}}\LOCALpercentchar}%
+		\fi%
+		}{}%
+		\global\def\GLOBALheaderlineitem {true}%
+	}%
+}
+
+% Agrega un espacio vertical
+%	#1	Tamaño del espacio
+\newcommand{\addheaderspace}[1]{%
+	\immediate\write\fileheaderitems{\unexpanded{\hspace{#1}}\LOCALpercentchar}%
+}
+
+% Agrega un item de texto al header
+%	#1	Ícono de fontawesome (opcional)
+%	#2	Texto
+\newcommand{\addheadertext}[2][]{%
+	\setcounter{headerseparatorsticky}{0}%
+	\addheaderseparator[i]%
+	\ifthenelse{\equal{#1}{}}{}{%
+		\addheadericon{#1}%
+		\addheaderspace{\headericonhmargin cm}%
+	}%
+	\immediate\write\fileheaderitems{\unexpanded{\textcolor{\headertextcolor}{#2}}\LOCALpercentchar}%
+}
+
+% Agrega un enlace al header
+%	#1	Título (opcional)
+%	#2	Enlace
+\newcommand{\addheaderurl}[2][]{%
+	\ifthenelse{\equal{#1}{}}{%
+		\setcounter{headerseparatorsticky}{0}%
+		\addheaderseparator[i]%
+		\immediate\write\fileheaderitems{\unexpanded{\url{#2}}\LOCALpercentchar}%
 	}{%
-	\ifthenelse{\equal{#2}{huge}}{%
-		\immediate\write\fileheaderitems{\unexpanded{\raisebox{-0.5\baselineskip}{\includegraphics[height=1.5\baselineskip]{#1}}}\LOCALpercentchar}%
-	}{%
-		\throwerror{\addheaderimage}{Tamano de la imagen debe ser: small, normal, large o huge}}}}%
+		\addheaderseparator[i]%
+		\immediate\write\fileheaderitems{\unexpanded{\href{#2}{#1}}\LOCALpercentchar}%
 	}%
 }
 
@@ -1117,14 +1136,14 @@
 	\ifthenelse{\equal{\headertitlecentered}{true}}{\end{center}}{}%
 	
 	% Escribe items del header
-	\hypersetup{urlcolor=\headerurlcolor}%
+	\hypersetup{filecolor=\headerurlcolor, linkcolor=\headerurlcolor, urlcolor=\headerurlcolor}%
 	\vspace{\headeritemsmargin cm}%
 	{%
 		\noindent%
 		\input{\jobname.hitems}%
 	}%
 	\vspace{0.55em}%
-	\hypersetup{urlcolor=\urlcolor}%
+	\hypersetup{filecolor=\urlcolor, linkcolor=\urlcolor, urlcolor=\urlcolor}%
 }
 
 % Calcula el margen necesario para diferentes tipos de línea
@@ -1778,15 +1797,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={08/11/2025},
+		Template.Date={05/01/2026},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.1.6},
-		Template.Version.Hash={3893534602B9585E228BFE79CF84D30E},
-		Template.Version.Release={4.1.6},
+		Template.Version.Dev={4.1.7-2},
+		Template.Version.Hash={89E7E7A4FD4D1E69D543E983539EBF86},
+		Template.Version.Release={4.1.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://latex.ppizarror.com/Professional-CV/}
 	},
@@ -1794,7 +1813,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.1.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.1.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

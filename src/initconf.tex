@@ -1,6 +1,6 @@
 % Template:     Professional-CV
 % Documento:    Configuraciones iniciales del documento
-% Versión:      4.1.7 (05/01/2026)
+% Versión:      4.1.8 (12/07/2026)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -41,8 +41,6 @@
 }
 \hypersetup{
 	keeppdfinfo,
-	bookmarksopen={\cfgpdfbookmarkopen},
-	bookmarksopenlevel={\cfgbookmarksopenlevel},
 	bookmarkstype={toc},
 	pdfauthor={\name},
 	pdfcenterwindow={\cfgpdfcenterwindow},
@@ -58,15 +56,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Name={Pablo Pizarro R.},
 		Template.Author.Web={https://ppizarror.com/},
-		Template.Date={05/01/2026},
+		Template.Date={12/07/2026},
 		Template.Encoding={UTF-8},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT/},
 		Template.Name={Professional-CV},
 		Template.Type={Normal},
-		Template.Version.Dev={4.1.7-2},
-		Template.Version.Hash={89E7E7A4FD4D1E69D543E983539EBF86},
-		Template.Version.Release={4.1.7},
+		Template.Version.Dev={4.1.8},
+		Template.Version.Hash={603B9F08E05597A395F9CF4A1C9B1E9B},
+		Template.Version.Release={4.1.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Professional-CV/},
 		Template.Web.Manual={https://template-latex.github.io/Professional-CV/}
 	},
@@ -74,7 +72,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Professional-CV v4.1.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Professional-CV v4.1.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -83,6 +81,16 @@
 	pdftoolbar={\cfgpdftoolbar},
 	pdftype={Text}
 }
+% El paquete bookmark (TeX Live 2026) reenvía el valor de bookmarksopen sin
+% expandir a su clave booleana 'open', que solo acepta true/false literales.
+% Se expanden los valores de configuración antes de pasarlos a \hypersetup.
+\begingroup
+\edef\x{\endgroup
+	\noexpand\hypersetup{%
+		bookmarksopen={\cfgpdfbookmarkopen},%
+		bookmarksopenlevel={\cfgbookmarksopenlevel}%
+	}%
+}\x
 
 % Establece la carpeta de imágenes por defecto
 \graphicspath{{./img}}
